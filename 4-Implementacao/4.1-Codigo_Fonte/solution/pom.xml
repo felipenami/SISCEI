@@ -98,7 +98,7 @@
 				<mvn.jdbc.password>felipe.nami</mvn.jdbc.password>
 				
 				<!-- Database Test -->
-				<mvn.jdbc.jdbcUrl>jdbc:postgresql://127.0.0.1:5432/felipe.nami-test</mvn.jdbc.jdbcUrl>
+				<mvn.test.jdbc.jdbcUrl>jdbc:postgresql://127.0.0.1:5432/felipe.nami-test</mvn.test.jdbc.jdbcUrl>
 				<mvn.test.jdbc.username>felipe.nami</mvn.test.jdbc.username>
 				<mvn.test.jdbc.password>felipe.nami</mvn.test.jdbc.password>
 
