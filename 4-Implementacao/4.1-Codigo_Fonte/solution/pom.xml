@@ -101,7 +101,7 @@
 				<mvn.test.jdbc.jdbcUrl>jdbc:postgresql://127.0.0.1:5432/felipe.nami-test</mvn.test.jdbc.jdbcUrl>
 				<mvn.test.jdbc.username>felipe.nami</mvn.test.jdbc.username>
 				<mvn.test.jdbc.password>felipe.nami</mvn.test.jdbc.password>
-
+				
 				<!-- Hibernate -->
 				<mvn.hibernate.hbm2ddl>validate</mvn.hibernate.hbm2ddl>
 				<mvn.hibernate.showSql>true</mvn.hibernate.showSql>
