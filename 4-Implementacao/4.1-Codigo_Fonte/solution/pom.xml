@@ -90,17 +90,17 @@
 		</profile>
 		
 		<profile>
-			<id>sandbox</id>
+			<id>snapshot</id>
 			<properties>
 				<!-- Database -->
-				<mvn.jdbc.jdbcUrl>jdbc:postgresql://devdb.prognus.com.br:5434/blank</mvn.jdbc.jdbcUrl>
-				<mvn.jdbc.username>blank</mvn.jdbc.username>
-				<mvn.jdbc.password>blank</mvn.jdbc.password>
+				<mvn.jdbc.jdbcUrl>jdbc:postgresql://127.0.0.1:5432/felipe.nami</mvn.jdbc.jdbcUrl>
+				<mvn.jdbc.username>felipe.nami</mvn.jdbc.username>
+				<mvn.jdbc.password>felipe.nami</mvn.jdbc.password>
 				
 				<!-- Database Test -->
-				<mvn.test.jdbc.jdbcUrl>jdbc:postgresql://devdb.prognus.com.br:5434/blank-test</mvn.test.jdbc.jdbcUrl>
-				<mvn.test.jdbc.username>blank</mvn.test.jdbc.username>
-				<mvn.test.jdbc.password>blank</mvn.test.jdbc.password>
+				<mvn.jdbc.jdbcUrl>jdbc:postgresql://127.0.0.1:5432/felipe.nami-test</mvn.jdbc.jdbcUrl>
+				<mvn.test.jdbc.username>felipe.nami</mvn.test.jdbc.username>
+				<mvn.test.jdbc.password>felipe.nami</mvn.test.jdbc.password>
 
 				<!-- Hibernate -->
 				<mvn.hibernate.hbm2ddl>validate</mvn.hibernate.hbm2ddl>
