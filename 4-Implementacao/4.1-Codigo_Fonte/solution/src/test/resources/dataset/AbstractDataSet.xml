@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>	
 	<public.user/>
+	<public.bank_account/>
+	<public.category/>
+	<public.accounts_payable/>
 </dataset>

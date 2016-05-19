@@ -68,6 +68,63 @@ CREATE TABLE "public"."user"
   CONSTRAINT user_pkey PRIMARY KEY (id),
   CONSTRAINT uk_user_email UNIQUE (email)
 );
+--
+-- TOC entry 175 (class 1259 OID 278679)
+-- Name: user; Type: TABLE; Schema: public; Owner: -
+
+CREATE TABLE "public"."bank_account"
+(
+  id bigserial NOT NULL,
+  created timestamp without time zone NOT NULL,
+  updated timestamp without time zone,
+  balance numeric(19,2) NOT NULL,
+  description character varying(500) NOT NULL,
+  name character varying(50) NOT NULL,
+  CONSTRAINT bank_account_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE "public"."category"
+(
+  id bigserial NOT NULL,
+  created timestamp without time zone NOT NULL,
+  updated timestamp without time zone,
+  name character varying(50) NOT NULL,
+  CONSTRAINT category_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE supplier
+(
+  id bigserial NOT NULL,
+  created timestamp without time zone NOT NULL,
+  updated timestamp without time zone,
+  CONSTRAINT supplier_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE "public"."accounts_payable"
+(
+  id bigserial NOT NULL,
+  created timestamp without time zone NOT NULL,
+  updated timestamp without time zone,
+  description character varying(500) NOT NULL,
+  due_date timestamp without time zone NOT NULL,
+  entry_date timestamp without time zone NOT NULL,
+  payment_date timestamp without time zone NOT NULL,
+  status integer,
+  value numeric(19,2) NOT NULL,
+  bank_account_id bigint NOT NULL,
+  category_id bigint NOT NULL,
+  supplier_id bigint NOT NULL,
+  CONSTRAINT accounts_payable_pkey PRIMARY KEY (id),
+  CONSTRAINT fk_accounts_payable_bank_account_id FOREIGN KEY (bank_account_id)
+      REFERENCES bank_account (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_accounts_payable_category_id FOREIGN KEY (category_id)
+      REFERENCES category (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_accounts_payable_supplier_id FOREIGN KEY (supplier_id)
+      REFERENCES supplier (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
 
 ----------------------- 
 -- DEFAULT DATA

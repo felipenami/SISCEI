@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.bank_account
+		id="9999"
+		created="2015-03-30 00:00:00"
+		balance="300.00"
+		description="Conta da escola 1"
+		name="HSBC"/>
+	<public.bank_account
+		id="9998"
+		created="2015-03-30 00:00:00"
+		balance="300.00"
+		description="Conta da escola 2"
+		name="SANTANDER"/>
+	<public.bank_account
+		id="9997"
+		created="2015-03-30 00:00:00"
+		balance="300.00"
+		description="Conta da escola 3"
+		name="ITAU"/>
+</dataset>

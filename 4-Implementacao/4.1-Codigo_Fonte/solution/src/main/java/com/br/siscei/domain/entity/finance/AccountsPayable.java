@@ -66,13 +66,12 @@ public class AccountsPayable extends AbstractEntity implements Serializable
 	 * 
 	 */
 	@NotEmpty
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false, length = 500)
 	private String description;
 	/**
 	 * 
 	 */
-	@NotEmpty
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false)
 	private BigDecimal value;
 	/**
 	 * 
@@ -86,6 +85,12 @@ public class AccountsPayable extends AbstractEntity implements Serializable
 	@NotNull
 	@ManyToOne( fetch = FetchType.EAGER )
 	private Category category;
+	/**
+	 * 
+	 */
+	@NotNull
+	@ManyToOne( fetch = FetchType.EAGER )
+	private Supplier supplier;
 	/**
 	 * 
 	 */
@@ -114,9 +119,27 @@ public class AccountsPayable extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	public AccountsPayable ( Long id, Calendar dueDate, Calendar entryDate, 
+			Calendar paymentDate, String description, BigDecimal value, BankAccount bankAccount, Category category, StatusAccountsPayable status )
+	{
+		super(id);
+		this.dueDate 		= dueDate;
+		this.entryDate 		= entryDate;
+		this.paymentDate 	= paymentDate;
+		this.description 	= description;
+		this.value 			= value;
+		this.bankAccount 	= bankAccount;
+		this.category 		= category;
+		this.status 		= status;
+	}
 	/*-------------------------------------------------------------------
 	 *							BEHAVIORS
 	 *-------------------------------------------------------------------*/
+	public void isPayed()
+	{
+		
+	}
+
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -132,6 +155,7 @@ public class AccountsPayable extends AbstractEntity implements Serializable
 		result = prime * result + ( ( entryDate == null ) ? 0 : entryDate.hashCode() );
 		result = prime * result + ( ( paymentDate == null ) ? 0 : paymentDate.hashCode() );
 		result = prime * result + ( ( status == null ) ? 0 : status.hashCode() );
+		result = prime * result + ( ( supplier == null ) ? 0 : supplier.hashCode() );
 		result = prime * result + ( ( value == null ) ? 0 : value.hashCode() );
 		return result;
 	}
@@ -176,6 +200,11 @@ public class AccountsPayable extends AbstractEntity implements Serializable
 		}
 		else if ( !paymentDate.equals( other.paymentDate ) ) return false;
 		if ( status != other.status ) return false;
+		if ( supplier == null )
+		{
+			if ( other.supplier != null ) return false;
+		}
+		else if ( !supplier.equals( other.supplier ) ) return false;
 		if ( value == null )
 		{
 			if ( other.value != null ) return false;
@@ -297,5 +326,19 @@ public class AccountsPayable extends AbstractEntity implements Serializable
 	public void setStatus( StatusAccountsPayable status )
 	{
 		this.status = status;
+	}
+	/**
+	 * @return the supplier
+	 */
+	public Supplier getSupplier()
+	{
+		return supplier;
+	}
+	/**
+	 * @param supplier the supplier to set
+	 */
+	public void setSupplier( Supplier supplier )
+	{
+		this.supplier = supplier;
 	}
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.category
+		id="9999"
+		created="2015-03-30 00:00:00"
+		name="Conta de agua"/>
+	<public.category
+		id="9998"
+		created="2015-03-30 00:00:00"
+		name="Conta de luz"/>
+	<public.category
+		id="9997"
+		created="2015-03-30 00:00:00"
+		name="Conta de telefone"/>
+</dataset>
