@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>	
 	<public.user/>
+	<public.address/>
+	<public.city/>
+	<public.state/>
+	<public.country/>
 	<public.bank_account/>
 	<public.category/>
+	<public.supplier/>
 	<public.accounts_payable/>
 </dataset>

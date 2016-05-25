@@ -127,6 +127,4 @@ public class State extends AbstractEntity implements Serializable
 	{
 		this.country = country;
 	}
-	
-	
 }

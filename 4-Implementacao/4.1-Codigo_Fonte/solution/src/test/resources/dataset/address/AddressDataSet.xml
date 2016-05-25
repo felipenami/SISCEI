@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.address
+		id="9999"
+		created="2015-03-30 00:00:00"
+		cep="85851-010"
+		neighborhood="Centro"
+		street="Rua Almirante Barroso"
+		number="1473"
+		city_id="9999"/>
+</dataset>
+	

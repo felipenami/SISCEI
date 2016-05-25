@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.supplier
+		id="9999"
+		created="2015-03-30 00:00:00"
+		cnpj="10.283.413/0001-84"
+		company_name="Simone Cardoso"
+		contact="Carlão"
+		phone="35742162"
+		trade_name="Vision"
+		address_id="9999" />
+	<public.supplier
+		id="10000"	
+		created="2015-03-30 00:00:00"
+		cnpj="10.283.413/0001-84"
+		company_name="encop"
+		contact="Carlão"
+		phone="35742162"
+		trade_name="Papelaria"
+		address_id="9999" />
+	<public.supplier
+		id="10001"
+		created="2015-03-30 00:00:00"
+		cnpj="10.283.413/0001-84"
+		company_name="Fontanda oro"
+		contact="Carlão"
+		phone="35742162"
+		trade_name="WUATER"
+		address_id="9999" />
+</dataset>
+	

@@ -5,6 +5,8 @@ package com.br.siscei.domain.service;
 
 import org.directwebremoting.annotations.RemoteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -12,6 +14,8 @@ import org.springframework.util.Assert;
 import com.br.siscei.domain.entity.finance.AccountsPayable;
 import com.br.siscei.domain.entity.finance.BankAccount;
 import com.br.siscei.domain.entity.finance.Category;
+import com.br.siscei.domain.entity.finance.StatusAccountsPayable;
+import com.br.siscei.domain.entity.finance.Supplier;
 import com.br.siscei.domain.repository.finance.IAccountsPayableRepository;
 import com.br.siscei.domain.repository.finance.IAccountsReceivableRepository;
 import com.br.siscei.domain.repository.finance.IBankAccountRepository;
@@ -60,8 +64,9 @@ public class FinanceService
 	 *				 		     SERVICES
 	 *-------------------------------------------------------------------*/
 	
-	// ACCOUNTSPAYABLE
-	
+	/*-------------------------------------------------------------------
+	 *				 		     ACCOUNTSPAYABLE
+	 *-------------------------------------------------------------------*/
 	/**
 	 * 
 	 * @param accountsPayable
@@ -92,9 +97,32 @@ public class FinanceService
 		this.accountsPayableRepository.delete( id );
 		this.accountsPayableRepository.flush();
 	}
-	
-	// CATEGORY
-	
+	/**
+	 * 
+	 * @param filter
+	 * @param status
+	 * @param pageable
+	 * @return
+	 */
+	public Page<AccountsPayable> listAccountsPayableByFilters( String filter, StatusAccountsPayable status, PageRequest pageable )
+	{
+		return this.accountsPayableRepository.listByFilters( filter, status, pageable );
+	}
+	/**
+	 * 
+	 * @param id
+	 */
+	public void removeSupplier(Long id)
+	{
+		Supplier supplier = new Supplier();
+		supplier.setId( id );
+		
+		this.supplierRepository.delete( id );
+		
+	}
+	/*-------------------------------------------------------------------
+	 *				 		     CATEGORY
+	 *-------------------------------------------------------------------*/
 	/**
 	 * 
 	 * @param id
@@ -107,8 +135,9 @@ public class FinanceService
 		return category;
 	}
 	
-	
-	// BANKACCOUNT
+	/*-------------------------------------------------------------------
+	 *				 		     BANKACCOUNT
+	 *-------------------------------------------------------------------*/
 	/**
 	 * 
 	 * @param id
@@ -120,4 +149,39 @@ public class FinanceService
 		Assert.notNull( bankAccount, "Não possivel encontrar a conta bancária com o id: "+id );
 		return bankAccount;
 	}
+	/*-------------------------------------------------------------------
+	 *				 		     SUPPLIER
+	 *-------------------------------------------------------------------*/
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Supplier findSupplierById( Long id )
+	{
+		final Supplier supplier = this.supplierRepository.findOne( id );
+		Assert.notNull( supplier, "Não possivel encontrar fornecedor com o id: "+id );
+		return supplier;
+	}
+	/**
+	 * 
+	 * @param supplier
+	 * @return
+	 */
+	public Supplier insertSupplier(Supplier supplier)
+	{
+		Assert.notNull(supplier);
+		return this.supplierRepository.save( supplier );
+	}
+	/**
+	 * 
+	 * @param filter
+	 * @param pageable
+	 * @return
+	 */
+	public Page<Supplier>listSupplierByFilters(String filter, PageRequest pageable )
+	{
+		return this.supplierRepository.listByFilters( filter, pageable );
+	}
+	
 }
