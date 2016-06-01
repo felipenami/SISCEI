@@ -59,6 +59,16 @@ public class State extends AbstractEntity implements Serializable
 	{
 		super(id);
 	}
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 */
+	public State( Long id, String name )
+	{
+		super(id);
+		this.name = name;
+	}
 	/*-------------------------------------------------------------------
 	 *							BEHAVIORS
 	 *-------------------------------------------------------------------*/

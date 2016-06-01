@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+<meta charset="UTF-8">
+<div ng-init="calculateWindowHeight()" id="sectionsWindow" style="overflow:auto;" class="training-form" >
+
+    <div layout-align="center center" style="width:820px;margin:0 auto;position:relative;top:-1px;z-index:2;" class="training-form">
+        <form name="model.form" novalidate>
+	        <eits-paper-sheet id="information" ng-init="openPaper('information')">
+	            <content-closed>
+	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
+	                    <h3>Informações</h3>
+	                </eits-vbox>
+	            </content-closed>
+	            <content-opened>
+			  		<div layout="column" flex>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;" >
+	                    		<label>Razão social</label>
+	                 			<input type="text" ng-model="model.supplier.companyName" name="companyName">
+	                		</md-input-container>
+	                		<md-input-container flex="50" style="margin-right:15px;">
+	                    		<label>Nome fantasia</label>
+	                 			<input type="text" ng-model="model.supplier.tradeName" name="tradeName" required>
+	                 			<div ng-messages="model.form.tradeName.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	            		</div>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;">
+	                    		<label>CNPJ</label>
+	                 			<input type="text" ng-model="model.supplier.cnpj" name="cnpj" mask="99.999.999/9999-99">
+	                		</md-input-container>
+	            		</div>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;">
+	                    		<label>Contato</label>
+	                 			<input type="text" ng-model="model.supplier.contact" name="contact">
+	                		</md-input-container>
+	            			<md-input-container flex="50" style="margin-right:15px;">
+	                    		<label>Telefone</label>
+	                 			<input type="text" ng-model="model.supplier.phone" name="phone" required mask="(99) 9?999-9999">
+	                 			<div ng-messages="model.form.phone.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	            		</div>
+	            		<div>
+	            		</div>
+	           		</div>
+	            </content-opened>
+	        </eits-paper-sheet>
+	        <eits-paper-sheet id="address">
+				<content-closed>
+	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
+	                    <h3>Endereço</h3>
+	                </eits-vbox>
+	            </content-closed>	
+	            <content-opened>
+			  		<div layout="column" flex>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;">
+	                    		<label>Endereço</label>
+	                 			<input type="text" ng-model="model.supplier.address.street" name="street" required>
+	                 			<div ng-messages="model.form.street.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	                		<md-input-container flex="50" style="margin-right:15px;">
+	            				<label>Estado </label>
+	                    		<md-select  ng-model="model.state" name="state" md-on-close="listCitiesByState(model.state.id)" >
+						          <md-option ng-repeat="state in model.states" ng-value="{{state}}" required>
+						            {{state.name}}
+						          </md-option>
+						        </md-select>
+	                		</md-input-container>
+	            		</div>
+	           		</div>	            
+			  		<div layout="column" flex>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;">
+	                    		<label>Número</label>
+	                 			<input type="text" ng-model="model.supplier.address.number">
+	                		</md-input-container>
+	                		<md-input-container flex="50" style="margin-right:15px;">
+	            				<label>Cidade</label>
+	                    		<md-select  ng-model="model.supplier.address.city" name="city">
+						          <md-option ng-repeat="city in model.cities" ng-value="{{city}}"  >
+						            {{city.name}}
+						          </md-option>
+						        </md-select>
+						        <div ng-messages="model.form.city.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	            		</div>
+	           		</div>	            
+			  		<div layout="column" flex>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;">
+	                    		<label>Bairro</label>
+	                 			<input type="text" ng-model="model.supplier.address.neighborhood" name="neighborhood" required>
+	                 			<div ng-messages="model.form.neighborhood.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	                		<md-input-container flex="50" style="margin-right:15px;">
+	                    		<label>CEP</label>
+	                 			<input type="text" ng-model="model.supplier.address.cep" name="cep" mask="99.999-999" >
+	                		</md-input-container>
+	            		</div>
+	           		</div>	            
+	            </content-opened>        
+	        </eits-paper-sheet>
+        </form>
+    </div>
+        <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="!model.supplier.id">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertSupplierHandler(model.supplier)">
+            <md-tooltip>Criar</md-tooltip>
+        </md-button>
+     </eits-hbox>
+</div>
+</html>

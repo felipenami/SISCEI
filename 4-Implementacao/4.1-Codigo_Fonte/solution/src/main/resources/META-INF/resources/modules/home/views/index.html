@@ -15,10 +15,12 @@
 		<script th:replace="modules/default-scripts"></script>
 		
 		<!-- Module --> 
-		<script type="text/javascript" th:src="@{/modules/home/home-module.js}"></script>
+		<script type="text/javascript" th:src="@{/modules/home/siscei-module.js}"></script>
 		
 		<!-- Controllers -->
 		<script type="text/javascript" th:src="@{/modules/home/controllers/home-controller.js}"></script>
+		<script type="text/javascript" th:src="@{/modules/home/controllers/supplier-controller.js}"></script>
+		<script type="text/javascript" th:src="@{/modules/home/controllers/bank-account-controller.js}"></script>
 	</head>
 		
 	<body ng-controller="HomeController">
@@ -32,8 +34,6 @@
         			<md-icon class="zmdi zmdi-menu zmdi-hc-2x"></md-icon>
       			</md-button>
       			
-      			<img width="150" th:src="@{/static/images/logo-large.png}" alt="Logo"/>
-				
 				<span flex=""></span>
 				
 				<label class="md-body-1" th:text="${#authentication.name}"></label>
@@ -71,9 +71,6 @@
     			</md-menu>
     		</eits-hbox>
 
-    		<md-progress-linear md-mode="indeterminate" ng-if="loading" 
-    			style="position: fixed; top: 59px;">
-    		</md-progress-linear>
   		</md-toolbar>
   		
   		<md-content style="width: 100%; height: calc(100% - 64px);" ui-view="">

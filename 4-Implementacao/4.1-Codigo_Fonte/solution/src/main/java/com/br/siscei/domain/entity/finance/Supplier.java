@@ -5,6 +5,7 @@ package com.br.siscei.domain.entity.finance;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -71,7 +72,7 @@ public class Supplier extends AbstractEntity implements Serializable
 	 * 
 	 */
 	@NotNull
-	@ManyToOne( fetch = FetchType.EAGER )
+	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	private Address address;
 	/*-------------------------------------------------------------------
 	 * 		 					CONSTRUCTORS

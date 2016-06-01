@@ -6,7 +6,7 @@
  * @param $scope
  * @param $state
  */
-angular.module('home')
+angular.module('siscei')
 	   .controller('HomeController', function( $rootScope, $scope, $state, $importService, $mdToast, $mdDialog, $mdSidenav ) {
 
     /*-------------------------------------------------------------------

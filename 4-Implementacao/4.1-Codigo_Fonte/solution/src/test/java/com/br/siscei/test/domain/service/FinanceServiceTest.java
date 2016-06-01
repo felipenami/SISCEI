@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 import com.br.siscei.domain.entity.address.Address;
+import com.br.siscei.domain.entity.address.City;
 import com.br.siscei.domain.entity.finance.AccountsPayable;
 import com.br.siscei.domain.entity.finance.BankAccount;
 import com.br.siscei.domain.entity.finance.Category;
@@ -175,7 +176,13 @@ public class FinanceServiceTest extends AbstractIntegrationTests
 		})
 	public void insertSupplierMustPass()
 	{
-		final Address address = this.addressService.findAddressById( 9999L );
+		final City city = this.addressService.findCityById( 9999L );
+		
+		Address address = new Address();
+		address.setCep( "85851-010" );
+		address.setCity( city );
+		address.setNeighborhood( "Centro" );
+		address.setStreet( "Rua Almirante barroso ");
 		
 		Supplier supplier = new Supplier();
 		
@@ -212,7 +219,7 @@ public class FinanceServiceTest extends AbstractIntegrationTests
 		})
 	public void listAllSuppliersMustPass()
 	{
-		final Page<Supplier> supplier = this.financeService.listSupplierByFilters( null,null );
+		final Page<Supplier> supplier = this.financeService.listSuppliersByFilters( null,null );
 		
 		Assert.assertNotNull(supplier);
 		Assert.assertTrue(supplier.getContent().size() == 3 );
@@ -232,7 +239,7 @@ public class FinanceServiceTest extends AbstractIntegrationTests
 	public void list1SupplierMustPass()
 	{
 		
-		final Page<Supplier> supplier = this.financeService.listSupplierByFilters( "vision", null );
+		final Page<Supplier> supplier = this.financeService.listSuppliersByFilters( "vision", null );
 		
 		Assert.assertNotNull(supplier);
 		Assert.assertTrue(supplier.getContent().size() == 1 );
@@ -252,14 +259,14 @@ public class FinanceServiceTest extends AbstractIntegrationTests
 	public void list3SupplierMustPass()
 	{
 		
-		final Page<Supplier> supplier = this.financeService.listSupplierByFilters( "carlão", null );
+		final Page<Supplier> supplier = this.financeService.listSuppliersByFilters( "carlão", null );
 		
 		Assert.assertNotNull(supplier);
 		Assert.assertTrue(supplier.getContent().size() == 3 );
 	}	
 
 	/**
-     * Objetivo: Success.
+     * Objetivo: Fail.
      * Motivo: O objeto {@link Supplier} é removido com sucesso.
      */
 	@Test(expected = IllegalArgumentException.class)
@@ -272,7 +279,13 @@ public class FinanceServiceTest extends AbstractIntegrationTests
 		})
 	public void removeSupplierMustPass()
 	{
-		final Address address = this.addressService.findAddressById( 9999L );
+		final City city = this.addressService.findCityById( 9999L );
+		
+		Address address = new Address();
+		address.setCep( "85851-010" );
+		address.setCity( city );
+		address.setNeighborhood( "Centro" );
+		address.setStreet( "Rua Almirante barroso ");
 		
 		Supplier supplier = new Supplier();
 		
@@ -296,9 +309,146 @@ public class FinanceServiceTest extends AbstractIntegrationTests
 		
 		supplier = this.financeService.findSupplierById( supplier.getId() );
 		Assert.assertNotNull( supplier );
+		
 		this.financeService.removeSupplier( supplier.getId() );
 		this.financeService.findSupplierById( supplier.getId() );
 		
+	}
+	
+	/*-------------------------------------------------------------------
+	 *				 		    BANK_ACCOUNT TESTS
+	 *-------------------------------------------------------------------*/	
+	/**
+     * Objetivo: Success.
+     * Motivo: Todos os parâmetros informados no filtro estão em conformidade para a consulta.
+     */
+	@Test
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+			"/dataset/finance/BankAccountDataSet.xml",
+		})
+	public void findBankAccountByIdMustPass()
+	{
+		final BankAccount bankAccount = this.financeService.findBankAccountById( 9999L );
+		Assert.assertNotNull(bankAccount);
+	}
+	/**
+     * Objetivo: Success.
+     * Motivo: O objeto {@link BankAccount} é instanciado e inserido corretamente
+     */
+	@Test
+	public void insertBankAccountMustPass()
+	{
+		
+		final BigDecimal balance = new BigDecimal("1.5");
+		
+		BankAccount bankAccount = new BankAccount();
+		
+		bankAccount.setName( "HSBC" );
+		bankAccount.setDescription( "Conta pessoal" );
+		bankAccount.setBalance( balance );
+		
+		bankAccount  = this.financeService.insertBankAccount( bankAccount  );
+		
+		Assert.assertNotNull(bankAccount );
+		Assert.assertNotNull(bankAccount.getId());
+		Assert.assertNotNull(bankAccount.getDescription());
+		Assert.assertNotNull(bankAccount.getName());
+		Assert.assertNotNull(bankAccount.getBalance());
+		
+	}
+	/**
+	 * Objetivo: Success.
+	 * Motivo: O objeto {@link BankAccount} é instanciado e inserido corretamente
+	 */
+	@Test
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+			"/dataset/finance/BankAccountDataSet.xml",
+		})
+	public void updateBankAccountMustPass()
+	{
+		
+		BankAccount bankAccount = this.financeService.findBankAccountById( 9999L );
+		
+		final BigDecimal balance = new BigDecimal("1.500");
+		
+		bankAccount.setName( "HSBC2" );
+		bankAccount.setDescription( "Conta pessoal2" );
+		bankAccount.setBalance( balance );
+		
+		bankAccount  = this.financeService.insertBankAccount( bankAccount  );
+		
+		Assert.assertNotNull(bankAccount );
+		Assert.assertNotNull(bankAccount.getId());
+		Assert.assertTrue(bankAccount.getDescription() == "Conta pessoal2");
+		Assert.assertTrue(bankAccount.getName() == "HSBC2");
+		Assert.assertTrue(bankAccount.getBalance() == balance );
+		
+	}
+	/**
+     * Objetivo: Fail.
+     * Motivo: O objeto {@link BankAccount} é instanciado e inserido, e removido corretamente
+     */
+	@Test(expected = IllegalArgumentException.class)
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+			"/dataset/finance/BankAccountDataSet.xml",
+		})
+	public void removeBankAccountMustPass()
+	{
+		
+		final BigDecimal balance = new BigDecimal("1.5");
+		
+		BankAccount bankAccount = new BankAccount();
+		
+		bankAccount.setName( "HSBC" );
+		bankAccount.setDescription( "Conta pessoal" );
+		bankAccount.setBalance( balance );
+		
+		bankAccount  = this.financeService.insertBankAccount( bankAccount  );
+		
+		Assert.assertNotNull(bankAccount );
+		Assert.assertNotNull(bankAccount.getId());
+		Assert.assertNotNull(bankAccount.getDescription());
+		Assert.assertNotNull(bankAccount.getName());
+		Assert.assertNotNull(bankAccount.getBalance());
+		
+		
+		bankAccount = this.financeService.findBankAccountById( 9999L );
+		Assert.assertNotNull(bankAccount);
+		
+		this.financeService.removeBankAccount( bankAccount.getId() );
+		this.financeService.findBankAccountById( bankAccount.getId() );
+		
+		
+	}
+	/**
+     * Objetivo: Success.
+     * Motivo: Todos os parâmetros informados no filtro estão em conformidade para a consulta.
+     */
+	@Test
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+			"/dataset/finance/BankAccountDataSet.xml",
+		})
+	public void listAllBankAccountMustPass()
+	{
+		final Page<BankAccount> bankAccount = this.financeService.listBankAccountsByFilters( null, null );
+		
+		Assert.assertNotNull(bankAccount);
+		Assert.assertTrue(bankAccount.getContent().size() == 3 );		
+	}
+	/**
+	 * Objetivo: Success.
+	 * Motivo: Todos os parâmetros informados no filtro estão em conformidade para a consulta.
+	 */
+	@Test
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+			"/dataset/finance/BankAccountDataSet.xml",
+	})
+	public void list1BankAccountMustPass()
+	{
+		final Page<BankAccount> bankAccount = this.financeService.listBankAccountsByFilters( "HSBC", null );
+		
+		Assert.assertNotNull(bankAccount);
+		Assert.assertTrue(bankAccount.getContent().size() == 1 );		
 	}
 	
 }

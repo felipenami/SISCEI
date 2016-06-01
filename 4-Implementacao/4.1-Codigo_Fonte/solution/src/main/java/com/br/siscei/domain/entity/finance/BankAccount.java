@@ -50,8 +50,7 @@ public class BankAccount extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@NotEmpty
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false)
 	private BigDecimal balance;
 	/*-------------------------------------------------------------------
 	 * 		 					CONSTRUCTORS
@@ -70,6 +69,20 @@ public class BankAccount extends AbstractEntity implements Serializable
 	public BankAccount( Long id )
 	{
 		super(id);
+	}
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param balance
+	 */
+	public BankAccount( Long id, String name, String description, BigDecimal balance )
+	{
+		super(id);
+		this.name = name;
+		this.description = description;
+		this.balance = balance;
 	}
 	/*-------------------------------------------------------------------
 	 *							BEHAVIORS

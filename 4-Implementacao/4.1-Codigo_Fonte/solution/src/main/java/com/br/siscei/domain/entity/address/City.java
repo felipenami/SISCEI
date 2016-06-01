@@ -62,6 +62,17 @@ public class City extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	/**
+	 * 
+	 */
+	public City( Long id, String name )
+	{
+		super(id);
+		this.name = name;
+	}
+	/**
+	 * 
+	 */
 	/*-------------------------------------------------------------------
 	 *							BEHAVIORS
 	 *-------------------------------------------------------------------*/

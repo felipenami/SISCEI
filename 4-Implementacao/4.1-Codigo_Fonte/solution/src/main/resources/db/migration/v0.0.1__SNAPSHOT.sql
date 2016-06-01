@@ -45,7 +45,161 @@ CREATE TABLE auditing.user_audited
       REFERENCES auditing.revision (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
+--
+-- TOC entry 178 (class 1259 OID 278695)
+-- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
+CREATE TABLE auditing.country_audited
+(
+  id bigint NOT NULL,
+  revision bigint NOT NULL,
+  revision_type smallint,
+  name character varying(50),
+  CONSTRAINT country_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_country_audited_revision FOREIGN KEY (revision)
+      REFERENCES auditing.revision (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+--
+-- TOC entry 178 (class 1259 OID 278695)
+-- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
+CREATE TABLE auditing.state_audited
+(
+  id bigint NOT NULL,
+  revision bigint NOT NULL,
+  revision_type smallint,
+  name character varying(300),
+  country_id bigint,
+  CONSTRAINT state_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_state_audited_revision FOREIGN KEY (revision)
+      REFERENCES auditing.revision (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+--
+-- TOC entry 178 (class 1259 OID 278695)
+-- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
+CREATE TABLE auditing.city_audited
+(
+  id bigint NOT NULL,
+  revision bigint NOT NULL,
+  revision_type smallint,
+  name character varying(300),
+  state_id bigint,
+  CONSTRAINT city_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_city_audited_revision FOREIGN KEY (revision)
+      REFERENCES auditing.revision (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+--
+-- TOC entry 178 (class 1259 OID 278695)
+-- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
+CREATE TABLE auditing.address_audited
+(
+  id bigint NOT NULL,
+  revision bigint NOT NULL,
+  revision_type smallint,
+  cep character varying(144),
+  neighborhood character varying(144),
+  "number" smallint,
+  street character varying(144),
+  city_id bigint,
+  CONSTRAINT address_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_address_audited_revision FOREIGN KEY (revision)
+      REFERENCES auditing.revision (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+--
+-- TOC entry 178 (class 1259 OID 278695)
+-- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
 
+CREATE TABLE auditing.bank_account_audited
+(
+  id bigint NOT NULL,
+  revision bigint NOT NULL,
+  revision_type smallint,
+  balance numeric(19,2),
+  description character varying(500),
+  name character varying(50),
+  CONSTRAINT bank_account_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_bank_account_audited_revision FOREIGN KEY (revision)
+      REFERENCES auditing.revision (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+--
+-- TOC entry 178 (class 1259 OID 278695)
+-- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
+CREATE TABLE auditing.category_audited
+(
+  id bigint NOT NULL,
+  revision bigint NOT NULL,
+  revision_type smallint,
+  name character varying(50),
+  CONSTRAINT category_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_category_audited_revision FOREIGN KEY (revision)
+      REFERENCES auditing.revision (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+--
+-- TOC entry 178 (class 1259 OID 278695)
+-- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
+CREATE TABLE auditing.supplier_audited
+(
+  id bigint NOT NULL,
+  revision bigint NOT NULL,
+  revision_type smallint,
+  cnpj character varying(20),
+  company_name character varying(144),
+  contact character varying(144),
+  phone character varying(15),
+  trade_name character varying(144),
+  address_id bigint,
+  CONSTRAINT supplier_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_supplier_audited_revision FOREIGN KEY (revision)
+      REFERENCES auditing.revision (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+--
+-- TOC entry 178 (class 1259 OID 278695)
+-- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
+CREATE TABLE auditing.accounts_payable_audited
+(
+  id bigint NOT NULL,
+  revision bigint NOT NULL,
+  revision_type smallint,
+  description character varying(500),
+  due_date timestamp without time zone,
+  entry_date timestamp without time zone,
+  payment_date timestamp without time zone,
+  status integer,
+  value numeric(19,2),
+  bank_account_id bigint,
+  category_id bigint,
+  supplier_id bigint,
+  CONSTRAINT accounts_payable_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_accounts_payable_audited_revision FOREIGN KEY (revision)
+      REFERENCES auditing.revision (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+--
+-- TOC entry 178 (class 1259 OID 278695)
+-- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
+CREATE TABLE auditing.accounts_receivable_audited
+(
+  id bigint NOT NULL,
+  revision bigint NOT NULL,
+  revision_type smallint,
+  description character varying(500),
+  due_date timestamp without time zone,
+  entry_date timestamp without time zone,
+  receivement_date timestamp without time zone,
+  status integer,
+  value numeric(19,2),
+  bank_account_id bigint,
+  student_id bigint,
+  CONSTRAINT accounts_receivable_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_accounts_receivable_audited_revision FOREIGN KEY (revision)
+      REFERENCES auditing.revision (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
 ----------------------- 
 -- PUBLIC STRUCTURE
 -----------------------
@@ -198,7 +352,31 @@ CREATE TABLE "public"."accounts_payable"
       REFERENCES supplier (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
+--
+-- TOC entry 175 (class 1259 OID 278679)
+-- Name: user; Type: TABLE; Schema: public; Owner: -
 
+CREATE TABLE "public"."accounts_receivable"
+(
+  id bigserial NOT NULL,
+  created timestamp without time zone NOT NULL,
+  updated timestamp without time zone,
+  description character varying(500) NOT NULL,
+  due_date timestamp without time zone NOT NULL,
+  entry_date timestamp without time zone NOT NULL,
+  receivement_date timestamp without time zone NOT NULL,
+  status integer,
+  value numeric(19,2) NOT NULL,
+  bank_account_id bigint NOT NULL,
+  student_id bigint,
+  CONSTRAINT accounts_receivable_pkey PRIMARY KEY (id),
+  CONSTRAINT fk_accounts_receivable_bank_account_id FOREIGN KEY (bank_account_id)
+      REFERENCES bank_account (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_accounts_receivable_student_id FOREIGN KEY (student_id)
+      REFERENCES "user" (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
 ----------------------- 
 -- DEFAULT DATA
 -----------------------

@@ -136,7 +136,7 @@ public class FinanceService
 	}
 	
 	/*-------------------------------------------------------------------
-	 *				 		     BANKACCOUNT
+	 *				 		     BANK_ACCOUNT
 	 *-------------------------------------------------------------------*/
 	/**
 	 * 
@@ -148,6 +148,45 @@ public class FinanceService
 		final BankAccount bankAccount = this.bankAccountRepository.findOne( id );
 		Assert.notNull( bankAccount, "Não possivel encontrar a conta bancária com o id: "+id );
 		return bankAccount;
+	}
+	/**
+	 * 
+	 * @param bankAccount
+	 * @return
+	 */
+	public BankAccount insertBankAccount(BankAccount bankAccount)
+	{
+		Assert.notNull(bankAccount);
+		return this.bankAccountRepository.saveAndFlush( bankAccount );
+	}
+	/**
+	 * 
+	 * @param bankAccount
+	 * @return
+	 */
+	public BankAccount updateBankAccount(BankAccount bankAccount)
+	{
+		Assert.notNull(bankAccount);	
+		return this.bankAccountRepository.saveAndFlush( bankAccount );
+	}
+	/**
+	 * 
+	 * @param id
+	 */
+	public void removeBankAccount(Long id)
+	{
+		BankAccount bankAccount = new BankAccount();
+		bankAccount.setId( id );
+		
+		this.bankAccountRepository.delete( id );
+		
+	}
+	/**
+	 * 
+	 */
+	public Page<BankAccount>listBankAccountsByFilters(String filter, PageRequest pageable )
+	{
+		return this.bankAccountRepository.listByFilters( filter, pageable );
 	}
 	/*-------------------------------------------------------------------
 	 *				 		     SUPPLIER
@@ -171,7 +210,7 @@ public class FinanceService
 	public Supplier insertSupplier(Supplier supplier)
 	{
 		Assert.notNull(supplier);
-		return this.supplierRepository.save( supplier );
+		return this.supplierRepository.saveAndFlush( supplier );
 	}
 	/**
 	 * 
@@ -179,7 +218,7 @@ public class FinanceService
 	 * @param pageable
 	 * @return
 	 */
-	public Page<Supplier>listSupplierByFilters(String filter, PageRequest pageable )
+	public Page<Supplier>listSuppliersByFilters(String filter, PageRequest pageable )
 	{
 		return this.supplierRepository.listByFilters( filter, pageable );
 	}
