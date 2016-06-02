@@ -6,6 +6,17 @@
 	
   angular.module('siscei')
 	.controller('BankAccountController', function ($scope, $rootScope,$state, $importService, $mdDialog, $mdSidenav, $mdToast, $timeout, $window, $location, $locale , $q) {
+		/**
+         * Serviços importados do DWR
+         */
+		$importService("accountService");
+		/**
+		 * 
+		 */
+		$importService("financeService");
+		/**
+		 * 
+		 */
 		
 		 //----STATES
         /**
@@ -27,7 +38,43 @@
         /**
          * 
          */
+        $scope.showMoreInformation = function(bol, name){
+            $scope.moreInformation[name] = bol;
+            $scope.$apply();
+
+        };
+        /**
+         * Responsável por abrir os paper conforme o ID
+         */
+        $scope.openPaper = function( namePaper ){
+            $timeout(function(){
+                angular.element('#'+namePaper)[0].open();
+            },100);
+        };
         
+        /**
+         * 
+         */
+        $scope.model = {
+                form    : {},
+                bankAccount : new BankAccount(),
+                filters: {
+                    terms: [],
+                },
+                bankAccounts : [],
+                page: {//PageImpl
+                    content: null,
+                    pageable: {//PageRequest
+                        size: 9,
+                        page: 0,
+                        sort: {//Sort
+                            orders: [
+                                { direction: 'ASC' }
+                            ]
+                        }
+                    }
+                }
+        	};
         /*-------------------------------------------------------------------
          * 		 				  POST CONSTRUCT
          *-------------------------------------------------------------------*/ 
@@ -49,7 +96,7 @@
                     break;
                 }
                 case $scope.DETAIL_STATE: {
-//                    $scope.changeToDetail( $state.params.id );
+                    $scope.changeToDetail( $state.params.id );
                     break;
                 }
                 case $scope.ADD_STATE: {
@@ -69,28 +116,175 @@
         /**
          * 
          */
-        $scope.changeToEdit = function () {
+        $scope.changeToEdit = function (id) {
         	console.debug("edit");
-        }
-        /**
-         * 
-         */
-        $scope.changeToAdd = function () {
-        	console.debug("Add");
+        	
+        	financeService.findBankAccountById(id,{
+        		callback: function (result) {
+        			$scope.model.bankAccount = result;
+        			$scope.$apply();
+        		},
+                errorHandler: function (message, exception) {
+		        	$mdToast.showSimple(message);
+		            $state.go($scope.LIST_STATE);
+		            $scope.$apply();
+                }
+        	})
+        	
         }
         /**
          * 
          */
         $scope.changeToList = function () {
-        	console.debug("List");
+            console.debug("changeToList");
+            
+            $scope.model.page.pageable = {
+            	size: 9,
+            	page: 0,
+            	sort: {
+            		orders: [{ 
+            			direction: 'ASC',
+            			property: 'name',
+            			nullHandlingHint: null
+            		}]
+                }
+            };
+                
+                //Limpamos a lista para um nova consulta
+                $scope.model.bankAccount = new BankAccount();
+                $scope.model.bankAccounts = [];
+                $scope.listBankAccountsByFilters( $scope.model.filters,  $scope.model.page.pageable );
+        };
+        /**
+         * 
+         */
+        $scope.changeToAdd = function () {
+        	console.debug("Add");
+        	$scope.model.bankAccount = new BankAccount();
+        }
+
+        /**
+         * 
+         */
+        $scope.changeToDetail = function (id) {
+        	console.debug("Detail");
+        	
+        	financeService.findBankAccountById(id,{
+        		callback: function (result) {
+        			$scope.model.bankAccount = result;
+        			$scope.$apply();
+        		},
+                errorHandler: function (message, exception) {
+		        	$mdToast.showSimple(message);
+		            $state.go($scope.LIST_STATE);
+		            $scope.$apply();
+                }
+        	})
         }
         /**
          * 
          */
-        $scope.changeToDetail = function () {
-        	console.debug("Detail");
+        $scope.listBankAccountsByFilters = function(filters, pageRequest){
+        	
+        	financeService.listBankAccountsByFilters( filters.terms.toString(), pageRequest, {
+                callback: function (result) {
+                    $scope.model.bankAccounts = $scope.model.bankAccounts.concat(result.content);
+                    $scope.model.showLoading = false;
+                    $scope.model.notFound = result.totalElements == 0 ? true : false;
+                    $scope.$apply();
+                },
+                errorHandler: function (message, exception) {
+                    $mdToast.showSimple(message);
+                    $scope.$apply();
+                }
+            });
         }
+        /**
+         * 
+         */
+        $scope.insertBankAccountHandler= function(bankAccount){
+        	if($scope.validateForm()){
+	        	financeService.insertBankAccount( bankAccount, {
+	        		callback: function(result){
+	        			$mdToast.showSimple("Conta bancária salva com sucesso!");
+	                    $state.go($scope.LIST_STATE);
+	                    $scope.$apply();
+	        		},
+	        		 errorHandler: function (message, exception) {
+	                     $mdToast.showSimple(message);
+	                     $scope.$apply();
+	                 }
+	        	})
+        	}
+        }
+        /**
+         * 
+         */
+        $scope.updateBankAccountHandler = function( bankAccount ){
+        	if($scope.validateForm()){
+	        	financeService.updateBankAccount( bankAccount, {
+	        		callback: function(result){
+	        			$mdToast.showSimple("Registro alterado com sucesso!");
+	                    $state.go($scope.LIST_STATE);
+	                    $scope.$apply();
+	        		},
+	        		 errorHandler: function (message, exception) {
+	                     $mdToast.showSimple(message);
+	                     $scope.$apply();
+	                 }
+	        	})        		
+        		
+        	}
+        }
+        $scope.changeToRemove = function (event, entity) {
+            console.debug("changeToRemove", entity);
+
+            var confirm = $mdDialog.confirm()
+                .title('Tem certeza que deseja excluir este registro?')
+                .content('Não será possível recuperar este registro se for excluído.')
+                .ok('Sim')
+                .cancel('Cancelar')
+                .targetEvent(event);
+
+            $mdDialog.show(confirm).then(function (result) {
+            	
+            	financeService.removeBankAccount(entity.id, {
+                    callback: function (result) {
+                        if( $state.current.name == $scope.LIST_STATE){
+                            $scope.changeToList();
+                        } else {
+                            $state.go( $scope.LIST_STATE );
+                        }
+                        $mdToast.showSimple("O registro foi excluído com sucesso!");
+                        $scope.$apply();
+                    },
+                    errorHandler: function (message, exception) {
+                        $mdToast.showSimple(message);
+                        $state.go($scope.LIST_STATE);
+                        $scope.$apply();
+                    }
+                });
+            });
+        };
         
+        /**
+         * 
+         */
+        $scope.validateForm = function (){
+        	if($scope.model.bankAccount.name == null){
+        		$mdToast.showSimple("O nome fantasia deve ser informado.");
+                return false;
+        	}
+        	if($scope.model.bankAccount.description == null){
+        		$mdToast.showSimple("O telefone do fornecedor deve ser informado.");
+        		return false;
+        	}
+        	if($scope.model.bankAccount.balance == null){
+        		$mdToast.showSimple("O endereço do fornecedor deve ser informado.");
+        		return false;
+        	}
+        	return true;
+        }       
         
 	});
 	

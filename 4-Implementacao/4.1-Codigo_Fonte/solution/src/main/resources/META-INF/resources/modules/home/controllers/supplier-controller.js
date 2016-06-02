@@ -127,7 +127,6 @@
          *  
          */
         $scope.changeToEdit = function (id) {
-        	console.debug("edit");
         	
         	financeService.findSupplierById(id,{
         		callback: function (result) {
@@ -233,12 +232,6 @@
                     $scope.$apply();
                 }
         	});
-        }
-        /**
-         * 
-         */
-        $scope.insertStateHandler = function(state, event){
-        	console.log(state);
         }
         /**
          * 

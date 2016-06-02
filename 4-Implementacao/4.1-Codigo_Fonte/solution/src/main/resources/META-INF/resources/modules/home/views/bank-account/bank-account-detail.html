@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+<meta charset="UTF-8">
+<div ng-init="calculateWindowHeight()" id="sectionsWindow" style="overflow:auto;" class="training-form" >
+
+    <div layout-align="center center" style="width:820px;margin:0 auto;position:relative;top:-1px;z-index:2;" class="training-form">
+        <form name="model.form" novalidate>
+	        <eits-paper-sheet id="information" ng-init="openPaper('information')">
+	            <content-closed>
+	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
+	                    <h3>Informações</h3>
+	                </eits-vbox>
+	            </content-closed>
+	            <content-opened>
+			  		<div layout="column" flex>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+		            		<label class="gray" flex> Nome do banco: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.bankAccount.name}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+		            		<label class="gray" flex> Descrição: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.bankAccount.description}} </h4>
+	            		</div>
+	            		<div layout="row" flex >
+	            			<label class="gray" flex> Saldo: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.bankAccount.balance | currency}} </h4>
+	            		</div>
+	            		<div>
+	            		</div>
+	           		</div>
+	            </content-opened>
+	        </eits-paper-sheet>
+        </form>
+    </div>
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-arrow-left md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="$state.go('bankAccount.list')">
+            <md-tooltip>Voltar</md-tooltip>
+        </md-button>
+     </eits-hbox>
+</div>
+</html>

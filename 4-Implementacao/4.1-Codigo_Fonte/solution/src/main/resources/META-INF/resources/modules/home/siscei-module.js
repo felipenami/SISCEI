@@ -2,7 +2,7 @@
 	'use strict';
 
 	//Start the AngularJS
-	var module = angular.module('siscei', ['ngMessages', 'ngSanitize', 'ngMaterial', 'ui.router', 'eits-md', 'eits-ng', 'md.data.table', 'ngMask' ]);
+	var module = angular.module('siscei', ['ngMessages', 'ngSanitize', 'ngMaterial', 'ui.router', 'eits-md', 'eits-ng', 'md.data.table', 'ngMask', 'ng-currency' ]);
 
 	/**
 	 * 
