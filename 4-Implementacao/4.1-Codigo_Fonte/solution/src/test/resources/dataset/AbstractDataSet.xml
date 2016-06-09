@@ -8,5 +8,5 @@
 	<public.bank_account/>
 	<public.category/>
 	<public.supplier/>
-	<public.accounts_payable/>
+	<public.account_payable/>
 </dataset>

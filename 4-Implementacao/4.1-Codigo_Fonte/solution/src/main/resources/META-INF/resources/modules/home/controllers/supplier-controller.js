@@ -131,6 +131,7 @@
         	financeService.findSupplierById(id,{
         		callback: function (result) {
         			$scope.model.supplier = result;
+        			$scope.listCitiesByState($scope.model.supplier.address.city.state.id);
         			$scope.$apply();
         		},
                 errorHandler: function (message, exception) {
@@ -172,7 +173,6 @@
         	$scope.model.states = [];
         	$scope.model.cities = [];
         	$scope.model.state = {};
-        	$scope.listAllStates();
         	$scope.model.supplier = new Supplier();
         }
         /**

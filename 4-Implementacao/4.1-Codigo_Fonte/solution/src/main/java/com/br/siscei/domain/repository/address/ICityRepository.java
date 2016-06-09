@@ -18,7 +18,7 @@ import com.br.siscei.domain.entity.address.State;
  */
 public interface ICityRepository extends JpaRepository<City, Long>
 {
-	@Query(value= "SELECT new City(city.id, city.name) " +
+	@Query(value= "SELECT new City(city.id, city.name, city.state) " +
 			  "FROM  City city " +
 			  "WHERE (( city.state.id = :stateId )) " )
 public List<City>listByState(@Param("stateId") Long stateId);

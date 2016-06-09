@@ -10,7 +10,7 @@ import org.directwebremoting.annotations.DataTransferObject;
  *
  */
 @DataTransferObject(type = "enum")
-public enum StatusAccountsPayable
+public enum StatusAccountPayable
 {
 	/*-------------------------------------------------------------------
 	 *				 		     ENUMS

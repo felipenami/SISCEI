@@ -1,0 +1,30 @@
+md-input-container label {
+    color: #AAAAAA;
+}
+
+.login-form{
+    width: 500px;
+    height: 550px;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    padding: 40px 70px 95px 70px;
+}
+
+.login-button{
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    background-color:#01579B !important;
+    color: #FFFFFF !important;
+}
+
+.login-body {
+    background: linear-gradient(to bottom, rgba(1, 87, 155, 1) 50%, rgba(236, 236, 236, 1) 50%); /* W3C */
+}
+
+.rodape {
+    position:absolute;
+    bottom:0;
+    height:35px;
+    margin-left: -25px;color: #9E9E9E;
+}

@@ -15,7 +15,7 @@
 		$mdThemingProvider.definePalette('buttonsPalette', {
 		    '50': '4CAF50',
 		    '100': '01579B',
-		    '200': 'FFC107',
+		    '200': '01579B',
 		    '300': 'e57373',
 		    '400': 'ef5350',
 		    '500': 'f44336',
@@ -107,6 +107,29 @@
 		.state('bankAccount.detail',{
 			url : "/detail/{id:[0-9]{1,10}}",
 			templateUrl : "./modules/home/views/bank-account/bank-account-detail.html"
+		});
+		//ACCOUNTPAYABLE
+		$stateProvider.state('accountPayable',{
+			abstract: true,
+			url : "/accountPayable",
+			template: '<div ui-view/>',
+			controller : 'AccountPayableController as accountPayableController'
+		})
+		.state('accountPayable.list',{
+			url : "/list",
+			templateUrl : "./modules/home/views/account-payable/account-payable-list.html"
+		})
+		.state('accountPayable.add',{
+			url : "/add",
+			templateUrl : "./modules/home/views/account-payable/account-payable-form.html"
+		})
+		.state('accountPayable.edit',{
+			url : "/edit/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/account-payable/account-payable-form.html"
+		})
+		.state('accountPayable.detail',{
+			url : "/detail/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/account-payable/account-payable-detail.html"
 		});
 		
 	});

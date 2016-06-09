@@ -32,9 +32,9 @@ import br.com.eits.common.domain.entity.AbstractEntity;
  */
 @Entity
 @Audited
-@Table(name = "\"accountsPayable\"")
-@DataTransferObject(javascript = "AccountsPayable")
-public class AccountsPayable extends AbstractEntity implements Serializable
+@Table(name = "\"accountPayable\"")
+@DataTransferObject(javascript = "AccountPayable")
+public class AccountPayable extends AbstractEntity implements Serializable
 {
 	/**
 	 * 
@@ -95,7 +95,7 @@ public class AccountsPayable extends AbstractEntity implements Serializable
 	 * 
 	 */
 	@Enumerated(EnumType.ORDINAL)
-	private StatusAccountsPayable status ;
+	private StatusAccountPayable status ;
 	/**
 	 * 
 	 */
@@ -105,22 +105,22 @@ public class AccountsPayable extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	public AccountsPayable ()
+	public AccountPayable ()
 	{
 		
 	}
 	/**
 	 * 
 	 */
-	public AccountsPayable ( Long id )
+	public AccountPayable ( Long id )
 	{
 		super(id);	
 	}
 	/**
 	 * 
 	 */
-	public AccountsPayable ( Long id, Calendar dueDate, Calendar entryDate, 
-			Calendar paymentDate, String description, BigDecimal value, BankAccount bankAccount, Category category, StatusAccountsPayable status )
+	public AccountPayable ( Long id, Calendar dueDate, Calendar entryDate, 
+			Calendar paymentDate, String description, BigDecimal value, BankAccount bankAccount, Category category, StatusAccountPayable status )
 	{
 		super(id);
 		this.dueDate 		= dueDate;
@@ -168,7 +168,7 @@ public class AccountsPayable extends AbstractEntity implements Serializable
 		if ( this == obj ) return true;
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
-		AccountsPayable other = ( AccountsPayable ) obj;
+		AccountPayable other = ( AccountPayable ) obj;
 		if ( bankAccount == null )
 		{
 			if ( other.bankAccount != null ) return false;
@@ -316,14 +316,14 @@ public class AccountsPayable extends AbstractEntity implements Serializable
 	/**
 	 * @return the status
 	 */
-	public StatusAccountsPayable getStatus()
+	public StatusAccountPayable getStatus()
 	{
 		return status;
 	}
 	/**
 	 * @param status the status to set
 	 */
-	public void setStatus( StatusAccountsPayable status )
+	public void setStatus( StatusAccountPayable status )
 	{
 		this.status = status;
 	}

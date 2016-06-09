@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+<meta charset="UTF-8">
+<div ng-init="" id="sectionsWindow" style="overflow:auto;" class="training-form" >
+
+    <div layout-align="center center" style="width:820px;margin:0 auto;position:relative;top:-1px;z-index:2;" class="training-form">
+        <form name="model.form" novalidate>
+	        <eits-paper-sheet id="information" ng-init="openPaper('information')">
+	            <content-closed>
+	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
+	                    <h3>Informações</h3>
+	                </eits-vbox>
+	            </content-closed>
+	            <content-opened>
+			  		<div layout="column" flex>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;" >
+	                    		<label>Descrição</label>
+	                 			<input type="text" ng-model="model.accountPayable.description" name="description" required>
+	                 			<div ng-messages="model.form.description.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	            		</div>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;">
+	            				<label>Categoria </label>
+	                    		<md-select  ng-model="model.accountPayable.category" name="category" ng-model-options="{trackBy: '$value.id'}" >
+						          <md-option ng-repeat="category in model.categories" ng-value="category" required>
+						            {{category.name}}
+						          </md-option>
+						        </md-select>
+	                		</md-input-container>
+	            		</div>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;">
+	            				<label>Conta Bancária </label>
+	                    		<md-select  ng-model="model.accountPayable.bankAccount" name="bankAccount" ng-model-options="{trackBy: '$value.id'}" >
+						          <md-option ng-repeat="bankAccount in model.bankAccounts" ng-value="bankAccount" required>
+						            {{bankAccount.name}}
+						          </md-option>
+						        </md-select>
+	                		</md-input-container>
+	            		</div>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;">
+	            				<label>Fornecedor </label>
+	                    		<md-select  ng-model="model.accountPayable.supplier" name="supplier" ng-model-options="{trackBy: '$value.id'}" >
+						          <md-option ng-repeat="supplier in model.suppliers" ng-value="supplier" required>
+						            {{supplier.tradeName}}
+						          </md-option>
+						        </md-select>
+	                		</md-input-container>
+	            		</div>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;" >
+	                    		<label>Valor</label>
+	                 			<input type="text" ng-model="model.accountPayable.value" name="value"  ng-currency required>
+	                 			<div ng-messages="model.form.value.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	            		</div>
+	            		<div layout="column" flex>
+	            			<div>
+	            				<h4>
+		            				Data de vencimento
+	            				</h4>
+            				</div>
+	            			<md-content layout-fill>
+								<md-datepicker ng-model="model.accountPayable.dueDate" ></md-datepicker>
+							</md-content>
+	            		</div>
+	            		<div layout="column" flex>
+	            			<div >
+	            				<h4>
+		            				Data de lançamento
+	            				</h4>
+            				</div>
+	            			<md-content layout-fill>
+								<md-datepicker ng-model="model.accountPayable.entryDate" disabled></md-datepicker>
+							</md-content>
+	            		</div>
+	            		<div layout="column" flex>
+	            			<div >
+	            				<h4>
+		            				Data de pagamento
+	            				</h4>
+            				</div>
+	            			<md-content layout-fill>
+								<md-datepicker ng-model="model.accountPayable.paymentDate" md-placeholder="Data de pagamento"></md-datepicker>
+							</md-content>
+	            		</div>
+	           		</div>
+	            </content-opened>
+	        </eits-paper-sheet>
+        </form>
+    </div>
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="!model.bankAccount.id">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertAccountPayableHandler(model.accountPayable)">
+            <md-tooltip>Criar</md-tooltip>
+        </md-button>
+     </eits-hbox>
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="model.bankAccount.id">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertBankAccountHandler(model.bankAccount)">
+            <md-tooltip>Alterar</md-tooltip>
+        </md-button>
+     </eits-hbox>
+</div>
+</html>

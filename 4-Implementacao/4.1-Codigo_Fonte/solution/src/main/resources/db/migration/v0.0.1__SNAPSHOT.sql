@@ -160,7 +160,7 @@ CREATE TABLE auditing.supplier_audited
 --
 -- TOC entry 178 (class 1259 OID 278695)
 -- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
-CREATE TABLE auditing.accounts_payable_audited
+CREATE TABLE auditing.account_payable_audited
 (
   id bigint NOT NULL,
   revision bigint NOT NULL,
@@ -174,8 +174,8 @@ CREATE TABLE auditing.accounts_payable_audited
   bank_account_id bigint,
   category_id bigint,
   supplier_id bigint,
-  CONSTRAINT accounts_payable_audited_pkey PRIMARY KEY (id, revision),
-  CONSTRAINT fk_accounts_payable_audited_revision FOREIGN KEY (revision)
+  CONSTRAINT account_payable_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_account_payable_audited_revision FOREIGN KEY (revision)
       REFERENCES auditing.revision (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
@@ -327,7 +327,7 @@ CREATE TABLE "public"."supplier"
 --
 -- TOC entry 175 (class 1259 OID 278679)
 -- Name: user; Type: TABLE; Schema: public; Owner: -
-CREATE TABLE "public"."accounts_payable"
+CREATE TABLE "public"."account_payable"
 (
   id bigserial NOT NULL,
   created timestamp without time zone NOT NULL,
@@ -341,14 +341,14 @@ CREATE TABLE "public"."accounts_payable"
   bank_account_id bigint NOT NULL,
   category_id bigint NOT NULL,
   supplier_id bigint NOT NULL,
-  CONSTRAINT accounts_payable_pkey PRIMARY KEY (id),
-  CONSTRAINT fk_accounts_payable_bank_account_id FOREIGN KEY (bank_account_id)
+  CONSTRAINT account_payable_pkey PRIMARY KEY (id),
+  CONSTRAINT fk_account_payable_bank_account_id FOREIGN KEY (bank_account_id)
       REFERENCES bank_account (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT fk_accounts_payable_category_id FOREIGN KEY (category_id)
+  CONSTRAINT fk_account_payable_category_id FOREIGN KEY (category_id)
       REFERENCES category (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT fk_accounts_payable_supplier_id FOREIGN KEY (supplier_id)
+  CONSTRAINT fk_account_payable_supplier_id FOREIGN KEY (supplier_id)
       REFERENCES supplier (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );

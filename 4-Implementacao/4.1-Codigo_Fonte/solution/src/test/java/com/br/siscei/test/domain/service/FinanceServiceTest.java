@@ -14,10 +14,10 @@ import org.springframework.data.domain.Page;
 
 import com.br.siscei.domain.entity.address.Address;
 import com.br.siscei.domain.entity.address.City;
-import com.br.siscei.domain.entity.finance.AccountsPayable;
+import com.br.siscei.domain.entity.finance.AccountPayable;
 import com.br.siscei.domain.entity.finance.BankAccount;
 import com.br.siscei.domain.entity.finance.Category;
-import com.br.siscei.domain.entity.finance.StatusAccountsPayable;
+import com.br.siscei.domain.entity.finance.StatusAccountPayable;
 import com.br.siscei.domain.entity.finance.Supplier;
 import com.br.siscei.domain.service.AddressService;
 import com.br.siscei.domain.service.FinanceService;
@@ -60,16 +60,16 @@ public class FinanceServiceTest extends AbstractIntegrationTests
 			"/dataset/finance/BankAccountDataSet.xml",
 			"/dataset/finance/CategoryDataSet.xml",
 			"/dataset/finance/SupplierDataSet.xml",
-			"/dataset/finance/AccountsPayableDataSet.xml",
+			"/dataset/finance/AccountPayableDataSet.xml",
 		})
 	public void findAccountsPayableByIdMustPass()
 	{
-		final AccountsPayable accountsPayable = this.financeService.findAccountsPayableById( 9999L );
+		final AccountPayable accountsPayable = this.financeService.findAccountPayableById( 9999L );
 		Assert.assertNotNull(accountsPayable);
 	}
 	/**
      * Objetivo: Success.
-     * Motivo: O objeto {@link AccountsPayable} é instanciado e inserido corretamente
+     * Motivo: O objeto {@link AccountPayable} é instanciado e inserido corretamente
      */
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
@@ -80,7 +80,7 @@ public class FinanceServiceTest extends AbstractIntegrationTests
 			"/dataset/finance/BankAccountDataSet.xml",
 			"/dataset/finance/CategoryDataSet.xml",
 			"/dataset/finance/SupplierDataSet.xml",
-			"/dataset/finance/AccountsPayableDataSet.xml",
+			"/dataset/finance/AccountPayableDataSet.xml",
 		})
 	public void insertAccountsPayableMustPass()
 	{
@@ -93,7 +93,7 @@ public class FinanceServiceTest extends AbstractIntegrationTests
 		final Calendar paymentDate = new GregorianCalendar(2050,9,5, 12,00,00);
 		final BigDecimal valor = new BigDecimal("1.5");
 		
-		AccountsPayable accountsPayable = new AccountsPayable( );
+		AccountPayable accountsPayable = new AccountPayable( );
 		
 		accountsPayable.setSupplier( supplier );
 		accountsPayable.setBankAccount( bankAccount );
@@ -103,9 +103,9 @@ public class FinanceServiceTest extends AbstractIntegrationTests
 		accountsPayable.setDueDate( dueDate );
 		accountsPayable.setEntryDate( entryDate );
 		accountsPayable.setPaymentDate( paymentDate );
-		accountsPayable.setStatus( StatusAccountsPayable.NOT_PAID );
+		accountsPayable.setStatus( StatusAccountPayable.NOT_PAID );
 		
-		accountsPayable = this.financeService.insertAccountsPayable( accountsPayable );
+		accountsPayable = this.financeService.insertAccountPayable( accountsPayable );
 
 		Assert.assertNotNull( accountsPayable );
 		Assert.assertNotNull( accountsPayable.getId() );
@@ -132,11 +132,11 @@ public class FinanceServiceTest extends AbstractIntegrationTests
 			"/dataset/finance/BankAccountDataSet.xml",
 			"/dataset/finance/CategoryDataSet.xml",
 			"/dataset/finance/SupplierDataSet.xml",
-			"/dataset/finance/AccountsPayableDataSet.xml",
+			"/dataset/finance/AccountPayableDataSet.xml",
 		})
 	public void listAllAccountsPayableMustPass()
 	{
-		final Page<AccountsPayable> accountsPayable = this.financeService.listAccountsPayableByFilters( null, null, null );
+		final Page<AccountPayable> accountsPayable = this.financeService.listAccountsPayableByFilters( null, null, null );
 		
 		Assert.assertNotNull(accountsPayable);
 		Assert.assertTrue(accountsPayable.getContent().size() == 3 );

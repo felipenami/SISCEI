@@ -2,11 +2,10 @@
 <html xmlns:ng="http://angularjs.org" 
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
 
-	<form name="form" layout="column" layout-align="center center">
+	<form name="form" class="md-whiteframe-z1 login-form" layout="column" layout-align="start center">
 			
-		<label class="md-subhead">{{::'userAuthentication' | translate}}</label>
-      	
-		<md-input-container width="300">
+      	<img src="static/images/logo.png" style="padding-bottom: 40px;">
+		<md-input-container style="width:360px;">
           	<label>{{::'email' | translate}}</label>
           	<input type="email" name="email" ng-model="model.entity.email" required>
           	<ng-messages for="form.email.$error" role="alert">
@@ -15,7 +14,7 @@
 			</ng-messages>
        	</md-input-container>
        	
-	  	<md-input-container width="300">
+	  	<md-input-container style="width:360px; ">
           	<label>{{::'password' | translate}}</label>
           	<input type="password" name="password" ng-model="model.entity.password" required>
           	<ng-messages for="form.password.$error" role="alert">
@@ -23,7 +22,7 @@
 			</ng-messages>
        	</md-input-container>
        	
-       	<md-button class="md-raised md-primary" ng-click="signinHandler()">Entrar</md-button>
+       	<md-button type="submit" class="md-raised login-button" ng-click="signinHandler()">Entrar</md-button>
 	</form>
 
 </html>

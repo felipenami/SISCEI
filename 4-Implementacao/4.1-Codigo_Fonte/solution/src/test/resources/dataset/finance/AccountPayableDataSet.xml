@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<public.accounts_payable
+	<public.account_payable
 		id="9999"
 		created="2015-03-30 00:00:00"
 		description="Description 1"
@@ -12,7 +12,7 @@
 		bank_account_id="9999"
 		category_id="9999"
 		supplier_id="9999"/>
-	<public.accounts_payable
+	<public.account_payable
 		id="1000"
 		created="2015-03-30 00:00:00"
 		description="Description2"
@@ -24,7 +24,7 @@
 		bank_account_id="9999"
 		category_id="9999"
 		supplier_id="9999"/>
-	<public.accounts_payable
+	<public.account_payable
 		id="1001"
 		created="2015-03-30 00:00:00"
 		description="Description3"

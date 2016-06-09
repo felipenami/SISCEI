@@ -59,6 +59,16 @@ public class Category extends AbstractEntity implements Serializable
 	}
 	/**
 	 * 
+	 * @param id
+	 * @param name
+	 */
+	public Category(Long id, String name)
+	{
+		super(id);
+		this.name = name;
+	}
+	/**
+	 * 
 	 */
 	/*-------------------------------------------------------------------
 	 *							BEHAVIORS

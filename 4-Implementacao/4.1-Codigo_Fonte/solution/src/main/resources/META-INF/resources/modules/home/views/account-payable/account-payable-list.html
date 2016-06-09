@@ -3,33 +3,38 @@
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
 <meta charset="UTF-8">
 <div style="width: 800px;margin:0 auto;position:relative; overflow:auto;">
+
 	<div vertical-align="center" width="800px">
 		<md-card>
 			<md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
 				<div class="md-toolbar-tools">
-					<span>Contas bancárias</span>
+					<span>Contas a pagar</span>
 					<div flex></div>
-					<md-button style="background-color: #01579B; color:#ffffff;" ng-click="$state.go(ADD_STATE)"> NOVO
-			<!-- 			<md-icon class="zmdi zmdi-plus  zmdi-hc-2x"></md-icon> -->
-						<md-tooltip>Adcionar Conta bancária</md-tooltip>
+					<md-button class="md-icon-button" ng-click="$state.go(ADD_STATE)">
+						<md-icon class="zmdi zmdi-plus  zmdi-hc-2x"></md-icon>
+						<md-tooltip>Adcionar Conta a Pagar</md-tooltip>
 					</md-button>
 				</div>
 			</md-toolbar>
-	        
+		        
 			<md-table-container>
 				<table md-table>
-				    <thead md-head >
+			    	<thead md-head >
 				      <tr md-row>
-				        <th md-column ><span>Banco</span></th>
+				        <th md-column ><span>Categoria</span></th>
 				        <th md-column ><span>Descrição</span></th>
-				        <th md-column ><span>Saldo</span></th>
+				        <th md-column ><span>Data de vencimento</span></th>
+				        <th md-column ><span>status</span></th>
+				        <th md-column ><span>Valor</span></th>
 				      </tr>
 				    </thead>
 				    <tbody md-body>
-				      <tr md-row md-select="bankAccount" ng-repeat="bankAccount in model.bankAccounts">
-				        <td md-cell>{{bankAccount.name}}</td>
-				        <td md-cell>{{bankAccount.description}}</td>
-				        <td md-cell>{{bankAccount.balance | currency}}</td>
+				      <tr md-row md-select="accountPayable" ng-repeat="accountPayable in model.accountsPayable">
+				        <td md-cell>{{accountPayable.category.name}}</td>
+				        <td md-cell>{{accountPayable.description}}</td>
+				        <td md-cell>{{accountPayable.dueDate | date: 'dd/MM/yyyy' }}</td>
+				        <td md-cell>{{accountPayable.status == 'PAID' && 'Pago' || 'A pagar' }}</td>
+				        <td md-cell>{{accountPayable.value | currency }}</td>
 				        <td md-cell style="width: 5px; padding: 0 0 0 0;">
 				        	<md-menu md-offset="-30 25">
 								<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
@@ -37,13 +42,13 @@
 								</md-button>
 								<md-menu-content width="2">
 									<md-menu-item>
-										<md-button ng-click="$state.go( EDIT_STATE, {id:bankAccount.id})"><span md-menu-align-target>Editar</span></md-button>
+										<md-button ng-click="$state.go( EDIT_STATE, {id:accountPayable.id})"><span md-menu-align-target>Editar</span></md-button>
 									</md-menu-item>
 									<md-menu-item>
-										<md-button ng-click="$state.go( DETAIL_STATE, {id:bankAccount.id})"><span md-menu-align-target>Visualizar</span></md-button>
+										<md-button ng-click="$state.go( DETAIL_STATE, {id:accountPayable.id})"><span md-menu-align-target>Visualizar</span></md-button>
 									</md-menu-item>
 									<md-menu-item>
-										<md-button ng-click="changeToRemove($event, bankAccount)"><span md-menu-align-target>Excluir</span></md-button>
+										<md-button ng-click="changeToRemove($event, accountPayable)"><span md-menu-align-target>Excluir</span></md-button>
 									</md-menu-item>
 								</md-menu-content>
 							</md-menu>
@@ -51,6 +56,16 @@
 				        </td>
 				      </tr>
 				    </tbody>
+			        <tfoot md-foot>
+						<tr md-row>
+							<td md-cell></td>
+							<td md-cell></td>
+							<td md-cell></td>
+							<td md-cell >Total:</td>
+							<td md-cell><strong> {{model.totalAccountsPayable | currency }}</strong></td>
+							<td md-cell></td>
+						</tr>
+					</tfoot>
 				</table>
 			</md-table-container>
 		</md-card>
