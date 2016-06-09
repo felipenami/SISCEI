@@ -94,7 +94,7 @@
 			<id>snapshot</id>
 			<properties>
 				<!-- Database -->
-				<mvn.jdbc.jdbcUrl>jdbc:postgresql://127.0.0.1:5432/felipe.nami</mvn.jdbc.jdbcUrl>
+				<mvn.jdbc.jdbcUrl>jdbc:postgresql://127.0.0.1:5432/felipe.nami-snapshot</mvn.jdbc.jdbcUrl>
 				<mvn.jdbc.username>felipe.nami</mvn.jdbc.username>
 				<mvn.jdbc.password>felipe.nami</mvn.jdbc.password>
 				
