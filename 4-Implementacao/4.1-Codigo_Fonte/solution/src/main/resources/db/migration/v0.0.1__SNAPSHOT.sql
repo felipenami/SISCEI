@@ -275,6 +275,7 @@ CREATE TABLE "public"."address"
   neighborhood character varying(144) NOT NULL,
   street character varying(144) NOT NULL,
   city_id bigint NOT NULL,
+  "number" smallint,
   CONSTRAINT address_pkey PRIMARY KEY (id),
   CONSTRAINT fk_address_city_id FOREIGN KEY (city_id)
       REFERENCES city (id) MATCH SIMPLE
