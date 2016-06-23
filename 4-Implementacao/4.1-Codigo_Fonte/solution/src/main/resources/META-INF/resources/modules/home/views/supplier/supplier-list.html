@@ -6,15 +6,21 @@
 	<div vertical-align="center" width="800">
 		<md-card>
 	        <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
-	          <div class="md-toolbar-tools">
-	            <span>Fornecedores</span>
-	            <div flex></div>
-	            
-	            <md-button style="background-color: #01579B; color:#ffffff;" ng-click="$state.go(ADD_STATE)"> NOVO
-<!-- 	              <md-icon class="zmdi zmdi-plus  zmdi-hc-2x"></md-icon> -->
-	              <md-tooltip>Adcionar Fornecedor</md-tooltip>
-	            </md-button>
-	          </div>
+	        <div class="md-toolbar-tools">
+					<span ng-if="!filter.show"  flex >Fornecedores</span>
+<!-- 					<form flex ng-if="filter.show"> -->
+<!-- 						<md-icon class="zmdi zmdi-search zmdi-hc-lg" ></md-icon> -->
+<!--                			<input ng-model="model.filters.terms" type="text" style="border:none; outline: none;" placeholder="Pesquisar" ng-keyup="listAccountsPayableByEvents($event)"> -->
+<!--                		</form> -->
+<!--                		<md-button ng-if="filter.show" class="md-icon-button md-button md-ink-ripple" ng-click="clearFilters()"> -->
+<!--               			<md-icon class="zmdi zmdi-close zmdi-hc-lg"></md-icon> -->
+<!--               			<md-tooltip>Fechar</md-tooltip> -->
+<!--             		</md-button> -->
+					<md-button ng-if="!filter.show"  class="md-icon-button md-button md-ink-ripple" ng-click="filter.show = true">
+	              		<md-icon class="zmdi zmdi-filter-list zmdi-hc-lg"></md-icon>
+	              		<md-tooltip>Filtrar contas</md-tooltip>
+	            	</md-button>
+				</div>
 	        </md-toolbar>
 	        
 			<md-table-container>
@@ -44,7 +50,7 @@
 										<md-button ng-click="$state.go( DETAIL_STATE, {id:supplier.id})"><span md-menu-align-target>Visualizar</span></md-button>
 									</md-menu-item>
 									<md-menu-item>
-										<md-button ng-click="changeToRemove($event, supplier.id)"><span md-menu-align-target>Excluir</span></md-button>
+										<md-button ng-click="changeToRemove($event, supplier)"><span md-menu-align-target>Excluir</span></md-button>
 									</md-menu-item>
 								</md-menu-content>
 							</md-menu>
@@ -64,4 +70,5 @@
 			</eits-vbox>
 	</div>
 </div>
+<md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-plus  zmdi-hc-2x" ng-click="$state.go( ADD_STATE )" aria-label="Novo Fornecedor"></md-button>
 </html>

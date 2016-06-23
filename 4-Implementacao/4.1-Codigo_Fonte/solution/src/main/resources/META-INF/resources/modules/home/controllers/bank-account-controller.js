@@ -236,6 +236,9 @@
         		
         	}
         }
+        /**
+         * 
+         */
         $scope.changeToRemove = function (event, entity) {
             console.debug("changeToRemove", entity);
 

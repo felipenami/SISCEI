@@ -11,7 +11,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.br.siscei.domain.entity.finance.AccountPayable;
-import com.br.siscei.domain.entity.finance.StatusAccountPayable;
 
 /**
  * @author felipenami@gmail.com 
@@ -26,9 +25,7 @@ public interface IAccountPayableRepository extends JpaRepository<AccountPayable,
 												 "accountPayable.description, accountPayable.value, accountPayable.bankAccount, " +
 												 "accountPayable.category, accountPayable.status) " +
 											 "FROM AccountPayable accountPayable " +
-											 "WHERE( (FILTER(accountPayable.description, :filter) = TRUE ) " +
-											 	"OR (accountPayable.status = :status OR :status = NULL ) ) ") 
-	public Page<AccountPayable>listByFilters(@Param("filter") String description, 
-											  @Param("status") StatusAccountPayable status, 
+											 "WHERE( (FILTER(accountPayable.description, :filter) = TRUE )) " ) 
+	public Page<AccountPayable>listByFilters(@Param("filter") String filter, 
 											  Pageable pageable );
 }

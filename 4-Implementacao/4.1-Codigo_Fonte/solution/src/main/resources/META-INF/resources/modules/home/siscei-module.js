@@ -59,7 +59,7 @@
 		//-------
 		//URL Router
 		//-------
-        $urlRouterProvider.otherwise("/supplier/list");
+        $urlRouterProvider.otherwise("/accountPayable/list");
         
     	//SUPPLIER
 		$stateProvider.state('supplier',{
@@ -130,6 +130,29 @@
 		.state('accountPayable.detail',{
 			url : "/detail/{id:[0-9]{1,10}}",
 			templateUrl : "./modules/home/views/account-payable/account-payable-detail.html"
+		});
+		//ACCOUNTRECEIVABLE
+		$stateProvider.state('accountReceivable',{
+			abstract: true,
+			url : "/accountReceivable",
+			template: '<div ui-view/>',
+			controller : 'AccountReceivableController as accountReceivableController'
+		})
+		.state('accountReceivable.list',{
+			url : "/list",
+			templateUrl : "./modules/home/views/account-receivable/account-receivable-list.html"
+		})
+		.state('accountReceivable.add',{
+			url : "/add",
+			templateUrl : "./modules/home/views/account-receivable/account-receivable-form.html"
+		})
+		.state('accountReceivable.edit',{
+			url : "/edit/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/account-receivable/account-receivable-form.html"
+		})
+		.state('accountReceivable.detail',{
+			url : "/detail/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/account-receivable/account-receivable-detail.html"
 		});
 		
 	});

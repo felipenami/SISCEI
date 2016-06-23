@@ -16,19 +16,19 @@
 			  		<div layout="column" flex>
 	            		<div layout="row" flex style="padding-bottom: 50px;">
 		            		<label class="gray" flex> Descrição: </label>
-							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountPayable.description}} </h4>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountReceivable.description}} </h4>
 	            		</div>
 	            		<div layout="row" flex style="padding-bottom: 50px;">
 		            		<label class="gray" flex> Categoria: </label>
-							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountPayable.category.name}} </h4>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountReceivable.category.name}} </h4>
 	            		</div>
 	            		<div layout="row" flex style="padding-bottom: 50px;">
-	            			<label class="gray" flex> Fornecedor: </label>
-							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountPayable.supplier.tradeName }} </h4>
+	            			<label class="gray" flex> Cliente: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountReceivable.student.name }} </h4>
 	            		</div>
 	            		<div layout="row" flex>
 	            			<label class="gray" flex> Conta bancária: </label>
-							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountPayable.bankAccount.name }} </h4>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountReceivable.bankAccount.name }} </h4>
 	            		</div>
 	           		</div>
 	            </content-opened>
@@ -43,23 +43,23 @@
 			  		<div layout="column" flex>
 	            		<div layout="row" flex style="padding-bottom: 50px;">
 	            			<label class="gray" flex> Valor: </label>
-							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountPayable.value | currency }} </h4>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountReceivable.value | currency }} </h4>
 	            		</div>
 	            		<div layout="row" flex style="padding-bottom: 50px;">
 	            			<label class="gray" flex> Data de lançamento: </label>
-							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountPayable.entryDate | date: 'dd/MM/yyyy' }} </h4>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountReceivable.entryDate | date: 'dd/MM/yyyy' }} </h4>
 	            		</div>
 	            		<div layout="row" flex style="padding-bottom: 50px;">
 	            			<label class="gray" flex> Data de vencimento: </label>
-							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountPayable.dueDate | date: 'dd/MM/yyyy'}} </h4>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountReceivable.dueDate | date: 'dd/MM/yyyy'}} </h4>
 	            		</div>
 	            		<div layout="row" flex style="padding-bottom: 50px;">
-	            			<label class="gray" flex> Data de pagamento: </label>
-							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountPayable.paymentDate | date: 'dd/MM/yyyy' }} </h4>
+	            			<label class="gray" flex> Data de Recebimento: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountReceivable.receivementDate | date: 'dd/MM/yyyy' }} </h4>
 	            		</div>
 	            		<div layout="row" flex >
 	            			<label class="gray" flex> Situação: </label>
-							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountPayable.status == 'PAID' && 'Pago' || 'A pagar'  }} </h4>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.accountReceivable.status == 'RECEIVED' && 'Recebido' || 'A Receber'  }} </h4>
 	            		</div>
 	           		</div>
 	            </content-opened>
@@ -67,7 +67,7 @@
         </form>
     </div>
      <eits-hbox vertical-align="center" horizontal-align="center" gap="90">
-        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-long-arrow-return md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="$state.go('accountPayable.list')">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-long-arrow-return md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="$state.go('accountReceivable.list')">
             <md-tooltip>Voltar</md-tooltip>
         </md-button>
      </eits-hbox>

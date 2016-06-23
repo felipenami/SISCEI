@@ -58,7 +58,7 @@ public class AccountServiceIntegrationTests extends AbstractIntegrationTests
 		Assert.assertNotNull( user );
 		Assert.assertNotNull( user.getId() );
 		Assert.assertNotNull( user.getCreated() );
-		Assert.assertTrue( user.getEnabled() );
+		Assert.assertTrue( user.isEnabled() );
 		Assert.assertFalse( user.getPassword().equals( "user" ) );
 	}
 	

@@ -222,7 +222,7 @@ public class User extends AbstractEntity implements Serializable, UserDetails
 	@Transient
 	public boolean isEnabled()
 	{
-		return this.enabled;
+		return this.enabled == null ? false : this.enabled;
 	}
 
 	/*
@@ -334,14 +334,6 @@ public class User extends AbstractEntity implements Serializable, UserDetails
 	public void setEmail( String email )
 	{
 		this.email = email;
-	}
-
-	/**
-	 * @return the enabled
-	 */
-	public Boolean getEnabled()
-	{
-		return enabled;
 	}
 
 	/**

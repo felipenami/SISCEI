@@ -60,7 +60,7 @@ public class AccountPayable extends AbstractEntity implements Serializable
 	 * 
 	 */
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(nullable = false, length = 50)
+	@Column(nullable = true, length = 50)
 	private Calendar paymentDate;
 	/**
 	 * 
@@ -88,7 +88,6 @@ public class AccountPayable extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@NotNull
 	@ManyToOne( fetch = FetchType.EAGER )
 	private Supplier supplier;
 	/**
@@ -137,7 +136,6 @@ public class AccountPayable extends AbstractEntity implements Serializable
 	 *-------------------------------------------------------------------*/
 	public void isPayed()
 	{
-		
 	}
 
 	/* (non-Javadoc)

@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<public.account_payable
+	<public.account_receivable
 		id="9999"
 		created="2015-03-30 00:00:00"
 		description="carlão"
 		due_date="2015-03-30 00:00:00"
 		entry_date="2015-03-30 00:00:00"
-		payment_date="2015-03-30 00:00:00"
+		receivement_date="2015-03-30 00:00:00"
 		status="0"
 		value="300.00"
 		bank_account_id="9999"
 		category_id="9999"
-		supplier_id="9999"/>
-	<public.account_payable
+		student_id="9999"/>
+	<public.account_receivable
 		id="1000"
 		created="2015-03-30 00:00:00"
 		description="Description2"
 		due_date="2015-03-30 00:00:00"
 		entry_date="2015-03-30 00:00:00"
-		payment_date="2015-03-30 00:00:00"
+		receivement_date="2015-03-30 00:00:00"
 		status="0"
 		value="300.00"
 		bank_account_id="9999"
 		category_id="9999"
-		supplier_id="9999"/>
-	<public.account_payable
+		student_id="1000"/>
+	<public.account_receivable
 		id="1001"
 		created="2015-03-30 00:00:00"
 		description="Description3"
 		due_date="2015-03-30 00:00:00"
 		entry_date="2015-03-30 00:00:00"
-		payment_date="2015-03-30 00:00:00"
+		receivement_date="2015-03-30 00:00:00"
 		status="0"
 		value="300.00"
 		bank_account_id="9999"
 		category_id="9999"
-		supplier_id="9999"/>
+		student_id="1001"/>
 </dataset>

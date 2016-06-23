@@ -3,8 +3,6 @@
  */
 package com.br.siscei.domain.service;
 
-import java.util.List;
-
 import org.directwebremoting.annotations.RemoteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,12 +12,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import com.br.siscei.domain.entity.finance.AccountPayable;
+import com.br.siscei.domain.entity.finance.AccountReceivable;
 import com.br.siscei.domain.entity.finance.BankAccount;
 import com.br.siscei.domain.entity.finance.Category;
-import com.br.siscei.domain.entity.finance.StatusAccountPayable;
 import com.br.siscei.domain.entity.finance.Supplier;
 import com.br.siscei.domain.repository.finance.IAccountPayableRepository;
-import com.br.siscei.domain.repository.finance.IAccountsReceivableRepository;
+import com.br.siscei.domain.repository.finance.IAccountReceivableRepository;
 import com.br.siscei.domain.repository.finance.IBankAccountRepository;
 import com.br.siscei.domain.repository.finance.ICategoryRepository;
 import com.br.siscei.domain.repository.finance.ISupplierRepository;
@@ -45,7 +43,7 @@ public class FinanceService
 	 * 
 	 */
 	@Autowired
-	private IAccountsReceivableRepository accountsReceivableRepository;
+	private IAccountReceivableRepository accountReceivableRepository;
 	/**
 	 * 
 	 */
@@ -76,7 +74,9 @@ public class FinanceService
 	 */
 	public AccountPayable insertAccountPayable( AccountPayable accountsPayable )
 	{
-		return this.accountPayableRepository.saveAndFlush( accountsPayable );
+		accountsPayable = this.accountPayableRepository.saveAndFlush( accountsPayable );
+		 
+		 return accountsPayable;
 	}
 	/**
 	 * 
@@ -106,10 +106,75 @@ public class FinanceService
 	 * @param pageable
 	 * @return
 	 */
-	public Page<AccountPayable> listAccountsPayableByFilters( String filter, StatusAccountPayable status, PageRequest pageable )
+	public Page<AccountPayable> listAccountsPayableByFilters( String filter,  PageRequest pageable )
 	{
-		return this.accountPayableRepository.listByFilters( filter, status, pageable );
+		return this.accountPayableRepository.listByFilters( filter, pageable );
 	}
+	/**
+	 * 
+	 * @param accountPayable
+	 * @return
+	 */
+	public AccountPayable updateAccountPayable(AccountPayable accountPayable)
+	{
+		Assert.notNull(accountPayable);	
+		return this.accountPayableRepository.saveAndFlush( accountPayable );
+	}
+	/*-------------------------------------------------------------------
+	 *				 		     ACCOUNTRECEIVABLE
+	 *-------------------------------------------------------------------*/
+	/**
+	 * 
+	 * @param accountsPayable
+	 * @return
+	 */
+	public AccountReceivable insertAccountReceivable( AccountReceivable accountReceivable )
+	{
+		accountReceivable = this.accountReceivableRepository.saveAndFlush( accountReceivable );
+		 
+		 return accountReceivable;
+	}
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public AccountReceivable findAccountReceivableById( Long id )
+	{
+		final AccountReceivable accountReceivable = this.accountReceivableRepository.findOne( id );
+		Assert.notNull( accountReceivable, "Não foi possivel encontar a conta a receber com o id: "+id );
+		return accountReceivable;
+	}
+	/**
+	 * 
+	 */
+	public void removeAccountReceivable( Long id )
+	{
+		
+		this.accountReceivableRepository.delete( id );
+		this.accountReceivableRepository.flush();
+	}
+	/**
+	 * 
+	 * @param filter
+	 * @param pageable
+	 * @return
+	 */
+	public Page<AccountReceivable> listAccountsReceivableByFilters( String filter,  PageRequest pageable )
+	{
+		return this.accountReceivableRepository.listByFilters( filter, pageable );
+	}
+	/**
+	 * 
+	 * @param accountPayable
+	 * @return
+	 */
+	public AccountReceivable updateAccountReceivable(AccountReceivable accountReceivable)
+	{
+		Assert.notNull(accountReceivable);	
+		return this.accountReceivableRepository.saveAndFlush( accountReceivable );
+	}
+	
 	/*-------------------------------------------------------------------
 	 *				 		     CATEGORY
 	 *-------------------------------------------------------------------*/
@@ -234,6 +299,16 @@ public class FinanceService
 		
 		this.supplierRepository.delete( id );
 		
+	}
+	/**
+	 * 
+	 * @param supplier
+	 * @return
+	 */
+	public Supplier updateSupplier(Supplier supplier)
+	{
+		Assert.notNull(supplier);	
+		return this.supplierRepository.saveAndFlush( supplier );
 	}
 	
 }

@@ -4,7 +4,7 @@
    * 
    */
   angular.module('siscei')
-	.controller('SupplierController', function ($scope, $rootScope,$state, $importService, $mdDialog, $mdSidenav, $mdToast, $timeout, $window, $location, $locale , $q) {
+	.controller('SupplierController', function ($scope, $rootScope,$state, $importService, $mdDialog, $mdSidenav, $mdToast, $timeout, $window, $location, $locale , $q, $http) {
 		 /**
          * Serviços importados do DWR
          */
@@ -98,7 +98,7 @@
                     break;
                 }
                 case $scope.DETAIL_STATE: {
-//                    $scope.changeToDetail( $state.params.id );
+                    $scope.changeToDetail( $state.params.id );
                     break;
                 }
                 case $scope.ADD_STATE: {
@@ -178,12 +178,57 @@
         /**
          * 
          */
-        $scope.changeToDetail = function(){
-        	console.debug("changeToDetail");
+    	$scope.changeToDetail = function (id) {
+        	console.debug("Detail");
+        	
+        	financeService.findSupplierById(id,{
+        		callback: function (result) {
+        			$scope.model.supplier = result;
+        			$scope.$apply();
+        		},
+                errorHandler: function (message, exception) {
+		        	$mdToast.showSimple(message);
+		            $state.go($scope.LIST_STATE);
+		            $scope.$apply();
+                }
+        	})
         }
         /**
          * 
          */
+        $scope.changeToRemove = function (event, entity) {
+            console.debug("changeToRemove", entity);
+
+            var confirm = $mdDialog.confirm()
+                .title('Tem certeza que deseja excluir este registro?')
+                .content('Não será possível recuperar este registro se for excluído.')
+                .ok('Sim')
+                .cancel('Cancelar')
+                .targetEvent(event);
+
+            $mdDialog.show(confirm).then(function (result) {
+            	
+            	financeService.removeSupplier(entity.id, {
+                    callback: function (result) {
+                        if( $state.current.name == $scope.LIST_STATE){
+                            $scope.changeToList();
+                        } else {
+                            $state.go( $scope.LIST_STATE );
+                        }
+                        $mdToast.showSimple("O registro foi excluído com sucesso!");
+                        $scope.$apply();
+                    },
+                    errorHandler: function (message, exception) {
+                        $mdToast.showSimple("O registro não pode ser excluído.");
+                        $state.go($scope.LIST_STATE);
+                        $scope.$apply();
+                    }
+                });
+            });
+        };
+    	/**
+    	 * 
+    	 */
         $scope.listSuppliersByFilters = function(filters, pageRequest){
         	console.debug("test");
         	financeService.listSuppliersByFilters( filters.terms.toString(), pageRequest, {
@@ -217,6 +262,26 @@
 	        	})
         	}
         }
+        /**
+         * 
+         */
+        $scope.updateSupplierHandler = function(supplier){
+        	if($scope.validateForm()){
+        		financeService.updateSupplier(supplier, {
+        			callback: function(result){
+	        			$mdToast.showSimple("Fornecedor	alterado com sucesso!");
+	                    $state.go($scope.LIST_STATE);
+	                    $scope.$apply();
+	        		},
+	        		 errorHandler: function (message, exception) {
+	                     $mdToast.showSimple(message);
+	                     $scope.$apply();
+	                 }
+        		})
+        	}
+        	
+        }
+        
         /**
          * 
          */

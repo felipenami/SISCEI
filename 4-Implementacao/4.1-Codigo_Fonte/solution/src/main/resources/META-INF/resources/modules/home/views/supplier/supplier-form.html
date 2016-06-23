@@ -115,20 +115,15 @@
 	        </eits-paper-sheet>
         </form>
     </div>
-        <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="!model.supplier.id">
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="!model.supplier.id">
         <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertSupplierHandler(model.supplier)">
             <md-tooltip>Criar</md-tooltip>
         </md-button>
      </eits-hbox>
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="model.supplier.id">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="updateSupplierHandler(model.supplier)">
+            <md-tooltip>Alterar</md-tooltip>
+        </md-button>
+     </eits-hbox>
 </div>
-
-  <md-input-container class="md-block"> 
-  <label>Contrato</label> 
-  	<md-select name="contract" ng-model="model.project.contract" ng-model-options="{trackBy: '$value.id'}" ng-change="onContractSelected()" ng-required="true">
-   		<md-option ng-value="contract" ng-repeat="contract in model.contractPage.content"> {{contract.customer.acronym}} - {{contract.code}} </md-option>
-    </md-select> 
-    <ng-messages for="model.form.contract.$error" role="alert"> 
-    <ng-message when="required">Selecione o contrato do cliente.</ng-message> 
-    </ng-messages> 
-   </md-input-container>
 </html>

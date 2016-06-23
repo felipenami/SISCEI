@@ -32,9 +32,9 @@ import br.com.eits.common.domain.entity.AbstractEntity;
  */
 @Entity
 @Audited
-@Table(name = "\"accountsReceivable\"")
-@DataTransferObject(javascript = "AccountsReceivable")
-public class AccountsReceivable extends AbstractEntity implements Serializable
+@Table(name = "\"accountReceivable\"")
+@DataTransferObject(javascript = "AccountReceivable")
+public class AccountReceivable extends AbstractEntity implements Serializable
 {
 	/**
 	 * 
@@ -70,8 +70,7 @@ public class AccountsReceivable extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@NotEmpty
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false)
 	private BigDecimal value;
 	/**
 	 * 
@@ -79,6 +78,12 @@ public class AccountsReceivable extends AbstractEntity implements Serializable
 	@NotNull
 	@ManyToOne( fetch = FetchType.EAGER )
 	private BankAccount bankAccount;
+	/**
+	 * 
+	 */
+	@NotNull
+	@ManyToOne( fetch = FetchType.EAGER )
+	private Category category;
 	/**
 	 * 
 	 */
@@ -96,20 +101,34 @@ public class AccountsReceivable extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	public AccountsReceivable ()
+	public AccountReceivable ()
 	{
 		
 	}
 	/**
 	 * 
 	 */
-	public AccountsReceivable ( Long id )
+	public AccountReceivable ( Long id )
 	{
 		super(id);	
 	}
 	/**
 	 * 
 	 */
+	public AccountReceivable ( Long id, Calendar dueDate, Calendar entryDate, 
+			Calendar receivementDate, String description, BigDecimal value, BankAccount bankAccount, Category category, StatusAccountsReceivable status, User student )
+	{
+		super(id);
+		this.dueDate 			= dueDate;
+		this.entryDate 			= entryDate;
+		this.receivementDate 	= receivementDate;
+		this.description 		= description;
+		this.value 				= value;
+		this.bankAccount 		= bankAccount;
+		this.category 			= category;
+		this.student			= student;
+		this.status 			= status;
+	}
 	/*-------------------------------------------------------------------
 	 *							BEHAVIORS
 	 *-------------------------------------------------------------------*/
@@ -122,6 +141,7 @@ public class AccountsReceivable extends AbstractEntity implements Serializable
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ( ( bankAccount == null ) ? 0 : bankAccount.hashCode() );
+		result = prime * result + ( ( category == null ) ? 0 : category.hashCode() );
 		result = prime * result + ( ( description == null ) ? 0 : description.hashCode() );
 		result = prime * result + ( ( dueDate == null ) ? 0 : dueDate.hashCode() );
 		result = prime * result + ( ( entryDate == null ) ? 0 : entryDate.hashCode() );
@@ -140,12 +160,17 @@ public class AccountsReceivable extends AbstractEntity implements Serializable
 		if ( this == obj ) return true;
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
-		AccountsReceivable other = ( AccountsReceivable ) obj;
+		AccountReceivable other = ( AccountReceivable ) obj;
 		if ( bankAccount == null )
 		{
 			if ( other.bankAccount != null ) return false;
 		}
 		else if ( !bankAccount.equals( other.bankAccount ) ) return false;
+		if ( category == null )
+		{
+			if ( other.category != null ) return false;
+		}
+		else if ( !category.equals( other.category ) ) return false;
 		if ( description == null )
 		{
 			if ( other.description != null ) return false;
@@ -179,7 +204,6 @@ public class AccountsReceivable extends AbstractEntity implements Serializable
 		else if ( !value.equals( other.value ) ) return false;
 		return true;
 	}
-	
 	/*-------------------------------------------------------------------
 	 *						GETTERS AND SETTERS
 	 *-------------------------------------------------------------------*/
@@ -266,6 +290,20 @@ public class AccountsReceivable extends AbstractEntity implements Serializable
 	public void setBankAccount( BankAccount bankAccount )
 	{
 		this.bankAccount = bankAccount;
+	}
+	/**
+	 * @return the category
+	 */
+	public Category getCategory()
+	{
+		return category;
+	}
+	/**
+	 * @param category the category to set
+	 */
+	public void setCategory( Category category )
+	{
+		this.category = category;
 	}
 	/**
 	 * @return the student

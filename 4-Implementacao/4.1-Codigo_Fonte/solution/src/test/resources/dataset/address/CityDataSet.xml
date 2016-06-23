@@ -6,4 +6,10 @@
 		name="Foz do iguaçu"
 		state_id = "9999"
 		/>
+	<public.city
+		id="9998"
+		created="2015-03-30 00:00:00"
+		name="Cascavel"
+		state_id = "9999"
+		/>
 </dataset>

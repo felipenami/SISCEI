@@ -3,14 +3,15 @@
 	xmlns:th="http://www.thymeleaf.org" lang="pt">
 <meta charset="UTF-8">
 <div style="width: 800px;margin:0 auto;position:relative; overflow:auto;">
+
 	<div vertical-align="center" width="800px">
 		<md-card>
 			<md-toolbar class="md-table-toolbar md-default" >
 				<div class="md-toolbar-tools">
-					<span ng-if="!filter.show"  flex >Contas a pagar</span>
+					<span ng-if="!filter.show"  flex >Contas a Receber</span>
 					<form flex ng-if="filter.show">
 						<md-icon class="zmdi zmdi-search zmdi-hc-lg" ></md-icon>
-               			<input ng-model="model.filters.terms" type="text" style="border:none; outline: none;" placeholder="Pesquisar" ng-keyup="listAccountsPayableByEvents($event)">
+               			<input ng-model="model.filters.terms" type="text" style="border:none; outline: none;" placeholder="Pesquisar" ng-keyup="listAccountsReceivableByEvents($event)">
                		</form>
                		<md-button ng-if="filter.show" class="md-icon-button md-button md-ink-ripple" ng-click="clearFilters()">
               			<md-icon class="zmdi zmdi-close zmdi-hc-lg"></md-icon>
@@ -35,15 +36,15 @@
 				      </tr>
 				    </thead>
 				    <tbody md-body>
-				      <tr md-row  ng-repeat="accountPayable in model.accountsPayable" ng-style="accountPayableLate(accountPayable)">
-				        <td md-cell>{{accountPayable.category.name}}</td>
-				        <td md-cell>{{accountPayable.description}}</td>
-				        <td md-cell>{{accountPayable.dueDate | date: 'dd/MM/yyyy' }}</td>
+				      <tr md-row  ng-repeat="accountReceivable in model.accountsReceivable" ng-style="accountReceivableLate(accountReceivable)">
+				        <td md-cell>{{accountReceivable.category.name}}</td>
+				        <td md-cell>{{accountReceivable.description}}</td>
+				        <td md-cell>{{accountReceivable.dueDate | date: 'dd/MM/yyyy' }}</td>
 				        <td md-cell>
-				        	<md-icon ng-if="accountPayable.status == 'PAID'" class="zmdi zmdi-check zmdi-hc-2x" style=" color: #4CAF50;font-weight: bold;">
+				        	<md-icon ng-if="accountReceivable.status == 'RECEIVED'" class="zmdi zmdi-check zmdi-hc-2x" style=" color: #4CAF50;font-weight: bold;">
 				        	<md-tooltip>Paga</md-tooltip>
 				        	</td>
-				        <td md-cell>{{accountPayable.value | currency }}</td>
+				        <td md-cell>{{accountReceivable.value | currency }}</td>
 				        <td md-cell style="width: 5px; padding: 0 0 0 0;">
 				        	<md-menu md-offset="-30 25">
 								<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
@@ -51,13 +52,13 @@
 								</md-button>
 								<md-menu-content width="2">
 									<md-menu-item>
-										<md-button ng-click="$state.go( EDIT_STATE, {id:accountPayable.id})"><span md-menu-align-target>Editar</span></md-button>
+										<md-button ng-click="$state.go( EDIT_STATE, {id:accountReceivable.id})"><span md-menu-align-target>Editar</span></md-button>
 									</md-menu-item>
 									<md-menu-item>
-										<md-button ng-click="$state.go( DETAIL_STATE, {id:accountPayable.id})"><span md-menu-align-target>Visualizar</span></md-button>
+										<md-button ng-click="$state.go( DETAIL_STATE, {id:accountReceivable.id})"><span md-menu-align-target>Visualizar</span></md-button>
 									</md-menu-item>
 									<md-menu-item>
-										<md-button ng-click="changeToRemove($event, accountPayable )"><span md-menu-align-target>Excluir</span></md-button>
+										<md-button ng-click="changeToRemove($event, accountReceivable )"><span md-menu-align-target>Excluir</span></md-button>
 									</md-menu-item>
 								</md-menu-content>
 							</md-menu>
@@ -76,26 +77,26 @@
 		<md-card style="height: 225px;">
 			<div layout="column" flex>
            		<div layout="row" flex style="padding-left: 25px; padding-top: 25px;">
-            		<label class="gray" flex> Pagas: </label>
-					<label class="text-word-wrap not-margin" flex="80">{{model.totalPaid | currency }}</label>
+            		<label class="gray" flex> Recebidas: </label>
+					<label class="text-word-wrap not-margin" flex="80">{{model.totalReceived | currency }}</label>
            		</div>
        		</div>
 			<div layout="column" flex>
            		<div layout="row" flex style="padding-left: 25px; padding-top: 25px;">
-            		<label class="gray" flex>A Pagar: </label>
-					<label class="text-word-wrap not-margin" flex="80">{{model.totalNotPaid | currency }}</label>
+            		<label class="gray" flex>A Receber: </label>
+					<label class="text-word-wrap not-margin" flex="80">{{model.totalNotReceived | currency }}</label>
            		</div>
        		</div>
 			<div layout="column" flex>
            		<div layout="row" flex style="padding-left: 25px; padding-top: 25px;">
             		<label class="gray" flex> Vencidas: </label>
-					<h4 class="text-word-wrap not-margin" flex="80"><strong> {{model.totalDue | currency }}</strong></h4>
+					<h4 class="text-word-wrap not-margin" flex="80"><strong> {{model.totalOverdue | currency }}</strong></h4>
            		</div>
        		</div>
 			<div layout="column" flex>
            		<div layout="row" flex style="padding-left: 25px; padding-top: 25px;">
-            		<label class="gray" flex> Total de Pagamentos: </label>
-					<h4 class="text-word-wrap not-margin" flex="80"><strong> {{model.totalAccountsPayable | currency }}</strong></h4>
+            		<label class="gray" flex> Total de Recebimentos: </label>
+					<h4 class="text-word-wrap not-margin" flex="80"><strong> {{model.totalAccountReceivable | currency }}</strong></h4>
            		</div>
        		</div>
 			
@@ -106,5 +107,5 @@
 		</eits-vbox>
 	</div>
 </div>
-<md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-plus  zmdi-hc-2x" ng-click="$state.go( ADD_STATE )" aria-label="Nova Conta a Pagar"></md-button>
+<md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-plus  zmdi-hc-2x" ng-click="$state.go( ADD_STATE )" aria-label="Nova Conta a Receber"></md-button>
 </html>

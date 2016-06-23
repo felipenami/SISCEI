@@ -5,7 +5,7 @@
    */	
 	
   angular.module('siscei')
-	.controller('AccountPayableController', function ($scope, $rootScope,$state, $importService, $mdDialog, $mdSidenav, $mdToast, $timeout, $window, $location, $locale , $q) {
+	.controller('AccountReceivableController', function ($scope, $rootScope,$state, $importService, $mdDialog, $mdSidenav, $mdToast, $timeout, $window, $location, $locale , $q) {
 		/**
          * Serviços importados do DWR
          */
@@ -22,19 +22,19 @@
         /**
          * Representa o estado de listagem de registros.
          */
-        $scope.LIST_STATE = "accountPayable.list";
+        $scope.LIST_STATE = "accountReceivable.list";
         /**
          * Representa o estado para a criação de registros.
          */
-        $scope.ADD_STATE = "accountPayable.add";
+        $scope.ADD_STATE = "accountReceivable.add";
         /**
          * Representa o estado para a edição de registros.
          */
-        $scope.EDIT_STATE = "accountPayable.edit";
+        $scope.EDIT_STATE = "accountReceivable.edit";
         /**
          * Representa o estado de detalhe de um registro.
          */
-        $scope.DETAIL_STATE = "accountPayable.detail";		
+        $scope.DETAIL_STATE = "accountReceivable.detail";		
         /**
          * 
          */
@@ -61,18 +61,18 @@
         $scope.lateColor = {};
         $scope.model = {
                 form    : {},
-                accountPayable : new AccountPayable(),
+                accountReceivable : new AccountReceivable(),
                 filters: {
                     terms: [],
                 },
-                accountsPayable : [],
-                totalAccountsPayable : 0,
-                totalPaid : 0,
-                totalNotPaid : 0,
-                totalDue: 0,
+                accountsReceivable : [],
+                totalAccountReceivable : 0,
+                totalReceived : 0,
+                totalNotReceived : 0,
+                totalLate: 0,
                 categories : [],
                 bankAccounts : [],
-                suppliers : [],
+                users : [],
                 page: {//PageImpl
                     content: null,
                     pageable: {//PageRequest
@@ -130,10 +130,10 @@
         $scope.changeToEdit = function (id) {
         	console.debug("edit");
         	
-           	$scope.model.accountPayable = new AccountPayable();
+           	$scope.model.accountReceivable = new AccountReceivable();
         	$scope.model.categories = [];
         	$scope.model.bankAccounts = [];
-        	$scope.model.suppliers = [];
+        	$scope.model.users = [];
         	$scope.model.page.pageable = {
                 	size: 9,
                 	page: 0,
@@ -147,22 +147,12 @@
                 };
         	$scope.listBankAccountsByFilters($scope.model.filters, $scope.model.page.pageable);
         	$scope.listCategoriesByFilters($scope.model.filters, $scope.model.page.pageable);
-        	$scope.model.page.pageable = {
-                	size: 9,
-                	page: 0,
-                	sort: {
-                		orders: [{ 
-                			direction: 'ASC',
-                			property: 'tradeName',
-                			nullHandlingHint: null
-                		}]
-                    }
-                };
-        	$scope.listSuppliersByFilters( $scope.model.filters, $scope.model.page.pageable );
+        
+        	$scope.listUsersByFilters( $scope.model.filters, $scope.model.page.pageable );
         	
-        	financeService.findAccountPayableById(id,{
+        	financeService.findAccountReceivableById(id,{
         		callback: function (result) {
-        			$scope.model.accountPayable = result;
+        			$scope.model.accountReceivable = result;
         			$scope.$apply();
         		},
                 errorHandler: function (message, exception) {
@@ -192,13 +182,13 @@
             };
                 
                 //Limpamos a lista para um nova consulta
-                $scope.model.accountPayable = new AccountPayable();
-                $scope.model.accountsPayable = [];
-                $scope.model.totalAccountsPayable = 0;
-                $scope.model.totalPaid = 0;
-                $scope.model.totalNotPaid = 0;
-                $scope.model.totalDue = 0;
-                $scope.listAccountsPayableByFilters( $scope.model.filters,  $scope.model.page.pageable );
+                $scope.model.accountReceivable = new AccountReceivable();
+                $scope.model.accountsReceivable = [];
+                $scope.model.totalAccountReceivable = 0;
+                $scope.model.totalReceived = 0;
+                $scope.model.totalNotReceived = 0;
+                $scope.model.totalOverdue = 0;
+                $scope.listAccountReceivableByFilters( $scope.model.filters,  $scope.model.page.pageable );
         };
         /**
          * 
@@ -206,11 +196,11 @@
         $scope.changeToAdd = function () {
         	console.debug("Add");
             
-        	$scope.model.accountPayable = new AccountPayable();
+        	$scope.model.accountReceivable = new AccountReceivable();
         	$scope.model.categories = [];
         	$scope.model.bankAccounts = [];
-        	$scope.model.suppliers = [];
-        	$scope.model.accountPayable.status = 'NOT_PAID';
+        	$scope.model.users = [];
+        	$scope.model.accountReceivable.status = 'NOT_RECEIVED';
         	$scope.model.page.pageable = {
                 	size: 9,
                 	page: 0,
@@ -224,20 +214,9 @@
                 };
         	$scope.listBankAccountsByFilters($scope.model.filters, $scope.model.page.pageable);
         	$scope.listCategoriesByFilters($scope.model.filters, $scope.model.page.pageable);
+        	$scope.listUsersByFilters( $scope.model.filters, $scope.model.page.pageable );
         	
-        	$scope.model.page.pageable = {
-                	size: 9,
-                	page: 0,
-                	sort: {
-                		orders: [{ 
-                			direction: 'ASC',
-                			property: 'tradeName',
-                			nullHandlingHint: null
-                		}]
-                    }
-                };
-        	$scope.listSuppliersByFilters( $scope.model.filters, $scope.model.page.pageable );
-        	$scope.model.accountPayable.entryDate = new Date();
+        	$scope.model.accountReceivable.entryDate = new Date();
         }
 
         /**
@@ -246,9 +225,9 @@
         $scope.changeToDetail = function (id) {
         	console.debug("Detail");
         	
-        	financeService.findAccountPayableById(id,{
+        	financeService.findAccountReceivableById(id,{
         		callback: function (result) {
-        			$scope.model.accountPayable = result;
+        			$scope.model.accountReceivable = result;
         			$scope.$apply();
         		},
                 errorHandler: function (message, exception) {
@@ -261,12 +240,12 @@
         /**
          * 
          */
-        $scope.listAccountsPayableByFilters = function(filters, pageRequest){
-        	
-        	financeService.listAccountsPayableByFilters( filters.terms.toString() , pageRequest, {
+        $scope.listAccountReceivableByFilters = function(filters, pageRequest){
+        				   
+        	financeService.listAccountsReceivableByFilters( filters.terms.toString() , pageRequest, {
                 callback: function (result) {
-                    $scope.model.accountsPayable = $scope.model.accountsPayable.concat(result.content);
-                    $scope.getAccountsPayableTotal($scope.model.accountsPayable);
+                    $scope.model.accountsReceivable = $scope.model.accountsReceivable.concat(result.content);
+                    $scope.getAccountsReceivableTotal($scope.model.accountsReceivable);
                     $scope.model.showLoading = false;
                     $scope.model.notFound = result.totalElements == 0 ? true : false;
                     $scope.$apply();
@@ -280,12 +259,12 @@
         /**
          * 
          */
-        $scope.insertAccountPayableHandler= function(accountPayable){
+        $scope.insertAccountReceivableHandler= function(accountReceivable){
         	if($scope.validateForm()){
-        		if($scope.model.accountPayable.status == null){
-            		$scope.model.accountPayable.status = 'NOT_PAID';
+        		if($scope.model.accountReceivable.status == null){
+            		$scope.model.accountReceivable.status = 'NOT_RECEIVED';
             	}
-	        	financeService.insertAccountPayable( accountPayable, {
+	        	financeService.insertAccountReceivable( accountReceivable, {
 	        		callback: function(result){
 	                	
 	        			$mdToast.showSimple("Conta salva com sucesso!");
@@ -334,7 +313,7 @@
 
             $mdDialog.show(confirm).then(function (result) {
             	
-            	financeService.removeAccountPayable(entity.id, {
+            	financeService.removeAccountReceivable(entity.id, {
                     callback: function (result) {
                         if( $state.current.name == $scope.LIST_STATE){
                             $scope.changeToList();
@@ -357,33 +336,33 @@
          * 
          */
         $scope.validateForm = function (){
-        	if($scope.model.accountPayable.description == null){
+        	if($scope.model.accountReceivable.description == null){
         		$mdToast.showSimple("Informe uma descrição para a conta.");
                 return false;
         	}
-        	
         	
         	return true;
         }
         /**
          * 
          */
-        $scope.getAccountsPayableTotal = function(accountsPayable){
-        	
-        	angular.forEach(accountsPayable, function( obj, key ) {
+        $scope.getAccountsReceivableTotal = function(accountsReceivable){
+        	console.log(accountsReceivable);
+        	angular.forEach(accountsReceivable, function( obj, key ) {
         		var today = new Date();
         		today.setHours(0,0,0,0);
         		obj.dueDate.setHours(0,0,0,0);
-        		if(obj.status == 'PAID'){
-        			$scope.model.totalPaid += obj.value;
+        		
+        		if(obj.status == 'RECEIVED'){
+        			$scope.model.totalReceived += obj.value;
         		}
-        		if(((obj.status == 'NOT_PAID') && (obj.dueDate >= today )) ){
-        			$scope.model.totalNotPaid+= obj.value;
+        		if(((obj.status == 'NOT_RECEIVED') && (obj.dueDate >= today )) ){
+        			$scope.model.totalNotReceived+= obj.value;
         		}
-        		if(((obj.status == 'NOT_PAID') && (obj.dueDate < today )) ){
-        			$scope.model.totalDue += obj.value;
+        		if(((obj.status == 'NOT_RECEIVED') && (obj.dueDate < today )) ){
+        			$scope.model.totalOverdue += obj.value;
         		}
-        		$scope.model.totalAccountsPayable = $scope.model.totalPaid + $scope.model.totalNotPaid + $scope.model.totalDue;
+        		$scope.model.totalAccountReceivable = $scope.model.totalReceived + $scope.model.totalNotReceived + $scope.model.totalOverdue;
             });
         }
         /**
@@ -425,11 +404,11 @@
         /**
          * 
          */
-        $scope.listSuppliersByFilters = function(filters, pageRequest){
+        $scope.listUsersByFilters = function(filters, pageRequest){
         	console.debug("test");
-        	financeService.listSuppliersByFilters( filters.terms.toString(), pageRequest, {
+        	accountService.listUsersByFilters( filters.terms.toString(), pageRequest, {
                 callback: function (result) {
-                    $scope.model.suppliers = $scope.model.suppliers.concat(result.content);
+                    $scope.model.users = $scope.model.users.concat(result.content);
                     $scope.model.showLoading = false;
                     $scope.model.notFound = result.totalElements == 0 ? true : false;
                     $scope.$apply();
@@ -441,19 +420,16 @@
             });
         }
         
-        $scope.accountPayableLate = function(accountPayable){
+        $scope.accountReceivableLate = function(accountReceivable){
         	
         	var date = new Date();
         	date.setHours(0,0,0,0);
-        	accountPayable.dueDate.setHours(0,0,0,0);
+        	accountReceivable.dueDate.setHours(0,0,0,0);
         	
-        	if( ((accountPayable.dueDate < date ) && (accountPayable.status == 'NOT_PAID')) ){
+        	if( ((accountReceivable.dueDate < date ) && (accountReceivable.status == 'NOT_RECEIVED')) ){
         		$scope.lateColor = {'background-color' : '#FFEBEE'};
         	}
-//        	if(accountPayable.status == 'PAID'){
-//        		$scope.lateColor = {'background-color' : '#E8F5E9'};
-//        	}
-    		if( ((accountPayable.dueDate >= date ) || (accountPayable.status == 'PAID')) ){
+    		if( ((accountReceivable.dueDate >= date ) || (accountReceivable.status == 'RECEIVED')) ){
         		$scope.lateColor = {};
         	}
         	
@@ -462,7 +438,7 @@
         /**
          * 
          */
-        $scope.listAccountsPayableByEvents = function ( event ) {
+        $scope.listAccountsReceivableByEvents = function ( event ) {
 
             if( event.keyCode == 13 || $scope.model.filters.terms == "" ){
                 $scope.changeToList();
