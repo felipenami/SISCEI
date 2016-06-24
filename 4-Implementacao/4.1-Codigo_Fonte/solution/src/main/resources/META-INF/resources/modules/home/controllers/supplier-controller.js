@@ -8,11 +8,7 @@
 		 /**
          * Serviços importados do DWR
          */
-		$importService("accountService");
-		/**
-		 * 
-		 */
-		$importService("financeService");
+		$importService("supplierService");
 		/**
 		 * 
 		 */
@@ -128,7 +124,7 @@
          */
         $scope.changeToEdit = function (id) {
         	
-        	financeService.findSupplierById(id,{
+        	supplierService.findSupplierById(id,{
         		callback: function (result) {
         			$scope.model.supplier = result;
         			$scope.listCitiesByState($scope.model.supplier.address.city.state.id);
@@ -181,7 +177,7 @@
     	$scope.changeToDetail = function (id) {
         	console.debug("Detail");
         	
-        	financeService.findSupplierById(id,{
+        	supplierService.findSupplierById(id,{
         		callback: function (result) {
         			$scope.model.supplier = result;
         			$scope.$apply();
@@ -208,7 +204,7 @@
 
             $mdDialog.show(confirm).then(function (result) {
             	
-            	financeService.removeSupplier(entity.id, {
+            	supplierService.removeSupplier(entity.id, {
                     callback: function (result) {
                         if( $state.current.name == $scope.LIST_STATE){
                             $scope.changeToList();
@@ -231,7 +227,7 @@
     	 */
         $scope.listSuppliersByFilters = function(filters, pageRequest){
         	console.debug("test");
-        	financeService.listSuppliersByFilters( filters.terms.toString(), pageRequest, {
+        	supplierService.listSuppliersByFilters( filters.terms.toString(), pageRequest, {
                 callback: function (result) {
                     $scope.model.suppliers = $scope.model.suppliers.concat(result.content);
                     $scope.model.showLoading = false;
@@ -249,7 +245,7 @@
          */
         $scope.insertSupplierHandler = function (supplier){
         	if($scope.validateForm()){
-	        	financeService.insertSupplier( supplier, {
+        		supplierService.insertSupplier( supplier, {
 	        		callback: function(result){
 	        			$mdToast.showSimple("Fornecedor	 salvo com sucesso!");
 	                    $state.go($scope.LIST_STATE);
@@ -267,7 +263,7 @@
          */
         $scope.updateSupplierHandler = function(supplier){
         	if($scope.validateForm()){
-        		financeService.updateSupplier(supplier, {
+        		supplierService.updateSupplier(supplier, {
         			callback: function(result){
 	        			$mdToast.showSimple("Fornecedor	alterado com sucesso!");
 	                    $state.go($scope.LIST_STATE);

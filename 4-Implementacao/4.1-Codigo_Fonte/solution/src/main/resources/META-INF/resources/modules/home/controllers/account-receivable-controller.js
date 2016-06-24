@@ -13,11 +13,22 @@
 		/**
 		 * 
 		 */
-		$importService("financeService");
+		$importService("accountReceivableService");
 		/**
 		 * 
 		 */
-		
+		$importService("supplierService");
+		/**
+		 * 
+		 */
+		$importService("bankAccountService");
+		/**
+		 * 
+		 */
+		$importService("categoryService");
+		/**
+		 * 
+		 */
 		 //----STATES
         /**
          * Representa o estado de listagem de registros.
@@ -150,7 +161,7 @@
         
         	$scope.listUsersByFilters( $scope.model.filters, $scope.model.page.pageable );
         	
-        	financeService.findAccountReceivableById(id,{
+        	accountReceivableService.findAccountReceivableById(id,{
         		callback: function (result) {
         			$scope.model.accountReceivable = result;
         			$scope.$apply();
@@ -225,7 +236,7 @@
         $scope.changeToDetail = function (id) {
         	console.debug("Detail");
         	
-        	financeService.findAccountReceivableById(id,{
+        	accountReceivableService.findAccountReceivableById(id,{
         		callback: function (result) {
         			$scope.model.accountReceivable = result;
         			$scope.$apply();
@@ -242,7 +253,7 @@
          */
         $scope.listAccountReceivableByFilters = function(filters, pageRequest){
         				   
-        	financeService.listAccountsReceivableByFilters( filters.terms.toString() , pageRequest, {
+        	accountReceivableService.listAccountsReceivableByFilters( filters.terms.toString() , pageRequest, {
                 callback: function (result) {
                     $scope.model.accountsReceivable = $scope.model.accountsReceivable.concat(result.content);
                     $scope.getAccountsReceivableTotal($scope.model.accountsReceivable);
@@ -264,7 +275,7 @@
         		if($scope.model.accountReceivable.status == null){
             		$scope.model.accountReceivable.status = 'NOT_RECEIVED';
             	}
-	        	financeService.insertAccountReceivable( accountReceivable, {
+        		accountReceivableService.insertAccountReceivable( accountReceivable, {
 	        		callback: function(result){
 	                	
 	        			$mdToast.showSimple("Conta salva com sucesso!");
@@ -281,10 +292,10 @@
         /**
          * 
          */
-        $scope.updateAccountPayableHandler= function(accountPayable){
+        $scope.updateAccountReceivableHandler= function(accountReceivable){
         	if($scope.validateForm()){
         		
-	        	financeService.insertAccountPayable( accountPayable, {
+        		accountReceivableService.insertAccountReceivable( accountReceivable, {
 	        		callback: function(result){
 	                	
 	        			$mdToast.showSimple("Registro alterado com sucesso!");
@@ -313,7 +324,7 @@
 
             $mdDialog.show(confirm).then(function (result) {
             	
-            	financeService.removeAccountReceivable(entity.id, {
+            	accountReceivableService.removeAccountReceivable(entity.id, {
                     callback: function (result) {
                         if( $state.current.name == $scope.LIST_STATE){
                             $scope.changeToList();
@@ -370,7 +381,7 @@
          */
         $scope.listCategoriesByFilters = function(filters, pageRequest){
         	
-        	financeService.listCategoriesByFilters( filters.terms.toString(), pageRequest, {
+        	categoryService.listCategoriesByFilters( filters.terms.toString(), pageRequest, {
                 callback: function (result) {
                     $scope.model.categories = $scope.model.categories.concat(result.content);
                     $scope.model.showLoading = false;
@@ -388,7 +399,7 @@
          */
         $scope.listBankAccountsByFilters = function(filters, pageRequest){
         	
-        	financeService.listBankAccountsByFilters( filters.terms.toString(), pageRequest, {
+        	bankAccountService.listBankAccountsByFilters( filters.terms.toString(), pageRequest, {
                 callback: function (result) {
                     $scope.model.bankAccounts = $scope.model.bankAccounts.concat(result.content);
                     $scope.model.showLoading = false;

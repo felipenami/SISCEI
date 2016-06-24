@@ -9,11 +9,7 @@
 		/**
          * Serviços importados do DWR
          */
-		$importService("accountService");
-		/**
-		 * 
-		 */
-		$importService("financeService");
+		$importService("bankAccountService");
 		/**
 		 * 
 		 */
@@ -119,7 +115,7 @@
         $scope.changeToEdit = function (id) {
         	console.debug("edit");
         	
-        	financeService.findBankAccountById(id,{
+        	bankAccountService.findBankAccountById(id,{
         		callback: function (result) {
         			$scope.model.bankAccount = result;
         			$scope.$apply();
@@ -169,7 +165,7 @@
         $scope.changeToDetail = function (id) {
         	console.debug("Detail");
         	
-        	financeService.findBankAccountById(id,{
+        	bankAccountService.findBankAccountById(id,{
         		callback: function (result) {
         			$scope.model.bankAccount = result;
         			$scope.$apply();
@@ -186,7 +182,7 @@
          */
         $scope.listBankAccountsByFilters = function(filters, pageRequest){
         	
-        	financeService.listBankAccountsByFilters( filters.terms.toString(), pageRequest, {
+        	bankAccountService.listBankAccountsByFilters( filters.terms.toString(), pageRequest, {
                 callback: function (result) {
                     $scope.model.bankAccounts = $scope.model.bankAccounts.concat(result.content);
                     $scope.model.showLoading = false;
@@ -204,7 +200,7 @@
          */
         $scope.insertBankAccountHandler= function(bankAccount){
         	if($scope.validateForm()){
-	        	financeService.insertBankAccount( bankAccount, {
+        		bankAccountService.insertBankAccount( bankAccount, {
 	        		callback: function(result){
 	        			$mdToast.showSimple("Conta bancária salva com sucesso!");
 	                    $state.go($scope.LIST_STATE);
@@ -222,7 +218,7 @@
          */
         $scope.updateBankAccountHandler = function( bankAccount ){
         	if($scope.validateForm()){
-	        	financeService.updateBankAccount( bankAccount, {
+        		bankAccountService.updateBankAccount( bankAccount, {
 	        		callback: function(result){
 	        			$mdToast.showSimple("Registro alterado com sucesso!");
 	                    $state.go($scope.LIST_STATE);
@@ -251,7 +247,7 @@
 
             $mdDialog.show(confirm).then(function (result) {
             	
-            	financeService.removeBankAccount(entity.id, {
+            	bankAccountService.removeBankAccount(entity.id, {
                     callback: function (result) {
                         if( $state.current.name == $scope.LIST_STATE){
                             $scope.changeToList();

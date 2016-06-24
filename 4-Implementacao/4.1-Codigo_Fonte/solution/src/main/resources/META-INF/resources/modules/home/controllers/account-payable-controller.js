@@ -13,7 +13,19 @@
 		/**
 		 * 
 		 */
-		$importService("financeService");
+		$importService("accountPayableService");
+		/**
+		 * 
+		 */
+		$importService("supplierService");
+		/**
+		 * 
+		 */
+		$importService("bankAccountService");
+		/**
+		 * 
+		 */
+		$importService("categoryService");
 		/**
 		 * 
 		 */
@@ -160,7 +172,7 @@
                 };
         	$scope.listSuppliersByFilters( $scope.model.filters, $scope.model.page.pageable );
         	
-        	financeService.findAccountPayableById(id,{
+        	accountPayableService.findAccountPayableById(id,{
         		callback: function (result) {
         			$scope.model.accountPayable = result;
         			$scope.$apply();
@@ -246,7 +258,7 @@
         $scope.changeToDetail = function (id) {
         	console.debug("Detail");
         	
-        	financeService.findAccountPayableById(id,{
+        	accountPayableService.findAccountPayableById(id,{
         		callback: function (result) {
         			$scope.model.accountPayable = result;
         			$scope.$apply();
@@ -263,7 +275,7 @@
          */
         $scope.listAccountsPayableByFilters = function(filters, pageRequest){
         	
-        	financeService.listAccountsPayableByFilters( filters.terms.toString() , pageRequest, {
+        	accountPayableService.listAccountsPayableByFilters( filters.terms.toString() , pageRequest, {
                 callback: function (result) {
                     $scope.model.accountsPayable = $scope.model.accountsPayable.concat(result.content);
                     $scope.getAccountsPayableTotal($scope.model.accountsPayable);
@@ -285,7 +297,7 @@
         		if($scope.model.accountPayable.status == null){
             		$scope.model.accountPayable.status = 'NOT_PAID';
             	}
-	        	financeService.insertAccountPayable( accountPayable, {
+        		accountPayableService.insertAccountPayable( accountPayable, {
 	        		callback: function(result){
 	                	
 	        			$mdToast.showSimple("Conta salva com sucesso!");
@@ -305,7 +317,7 @@
         $scope.updateAccountPayableHandler= function(accountPayable){
         	if($scope.validateForm()){
         		
-	        	financeService.insertAccountPayable( accountPayable, {
+        		accountPayableService.insertAccountPayable( accountPayable, {
 	        		callback: function(result){
 	                	
 	        			$mdToast.showSimple("Registro alterado com sucesso!");
@@ -334,7 +346,7 @@
 
             $mdDialog.show(confirm).then(function (result) {
             	
-            	financeService.removeAccountPayable(entity.id, {
+            	accountPayableService.removeAccountPayable(entity.id, {
                     callback: function (result) {
                         if( $state.current.name == $scope.LIST_STATE){
                             $scope.changeToList();
@@ -391,7 +403,7 @@
          */
         $scope.listCategoriesByFilters = function(filters, pageRequest){
         	
-        	financeService.listCategoriesByFilters( filters.terms.toString(), pageRequest, {
+        	categoryService.listCategoriesByFilters( filters.terms.toString(), pageRequest, {
                 callback: function (result) {
                     $scope.model.categories = $scope.model.categories.concat(result.content);
                     $scope.model.showLoading = false;
@@ -409,7 +421,7 @@
          */
         $scope.listBankAccountsByFilters = function(filters, pageRequest){
         	
-        	financeService.listBankAccountsByFilters( filters.terms.toString(), pageRequest, {
+        	bankAccountService.listBankAccountsByFilters( filters.terms.toString(), pageRequest, {
                 callback: function (result) {
                     $scope.model.bankAccounts = $scope.model.bankAccounts.concat(result.content);
                     $scope.model.showLoading = false;
@@ -427,7 +439,7 @@
          */
         $scope.listSuppliersByFilters = function(filters, pageRequest){
         	console.debug("test");
-        	financeService.listSuppliersByFilters( filters.terms.toString(), pageRequest, {
+        	supplierService.listSuppliersByFilters( filters.terms.toString(), pageRequest, {
                 callback: function (result) {
                     $scope.model.suppliers = $scope.model.suppliers.concat(result.content);
                     $scope.model.showLoading = false;

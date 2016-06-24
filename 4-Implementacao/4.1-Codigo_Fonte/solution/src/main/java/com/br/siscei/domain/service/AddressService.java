@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.directwebremoting.annotations.RemoteProxy;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -18,7 +16,6 @@ import com.br.siscei.domain.entity.address.City;
 import com.br.siscei.domain.entity.address.State;
 import com.br.siscei.domain.repository.address.IAddressRepository;
 import com.br.siscei.domain.repository.address.ICityRepository;
-import com.br.siscei.domain.repository.address.ICountryRepository;
 import com.br.siscei.domain.repository.address.IStateRepository;
 
 /**
@@ -50,23 +47,9 @@ public class AddressService
 	/**
 	 * 
 	 */
-	@Autowired
-	private ICountryRepository countryRepository;
-	/**
-	 * 
-	 */
 	/*-------------------------------------------------------------------
 	 *				 		     SERVICES
 	 *-------------------------------------------------------------------*/
-	/**
-	 * 
-	 * @param address
-	 * @return
-	 */
-	public Address insertAddress(Address address)
-	{
-		return this.addressRepository.save( address );
-	}
 	/**
 	 * 
 	 */
