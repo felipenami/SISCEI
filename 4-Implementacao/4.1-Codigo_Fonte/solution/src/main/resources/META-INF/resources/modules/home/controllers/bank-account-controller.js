@@ -271,15 +271,15 @@
          */
         $scope.validateForm = function (){
         	if($scope.model.bankAccount.name == null){
-        		$mdToast.showSimple("O nome fantasia deve ser informado.");
+        		$mdToast.showSimple("O nome do banco deve ser informado.");
                 return false;
         	}
         	if($scope.model.bankAccount.description == null){
-        		$mdToast.showSimple("O telefone do fornecedor deve ser informado.");
+        		$mdToast.showSimple("Informe uma descrição da conta.");
         		return false;
         	}
         	if($scope.model.bankAccount.balance == null){
-        		$mdToast.showSimple("O endereço do fornecedor deve ser informado.");
+        		$mdToast.showSimple("Informe o saldo inicial da conta.");
         		return false;
         	}
         	return true;

@@ -60,24 +60,18 @@
 	            		</div>
 	            		<div layout="row" flex>
 	            			<md-content flex>
-	            				<h4>Data de vencimento</h4>
+	            				
 								<md-datepicker ng-model="model.accountPayable.dueDate" md-placeholder="Data de vencimento" ></md-datepicker>
 							</md-content>
-							<md-content flex>
-								<h4>Data de lançamento</h4>
-								<md-datepicker ng-model="model.accountPayable.entryDate" md-placeholder="Data de lançamento"></md-datepicker>	
-							</md-content>
 	            		</div>
-       		      		<div layout="column" flex style="padding-top: 60px;">
-       		      			<div flex-xs flex="50">
-	       		      			<md-checkbox aria-label="pago"  md-no-ink class="md-primary" ng-true-value="'PAID'" ng-false-value="'NOT_PAID'" ng-model="model.accountPayable.status">
-					           		Pago 
-					          	</md-checkbox>
-					          	<md-content flex>
-									<h4>Data de pagamento</h4>
-									<md-datepicker ng-disabled="model.accountPayable.status == 'NOT_PAID' " ng-model="model.accountPayable.paymentDate" md-placeholder="Data de pagamento"></md-datepicker>
-							</md-content>
-			          		</div>	
+       		      		<div layout=row flex style="padding-top: 60px;" >
+       		      			
+       		      			<md-checkbox style="margin-top: 12px;" aria-label="pago"  md-no-ink class="md-primary" ng-true-value="'PAID'" ng-false-value="'NOT_PAID'" ng-model="model.accountPayable.status">
+				           		Pago
+				          	</md-checkbox>
+				          	<md-datepicker ng-disabled="model.accountPayable.status == 'NOT_PAID' " ng-model="model.accountPayable.paymentDate" md-placeholder="Data de pagamento"></md-datepicker>
+								
+			          			
        		      		</div>
 	            		
 	           		</div>

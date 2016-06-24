@@ -41,37 +41,33 @@ public class Supplier extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@NotEmpty
+	@NotNull
 	@Column(nullable = false, length = 144)
 	private String companyName;
 	/**
 	 * 
 	 */
-	@NotEmpty
+	@NotNull
 	@Column(nullable = false, length = 144)
 	private String tradeName;
 	/**
 	 * 
 	 */
-	@NotEmpty
 	@Column(nullable = false, length = 15)
 	private String phone;
 	/**
 	 * 
 	 */
-	@NotEmpty
 	@Column(nullable = false, length = 20)
 	private String cnpj;
 	/**
 	 * 
 	 */
-	@NotEmpty
 	@Column(nullable = false, length = 144)
 	private String contact;
 	/**
 	 * 
 	 */
-	@NotNull
 	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL )
 	private Address address;
 	/*-------------------------------------------------------------------
@@ -93,7 +89,7 @@ public class Supplier extends AbstractEntity implements Serializable
 		super(id);
 	}
 	
-	public Supplier( Long id, String companyName, String tradeName, String phone, String cnpj, String contact, Address address )
+	public Supplier( Long id, String companyName, String tradeName, String phone, String cnpj, String contact)
 	{
 		super(id);
 		this.companyName = companyName;
@@ -101,7 +97,6 @@ public class Supplier extends AbstractEntity implements Serializable
 		this.phone = phone;
 		this.cnpj = cnpj;
 		this.contact = contact;
-		this.address = address;
 	}
 	/*-------------------------------------------------------------------
 	 *							BEHAVIORS

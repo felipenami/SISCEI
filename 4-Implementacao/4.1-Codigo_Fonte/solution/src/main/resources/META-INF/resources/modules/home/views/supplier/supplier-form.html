@@ -17,7 +17,10 @@
 	            		<div layout="row" flex>
 	            			<md-input-container flex="50" style="margin-right:15px;" >
 	                    		<label>Razão social</label>
-	                 			<input type="text" ng-model="model.supplier.companyName" name="companyName">
+	                 			<input type="text" ng-model="model.supplier.companyName" name="companyName" required> 
+	                 			<div ng-messages="model.form.companyName.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
 	                		</md-input-container>
 	                		<md-input-container flex="50" style="margin-right:15px;">
 	                    		<label>Nome fantasia</label>
@@ -41,9 +44,6 @@
 	            			<md-input-container flex="50" style="margin-right:15px;">
 	                    		<label>Telefone</label>
 	                 			<input type="text" ng-model="model.supplier.phone" name="phone" required mask="(99) 9?999-9999">
-	                 			<div ng-messages="model.form.phone.$error">
-          							<div ng-message="required">Obrigatório.</div>
-          						</div>
 	                		</md-input-container>
 	            		</div>
 	            		<div>
@@ -62,15 +62,12 @@
 	            		<div layout="row" flex>
 	            			<md-input-container flex="50" style="margin-right:15px;">
 	                    		<label>Endereço</label>
-	                 			<input type="text" ng-model="model.supplier.address.street" name="street" required>
-	                 			<div ng-messages="model.form.street.$error">
-          							<div ng-message="required">Obrigatório.</div>
-          						</div>
+	                 			<input type="text" ng-model="model.supplier.address.street" name="street" >
 	                		</md-input-container>
 	                		<md-input-container flex="50" style="margin-right:15px;">
 	            				<label>Estado </label>
 	                    		<md-select  ng-model="model.supplier.address.city.state" name="state" ng-change="listCitiesByState(model.supplier.address.city.state.id)" ng-model-options="{trackBy: '$value.id'}" >
-						          <md-option ng-repeat="state in model.states" ng-value="state" required>
+						          <md-option ng-repeat="state in model.states" ng-value="state" >
 						            {{state.name}}
 						          </md-option>
 						        </md-select>
@@ -90,9 +87,6 @@
 						            {{city.name}}
 						          </md-option>
 						        </md-select>
-						        <div ng-messages="model.form.city.$error">
-          							<div ng-message="required">Obrigatório.</div>
-          						</div>
 	                		</md-input-container>
 	            		</div>
 	           		</div>	            
@@ -100,10 +94,7 @@
 	            		<div layout="row" flex>
 	            			<md-input-container flex="50" style="margin-right:15px;">
 	                    		<label>Bairro</label>
-	                 			<input type="text" ng-model="model.supplier.address.neighborhood" name="neighborhood" required>
-	                 			<div ng-messages="model.form.neighborhood.$error">
-          							<div ng-message="required">Obrigatório.</div>
-          						</div>
+	                 			<input type="text" ng-model="model.supplier.address.neighborhood" name="neighborhood" >
 	                		</md-input-container>
 	                		<md-input-container flex="50" style="margin-right:15px;">
 	                    		<label>CEP</label>

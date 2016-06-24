@@ -297,6 +297,9 @@
         		if($scope.model.accountPayable.status == null){
             		$scope.model.accountPayable.status = 'NOT_PAID';
             	}
+        		if($scope.model.accountPayable.status == 'NOT_PAID'){
+            		$scope.model.accountPayable.paymentDate = null;
+            	}
         		accountPayableService.insertAccountPayable( accountPayable, {
 	        		callback: function(result){
 	                	

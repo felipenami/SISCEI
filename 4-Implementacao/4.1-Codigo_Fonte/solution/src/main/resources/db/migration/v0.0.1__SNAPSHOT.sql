@@ -272,7 +272,7 @@ CREATE TABLE "public"."address"
   id bigserial NOT NULL,
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
-  cep character varying(144) NOT NULL,
+  cep character varying(144),
   neighborhood character varying(144) NOT NULL,
   street character varying(144) NOT NULL,
   city_id bigint NOT NULL,
@@ -315,16 +315,13 @@ CREATE TABLE "public"."supplier"
   id bigserial NOT NULL,
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
-  cnpj character varying(20) NOT NULL,
+  cnpj character varying(20),
   company_name character varying(144) NOT NULL,
-  contact character varying(144) NOT NULL,
-  phone character varying(15) NOT NULL,
+  contact character varying(144),
+  phone character varying(15),
   trade_name character varying(144) NOT NULL,
-  address_id bigint NOT NULL,
-  CONSTRAINT supplier_pkey PRIMARY KEY (id),
-  CONSTRAINT fk_supplier_address_id FOREIGN KEY (address_id)
-      REFERENCES address (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION
+  address_id bigint ,
+  CONSTRAINT supplier_pkey PRIMARY KEY (id)
 );
 --
 -- TOC entry 175 (class 1259 OID 278679)

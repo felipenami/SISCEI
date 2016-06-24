@@ -20,7 +20,7 @@ import com.br.siscei.domain.entity.finance.Supplier;
  */
 public interface ISupplierRepository extends JpaRepository<Supplier, Long>
 {
-	@Query(value= "SELECT new Supplier(supplier.id, supplier.companyName, supplier.tradeName, supplier.phone, supplier.cnpj, supplier.contact, supplier.address) " +
+	@Query(value= "SELECT new Supplier(supplier.id, supplier.companyName, supplier.tradeName, supplier.phone, supplier.cnpj, supplier.contact) " +
 				  "FROM  Supplier supplier " +
 				  "WHERE ((FILTER(supplier.companyName, :filter) = TRUE ) OR (FILTER(supplier.tradeName, :filter ) = TRUE ) OR (FILTER(supplier.contact, :filter ) = TRUE )) " )
 	public Page<Supplier>listByFilters(@Param("filter") String filter, Pageable pageable );

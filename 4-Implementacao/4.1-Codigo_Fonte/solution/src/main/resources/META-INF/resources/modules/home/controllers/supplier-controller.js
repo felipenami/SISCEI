@@ -315,24 +315,8 @@
         		$mdToast.showSimple("O nome fantasia deve ser informado.");
                 return false;
         	}
-        	if($scope.model.supplier.phone == null){
-        		$mdToast.showSimple("O telefone do fornecedor deve ser informado.");
-        		return false;
-        	}
-        	if($scope.model.supplier.address.street == null){
-        		$mdToast.showSimple("O endereço do fornecedor deve ser informado.");
-        		return false;
-        	}
-        	if($scope.model.supplier.address.neighborhood == null){
-        		$mdToast.showSimple("Informe o bairro.");
-        		return false;
-        	}
-        	if($scope.model.state == null){
-        		$mdToast.showSimple("Informe o estado.");
-        		return false;
-        	}
-        	if($scope.model.supplier.address.city == null){
-        		$mdToast.showSimple("A cidade deve ser informada.");
+        	if($scope.model.supplier.companyName == null){
+        		$mdToast.showSimple("A razão social deve ser informado.");
         		return false;
         	}
         	return true;

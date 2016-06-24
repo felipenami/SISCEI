@@ -10,11 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.eits.common.domain.entity.AbstractEntity;
 
@@ -35,19 +33,16 @@ public class Address extends AbstractEntity implements Serializable
 	/*-------------------------------------------------------------------
 	 *				 		     ATTRIBUTES
 	 *-------------------------------------------------------------------*/
-	@NotEmpty
 	@Column(nullable = false, length = 144)
 	private String neighborhood;
 	/**
 	 * 
 	 */
-	@NotEmpty
 	@Column(nullable = false, length = 144)
 	private String street;
 	/**
 	 * 
 	 */
-	@NotEmpty
 	@Column(nullable = false, length = 144)
 	private String cep;
 	/**
@@ -58,7 +53,6 @@ public class Address extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@NotNull
 	@ManyToOne( fetch = FetchType.EAGER )
 	private City city;
 	/*-------------------------------------------------------------------
