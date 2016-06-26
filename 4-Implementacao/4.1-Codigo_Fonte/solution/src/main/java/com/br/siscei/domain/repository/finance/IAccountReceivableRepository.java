@@ -22,7 +22,7 @@ public interface IAccountReceivableRepository extends JpaRepository<AccountRecei
 	@Query(value= "SELECT new AccountReceivable(accountReceivable.id, accountReceivable.dueDate, " +
 												 "accountReceivable.entryDate, accountReceivable.receivementDate, " +
 												 "accountReceivable.description, accountReceivable.value, accountReceivable.bankAccount, " +
-												 "accountReceivable.category, accountReceivable.status, accountReceivable.student) " +
+												 "accountReceivable.category, accountReceivable.status) " +
 											 "FROM AccountReceivable accountReceivable " +
 											 "WHERE( (FILTER(accountReceivable.description, :filter) = TRUE )) " ) 
 	public Page<AccountReceivable>listByFilters(@Param("filter") String filter, 

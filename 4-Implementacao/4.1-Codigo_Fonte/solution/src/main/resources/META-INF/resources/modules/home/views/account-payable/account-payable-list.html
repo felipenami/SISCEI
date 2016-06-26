@@ -43,7 +43,7 @@
 				        	<md-icon ng-if="accountPayable.status == 'PAID'" class="zmdi zmdi-check zmdi-hc-2x" style=" color: #4CAF50;font-weight: bold;">
 				        	<md-tooltip>Paga</md-tooltip>
 				        	</td>
-				        <td md-cell>{{accountPayable.value | currency }}</td>
+				        <td md-cell style="color: #F44336" >{{-accountPayable.value | number: 2 }}</td>
 				        <td md-cell style="width: 5px; padding: 0 0 0 0;">
 				        	<md-menu md-offset="-30 25">
 								<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
@@ -73,33 +73,25 @@
 			<label class="grey">Nenhum registro encontrado</label>
 		</div>
 		
-		<md-card style="height: 225px;">
-			<div layout="column" flex>
-           		<div layout="row" flex style="padding-left: 25px; padding-top: 25px;">
-            		<label class="gray" flex> Pagas: </label>
-					<label class="text-word-wrap not-margin" flex="80">{{model.totalPaid | currency }}</label>
+		<md-card style="height: 150px;">
+			<div layout="column" >
+           		<div layout="row"  style="padding-left: 25px; padding-top: 25px;">
+            		<label class="gray" flex="50"> Pagas: </label>
+					<label style="color: #F44336"  class="text-word-wrap not-margin" flex="50">{{model.totalPaid | currency }}</label>
+					
+					<label class="gray" flex="50"> Vencidas: </label>
+					<h4 style="color: #F44336"  class="text-word-wrap not-margin" flex="50"><strong> {{model.totalDue | currency }}</strong></h4>
            		</div>
        		</div>
-			<div layout="column" flex>
+			<div layout="column" >
            		<div layout="row" flex style="padding-left: 25px; padding-top: 25px;">
-            		<label class="gray" flex>A Pagar: </label>
-					<label class="text-word-wrap not-margin" flex="80">{{model.totalNotPaid | currency }}</label>
+            		<label class="gray" flex="50">A Pagar: </label>
+					<label style="color: #F44336"  class="text-word-wrap not-margin" flex="50">{{model.totalNotPaid | currency }}</label>
+					
+					<label class="gray" flex="50"> Total de Pagamentos: </label>
+					<h4 class="text-word-wrap not-margin" flex="50"><strong> {{model.totalAccountsPayable | currency }}</strong></h4>
            		</div>
        		</div>
-			<div layout="column" flex>
-           		<div layout="row" flex style="padding-left: 25px; padding-top: 25px;">
-            		<label class="gray" flex> Vencidas: </label>
-					<h4 class="text-word-wrap not-margin" flex="80"><strong> {{model.totalDue | currency }}</strong></h4>
-           		</div>
-       		</div>
-			<div layout="column" flex>
-           		<div layout="row" flex style="padding-left: 25px; padding-top: 25px;">
-            		<label class="gray" flex> Total de Pagamentos: </label>
-					<h4 class="text-word-wrap not-margin" flex="80"><strong> {{model.totalAccountsPayable | currency }}</strong></h4>
-           		</div>
-       		</div>
-			
-		
 		</md-card>
 		<eits-vbox ng-show="model.showLoading" horizontal-align="center" vertical-align="center">
 			<md-progress-circular md-mode="indeterminate"></md-progress-circular>

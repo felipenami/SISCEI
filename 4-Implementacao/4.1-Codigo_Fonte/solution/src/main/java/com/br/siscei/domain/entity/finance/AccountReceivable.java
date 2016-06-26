@@ -116,7 +116,7 @@ public class AccountReceivable extends AbstractEntity implements Serializable
 	 * 
 	 */
 	public AccountReceivable ( Long id, Calendar dueDate, Calendar entryDate, 
-			Calendar receivementDate, String description, BigDecimal value, BankAccount bankAccount, Category category, StatusAccountsReceivable status, User student )
+			Calendar receivementDate, String description, BigDecimal value, BankAccount bankAccount, Category category, StatusAccountsReceivable status )
 	{
 		super(id);
 		this.dueDate 			= dueDate;
@@ -126,7 +126,6 @@ public class AccountReceivable extends AbstractEntity implements Serializable
 		this.value 				= value;
 		this.bankAccount 		= bankAccount;
 		this.category 			= category;
-		this.student			= student;
 		this.status 			= status;
 	}
 	/*-------------------------------------------------------------------

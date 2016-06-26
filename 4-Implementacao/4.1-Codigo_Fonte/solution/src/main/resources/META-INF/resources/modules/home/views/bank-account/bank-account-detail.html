@@ -9,7 +9,7 @@
 	        <eits-paper-sheet id="information" ng-init="openPaper('information')">
 	            <content-closed>
 	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
-	                    <h3>Informações</h3>
+	                    	<h3>Informações</h3>
 	                </eits-vbox>
 	            </content-closed>
 	            <content-opened>
@@ -23,7 +23,7 @@
 							<h4 class="text-word-wrap not-margin" flex="80">{{model.bankAccount.description}} </h4>
 	            		</div>
 	            		<div layout="row" flex >
-	            			<label class="gray" flex> Saldo: </label>
+	            			<label class="gray" flex> Saldo inicial: </label>
 							<h4 class="text-word-wrap not-margin" flex="80">{{model.bankAccount.balance | currency}} </h4>
 	            		</div>
 	            		<div>
@@ -31,6 +31,116 @@
 	           		</div>
 	            </content-opened>
 	        </eits-paper-sheet>
+<!-- 	        <eits-paper-sheet id="movimentation"> -->
+<!-- 	            <content-closed> -->
+<!-- 	                <eits-vbox padding-left="30" padding-right="30" padding-top="5"> -->
+<!-- 	                    <h3>Movimentações</h3> -->
+<!-- 	                </eits-vbox> -->
+<!-- 	            </content-closed> -->
+<!-- 	            <content-opened> -->
+<!-- 					<md-toolbar class="md-table-toolbar md-default" > -->
+<!-- 						<div class="md-toolbar-tools"> -->
+<!-- 							<span flex >Contas a pagar</span> -->
+<!-- 						</div> -->
+<!-- 					</md-toolbar> -->
+		        
+<!-- 					<md-table-container> -->
+<!-- 						<table md-table> -->
+<!-- 					    	<thead md-head > -->
+<!-- 						      <tr md-row> -->
+<!-- 						        <th md-column ><span>Categoria</span></th> -->
+<!-- 						        <th md-column ><span>Descrição</span></th> -->
+<!-- 						        <th md-column ><span>Data de vencimento</span></th> -->
+<!-- 						        <th md-column ><span>status</span></th> -->
+<!-- 						        <th md-column ><span>Valor</span></th> -->
+<!-- 						      </tr> -->
+<!-- 						    </thead> -->
+<!-- 						    <tbody md-body> -->
+<!-- 						      <tr md-row  ng-repeat="accountPayable in model.accountsPayable" ng-style="accountPayableLate(accountPayable)"> -->
+<!-- 						        <td md-cell>{{accountPayable.category.name}}</td> -->
+<!-- 						        <td md-cell>{{accountPayable.description}}</td> -->
+<!-- 						        <td md-cell>{{accountPayable.dueDate | date: 'dd/MM/yyyy' }}</td> -->
+<!-- 						        <td md-cell> -->
+<!-- 						        	<md-icon ng-if="accountPayable.status == 'PAID'" class="zmdi zmdi-check zmdi-hc-2x" style=" color: #4CAF50;font-weight: bold;"> -->
+<!-- 						        	<md-tooltip>Paga</md-tooltip> -->
+<!-- 						        	</td> -->
+<!-- 						        <td md-cell>{{accountPayable.value | currency }}</td> -->
+<!-- 						        <td md-cell style="width: 5px; padding: 0 0 0 0;"> -->
+<!-- 						        	<md-menu md-offset="-30 25"> -->
+<!-- 										<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()"> -->
+<!-- 											<md-icon class="zmdi zmdi-more-vert zmdi-hc-fw zmdi-hc-2x"></md-icon> -->
+<!-- 										</md-button> -->
+<!-- 										<md-menu-content width="2"> -->
+<!-- 											<md-menu-item> -->
+<!-- 												<md-button ng-click="$state.go( EDIT_STATE, {id:accountPayable.id})"><span md-menu-align-target>Editar</span></md-button> -->
+<!-- 											</md-menu-item> -->
+<!-- 											<md-menu-item> -->
+<!-- 												<md-button ng-click="$state.go( DETAIL_STATE, {id:accountPayable.id})"><span md-menu-align-target>Visualizar</span></md-button> -->
+<!-- 											</md-menu-item> -->
+<!-- 											<md-menu-item> -->
+<!-- 												<md-button ng-click="changeToRemove($event, accountPayable )"><span md-menu-align-target>Excluir</span></md-button> -->
+<!-- 											</md-menu-item> -->
+<!-- 										</md-menu-content> -->
+<!-- 									</md-menu> -->
+<!-- 									<md-tooltip>Opções do registro</md-tooltip> -->
+<!-- 						        </td> -->
+<!-- 						      </tr> -->
+<!-- 						    </tbody> -->
+<!-- 						</table> -->
+<!-- 					</md-table-container> -->
+					
+<!-- 					<md-toolbar class="md-table-toolbar md-default" > -->
+<!-- 						<div class="md-toolbar-tools"> -->
+<!-- 							<span  flex >Contas a Receber</span> -->
+<!-- 						</div> -->
+<!-- 					</md-toolbar> -->
+<!-- 					<md-table-container> -->
+<!-- 						<table md-table> -->
+<!-- 					    	<thead md-head > -->
+<!-- 						      <tr md-row> -->
+<!-- 						        <th md-column ><span>Categoria</span></th> -->
+<!-- 						        <th md-column ><span>Descrição</span></th> -->
+<!-- 						        <th md-column ><span>Data de vencimento</span></th> -->
+<!-- 						        <th md-column ><span>status</span></th> -->
+<!-- 						        <th md-column ><span>Valor</span></th> -->
+<!-- 						      </tr> -->
+<!-- 						    </thead> -->
+<!-- 						    <tbody md-body> -->
+<!-- 						      <tr md-row  ng-repeat="accountReceivable in model.accountsReceivable" ng-style="accountReceivableLate(accountReceivable)"> -->
+<!-- 						        <td md-cell>{{accountReceivable.category.name}}</td> -->
+<!-- 						        <td md-cell>{{accountReceivable.description}}</td> -->
+<!-- 						        <td md-cell>{{accountReceivable.dueDate | date: 'dd/MM/yyyy' }}</td> -->
+<!-- 						        <td md-cell> -->
+<!-- 						        	<md-icon ng-if="accountReceivable.status == 'RECEIVED'" class="zmdi zmdi-check zmdi-hc-2x" style=" color: #4CAF50;font-weight: bold;"> -->
+<!-- 						        	<md-tooltip>Paga</md-tooltip> -->
+<!-- 						        	</td> -->
+<!-- 						        <td md-cell>{{accountReceivable.value | currency }}</td> -->
+<!-- 						        <td md-cell style="width: 5px; padding: 0 0 0 0;"> -->
+<!-- 						        	<md-menu md-offset="-30 25"> -->
+<!-- 										<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()"> -->
+<!-- 											<md-icon class="zmdi zmdi-more-vert zmdi-hc-fw zmdi-hc-2x"></md-icon> -->
+<!-- 										</md-button> -->
+<!-- 										<md-menu-content width="2"> -->
+<!-- 											<md-menu-item> -->
+<!-- 												<md-button ng-click="$state.go( EDIT_STATE, {id:accountReceivable.id})"><span md-menu-align-target>Editar</span></md-button> -->
+<!-- 											</md-menu-item> -->
+<!-- 											<md-menu-item> -->
+<!-- 												<md-button ng-click="$state.go( DETAIL_STATE, {id:accountReceivable.id})"><span md-menu-align-target>Visualizar</span></md-button> -->
+<!-- 											</md-menu-item> -->
+<!-- 											<md-menu-item> -->
+<!-- 												<md-button ng-click="changeToRemove($event, accountReceivable )"><span md-menu-align-target>Excluir</span></md-button> -->
+<!-- 											</md-menu-item> -->
+<!-- 										</md-menu-content> -->
+<!-- 									</md-menu> -->
+<!-- 									<md-tooltip>Opções do registro</md-tooltip> -->
+<!-- 						        </td> -->
+<!-- 						      </tr> -->
+<!-- 						    </tbody> -->
+<!-- 						</table> -->
+<!-- 					</md-table-container> -->
+					
+<!-- 	            </content-opened> -->
+<!-- 	        </eits-paper-sheet> -->
         </form>
     </div>
      <eits-hbox vertical-align="center" horizontal-align="center" gap="90">

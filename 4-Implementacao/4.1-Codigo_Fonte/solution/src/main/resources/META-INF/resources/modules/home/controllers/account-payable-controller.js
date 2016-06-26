@@ -197,7 +197,7 @@
             	sort: {
             		orders: [{ 
             			direction: 'ASC',
-            			property: 'description',
+            			property: 'dueDate',
             			nullHandlingHint: null
             		}]
                 }
@@ -223,6 +223,8 @@
         	$scope.model.bankAccounts = [];
         	$scope.model.suppliers = [];
         	$scope.model.accountPayable.status = 'NOT_PAID';
+        	$scope.model.accountPayable.dueDate = new Date();
+        	$scope.model.accountPayable.value = 0;
         	$scope.model.page.pageable = {
                 	size: 9,
                 	page: 0,
@@ -319,7 +321,12 @@
          */
         $scope.updateAccountPayableHandler= function(accountPayable){
         	if($scope.validateForm()){
-        		
+        		if($scope.model.accountPayable.status == null){
+            		$scope.model.accountPayable.status = 'NOT_PAID';
+            	}
+        		if($scope.model.accountPayable.status == 'NOT_PAID'){
+            		$scope.model.accountPayable.paymentDate = null;
+            	}
         		accountPayableService.insertAccountPayable( accountPayable, {
 	        		callback: function(result){
 	                	
@@ -372,12 +379,33 @@
          * 
          */
         $scope.validateForm = function (){
+        	var today = new Date();
+        	today.setHours(23,59,59);
+        	
         	if($scope.model.accountPayable.description == null){
         		$mdToast.showSimple("Informe uma descrição para a conta.");
                 return false;
         	}
-        	
-        	
+        	if($scope.model.accountPayable.dueDate == null){
+        		$mdToast.showSimple("Informe a data de vencimento para a conta.");
+        		return false;
+        	}
+        	if($scope.model.accountPayable.value == 0 ){
+        		$mdToast.showSimple("Informe o valor da conta.");
+        		return false;
+        	}
+        	if($scope.model.accountPayable.bankAccount == null){
+        		$mdToast.showSimple("Selecione uma conta bancária.");
+        		return false;
+        	}
+        	if($scope.model.accountPayable.category == null){
+        		$mdToast.showSimple("Selecione uma categoria.");
+        		return false;
+        	}
+        	if($scope.model.accountPayable.paymentDate > today ){
+        		$mdToast.showSimple("Para baixar o pagamento é preciso definir uma data igual ou anterior a hoje.");
+        		return false;
+        	}
         	return true;
         }
         /**
@@ -465,9 +493,6 @@
         	if( ((accountPayable.dueDate < date ) && (accountPayable.status == 'NOT_PAID')) ){
         		$scope.lateColor = {'background-color' : '#FFEBEE'};
         	}
-//        	if(accountPayable.status == 'PAID'){
-//        		$scope.lateColor = {'background-color' : '#E8F5E9'};
-//        	}
     		if( ((accountPayable.dueDate >= date ) || (accountPayable.status == 'PAID')) ){
         		$scope.lateColor = {};
         	}

@@ -13,6 +13,11 @@
 		/**
 		 * 
 		 */
+		$importService("accountPayableService");
+		/**
+		 * 
+		 */
+		$importService("accountReceivableService");
 		
 		 //----STATES
         /**
@@ -47,7 +52,12 @@
                 angular.element('#'+namePaper)[0].open();
             },100);
         };
-        
+        /**
+         * 
+         */
+        $scope.filter = {
+        		show : false
+        }
         /**
          * 
          */
@@ -58,6 +68,8 @@
                     terms: [],
                 },
                 bankAccounts : [],
+                accountsPayable : [],
+                accountsReceivable : [],
                 page: {//PageImpl
                     content: null,
                     pageable: {//PageRequest
@@ -157,6 +169,7 @@
         $scope.changeToAdd = function () {
         	console.debug("Add");
         	$scope.model.bankAccount = new BankAccount();
+        	$scope.model.bankAccount.balance = 0;
         }
 
         /**
@@ -164,6 +177,19 @@
          */
         $scope.changeToDetail = function (id) {
         	console.debug("Detail");
+        	$scope.model.page.pageable = {
+                	size: 9,
+                	page: 0,
+                	sort: {
+                		orders: [{ 
+                			direction: 'ASC',
+                			property: 'dueDate',
+                			nullHandlingHint: null
+                		}]
+                    }
+                };
+        	$scope.listAccountsPayableByFilters( $scope.model.filters,  $scope.model.page.pageable );
+        	$scope.listAccountReceivableByFilters( $scope.model.filters,  $scope.model.page.pageable );
         	
         	bankAccountService.findBankAccountById(id,{
         		callback: function (result) {
@@ -283,9 +309,64 @@
         		return false;
         	}
         	return true;
-        }       
+        }
+        /**
+         * 
+         */
+        $scope.listBankAccountsByEvents = function ( event ) {
+        	
+	    	if( event.keyCode == 13 || $scope.model.filters.terms == "" ){
+	          $scope.changeToList();
+	    	}
+	    };
+	    /**
+	     * 
+	     */
+	    $scope.clearFilters = function(){
+	    	$scope.filter.show = false;
+	    	$scope.model.filters.terms = "";
+	    	$scope.changeToList();
+	    };
+	    /**
+	     * 
+	     */
+	    $scope.listAccountsPayableByFilters = function(filters, pageRequest){
+        	
+        	accountPayableService.listAccountsPayableByFilters( filters.terms.toString() , pageRequest, {
+                callback: function (result) {
+                    $scope.model.accountsPayable = $scope.model.accountsPayable.concat(result.content);
+                    $scope.getAccountsPayableTotal($scope.model.accountsPayable);
+                    $scope.model.showLoading = false;
+                    $scope.model.notFound = result.totalElements == 0 ? true : false;
+                    $scope.$apply();
+                },
+                errorHandler: function (message, exception) {
+                    $mdToast.showSimple(message);
+                    $scope.$apply();
+                }
+            });
+        }
+        /**
+         * 
+         */
+        $scope.listAccountReceivableByFilters = function(filters, pageRequest){
+        				   
+        	accountReceivableService.listAccountsReceivableByFilters( filters.terms.toString() , pageRequest, {
+                callback: function (result) {
+                    $scope.model.accountsReceivable = $scope.model.accountsReceivable.concat(result.content);
+                    $scope.getAccountsReceivableTotal($scope.model.accountsReceivable);
+                    $scope.model.showLoading = false;
+                    $scope.model.notFound = result.totalElements == 0 ? true : false;
+                    $scope.$apply();
+                },
+                errorHandler: function (message, exception) {
+                    $mdToast.showSimple(message);
+                    $scope.$apply();
+                }
+            });
+        }	    
+	
         
 	});
-	
 	
 })(window.angular);

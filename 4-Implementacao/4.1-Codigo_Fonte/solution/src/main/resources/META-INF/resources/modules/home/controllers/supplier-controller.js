@@ -50,6 +50,15 @@
         /**
          * 
          */
+        /**
+         * 
+         */
+        $scope.filter = {
+        		show : false
+        }
+        /**
+         * 
+         */
         $scope.model = {
                 form    : {},
                 supplier : new Supplier(),
@@ -321,6 +330,23 @@
         	}
         	return true;
         }
+        /**
+         * 
+         */
+        $scope.listSyppliersByEvents = function ( event ) {
+        	
+	    	if( event.keyCode == 13 || $scope.model.filters.terms == "" ){
+	          $scope.changeToList();
+	    	}
+	    };
+	    /**
+	     * 
+	     */
+	    $scope.clearFilters = function(){
+	    	$scope.filter.show = false;
+	    	$scope.model.filters.terms = "";
+	    	$scope.changeToList();
+	    };
 		
 	});
   })(window.angular);

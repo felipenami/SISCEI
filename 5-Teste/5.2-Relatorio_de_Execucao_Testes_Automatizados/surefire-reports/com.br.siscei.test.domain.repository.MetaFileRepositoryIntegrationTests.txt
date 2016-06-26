@@ -1,68 +1,68 @@
 -------------------------------------------------------------------------------
 Test set: com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests
 -------------------------------------------------------------------------------
-Tests run: 8, Failures: 0, Errors: 8, Skipped: 0, Time elapsed: 1.392 sec <<< FAILURE! - in com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests
-listByFolder(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.076 sec  <<< ERROR!
+Tests run: 8, Failures: 0, Errors: 8, Skipped: 0, Time elapsed: 1.9 sec <<< FAILURE! - in com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests
+listByFolder(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.211 sec  <<< ERROR!
 java.io.FileNotFoundException: D:\Development\Workspaces\Pr%c3%a1ticas%20Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\test-classes\example.pdf (O sistema não pode encontrar o caminho especificado)
 	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
 	at com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests.listByFolder(MetaFileRepositoryIntegrationTests.java:296)
 
-removeByPath(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.186 sec  <<< ERROR!
+removeByPath(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.357 sec  <<< ERROR!
 java.io.FileNotFoundException: D:\Development\Workspaces\Pr%c3%a1ticas%20Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\test-classes\example.pdf (O sistema não pode encontrar o caminho especificado)
 	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
 	at com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests.removeByPath(MetaFileRepositoryIntegrationTests.java:108)
 
-insert(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.186 sec  <<< ERROR!
+insert(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.265 sec  <<< ERROR!
 java.io.FileNotFoundException: D:\Development\Workspaces\Pr%c3%a1ticas%20Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\test-classes\example.pdf (O sistema não pode encontrar o caminho especificado)
 	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
 	at com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests.insert(MetaFileRepositoryIntegrationTests.java:52)
 
-remove(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.187 sec  <<< ERROR!
+remove(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.262 sec  <<< ERROR!
 java.io.FileNotFoundException: D:\Development\Workspaces\Pr%c3%a1ticas%20Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\test-classes\example.pdf (O sistema não pode encontrar o caminho especificado)
 	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
 	at com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests.remove(MetaFileRepositoryIntegrationTests.java:179)
 
-findById(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.188 sec  <<< ERROR!
+findById(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.199 sec  <<< ERROR!
 java.io.FileNotFoundException: D:\Development\Workspaces\Pr%c3%a1ticas%20Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\test-classes\example.pdf (O sistema não pode encontrar o caminho especificado)
 	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
 	at com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests.findById(MetaFileRepositoryIntegrationTests.java:254)
 
-removeByFolder(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.181 sec  <<< ERROR!
+removeByFolder(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.202 sec  <<< ERROR!
 java.io.FileNotFoundException: D:\Development\Workspaces\Pr%c3%a1ticas%20Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\test-classes\example.pdf (O sistema não pode encontrar o caminho especificado)
 	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
 	at com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests.removeByFolder(MetaFileRepositoryIntegrationTests.java:141)
 
-findByPath(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.189 sec  <<< ERROR!
+findByPath(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.196 sec  <<< ERROR!
 java.io.FileNotFoundException: D:\Development\Workspaces\Pr%c3%a1ticas%20Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\test-classes\example.pdf (O sistema não pode encontrar o caminho especificado)
 	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
 	at com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests.findByPath(MetaFileRepositoryIntegrationTests.java:212)
 
-insertWithCreator(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.196 sec  <<< ERROR!
+insertWithCreator(com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests)  Time elapsed: 0.203 sec  <<< ERROR!
 java.io.FileNotFoundException: D:\Development\Workspaces\Pr%c3%a1ticas%20Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\test-classes\example.pdf (O sistema não pode encontrar o caminho especificado)
 	at java.io.FileInputStream.open0(Native Method)
-	at java.io.FileInputStream.open(FileInputStream.java:195)
-	at java.io.FileInputStream.<init>(FileInputStream.java:138)
-	at java.io.FileInputStream.<init>(FileInputStream.java:93)
+	at java.io.FileInputStream.open(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
+	at java.io.FileInputStream.<init>(Unknown Source)
 	at com.br.siscei.test.domain.repository.MetaFileRepositoryIntegrationTests.insertWithCreator(MetaFileRepositoryIntegrationTests.java:79)
 

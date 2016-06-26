@@ -3,6 +3,8 @@
  */
 package com.br.siscei.test.domain.service;
 
+import javax.validation.ValidationException;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,6 +102,42 @@ public class SupplierServiceTest extends AbstractIntegrationTests
 		Assert.assertNotNull( supplier.getContact() );
 		Assert.assertNotNull( supplier.getPhone() );
 		Assert.assertNotNull( supplier.getTradeName() );
+		
+	}
+	/**
+	 * Objetivo: Fail.
+	 * Motivo: O objeto {@link Supplier} é instanciado e inserido corretamente
+	 */
+	@Test(expected = ValidationException.class )
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+			"/dataset/address/CountryDataSet.xml",
+			"/dataset/address/StateDataSet.xml",
+			"/dataset/address/CityDataSet.xml",
+			"/dataset/address/AddressDataSet.xml",
+			"/dataset/finance/SupplierDataSet.xml",
+	})
+	public void insertSupplierMustFailWithoutMandatoryFields()
+	{
+		final City city = this.addressService.findCityById( 9999L );
+		
+		Address address = new Address();
+		address.setCep( "85851-010" );
+		address.setCity( city );
+		address.setNeighborhood( "Centro" );
+		address.setStreet( "Rua Almirante barroso ");
+		
+		Supplier supplier = new Supplier();
+		
+		supplier.setAddress( address );
+		supplier.setCnpj( "12.012.411/0001-24" );
+		supplier.setCompanyName( null );
+		supplier.setContact( "Carlos" );
+		supplier.setPhone( "35742162" );
+		supplier.setTradeName( null );
+		
+		supplier = this.supplierService.insertSupplier( supplier );
+		
+		Assert.fail( "Deveria falhar se os campos estão nulos" );
 		
 	}
 	/**

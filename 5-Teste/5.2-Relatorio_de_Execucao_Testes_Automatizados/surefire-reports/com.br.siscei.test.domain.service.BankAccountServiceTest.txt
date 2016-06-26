@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.br.siscei.test.domain.service.BankAccountServiceTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.476 sec - in com.br.siscei.test.domain.service.BankAccountServiceTest

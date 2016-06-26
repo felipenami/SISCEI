@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import javax.validation.ValidationException;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -133,6 +135,43 @@ public class AccountReceivableServiceTest extends AbstractIntegrationTests
 		Assert.assertNotNull( accountReceivable.getEntryDate() );
 		Assert.assertNotNull( accountReceivable.getReceivementDate());
 		Assert.assertNotNull( accountReceivable.getStatus() );
+	}
+	/**
+	 * Objetivo: Fail.
+	 * Motivo: O objeto {@link AccountPayable} é instanciado e inserido corretamente
+	 */
+	@Test(expected = ValidationException.class )
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+			"/dataset/address/CountryDataSet.xml",
+			"/dataset/address/StateDataSet.xml",
+			"/dataset/address/CityDataSet.xml",
+			"/dataset/address/AddressDataSet.xml",
+			"/dataset/finance/BankAccountDataSet.xml",
+			"/dataset/finance/CategoryDataSet.xml",
+			"/dataset/account/UserDataSet.xml",
+			"/dataset/finance/AccountReceivableDataSet.xml",
+	})
+	public void insertAccountReceivableMustFailWithoutMandatoryFields()
+	{
+		final User student = this.accountService.findUserById( 9999L );
+		
+		final Calendar receivementDate = new GregorianCalendar(2050,9,5, 12,00,00);
+		
+		AccountReceivable accountReceivable = new AccountReceivable( );
+		
+		accountReceivable.setStudent( student );
+		accountReceivable.setBankAccount( null );
+		accountReceivable.setCategory( null );
+		accountReceivable.setDescription( null );
+		accountReceivable.setValue( null );
+		accountReceivable.setDueDate( null );
+		accountReceivable.setEntryDate( null );
+		accountReceivable.setReceivementDate( receivementDate );
+		accountReceivable.setStatus( null );
+		
+		accountReceivable = this.accountReceivableService.insertAccountReceivable( accountReceivable );
+		
+		Assert.fail( "Deveria falhar se os campos estão nulos" );
 	}
 	/**
      * Objetivo: Success.

@@ -186,7 +186,7 @@
             	sort: {
             		orders: [{ 
             			direction: 'ASC',
-            			property: 'description',
+            			property: 'dueDate',
             			nullHandlingHint: null
             		}]
                 }
@@ -212,6 +212,8 @@
         	$scope.model.bankAccounts = [];
         	$scope.model.users = [];
         	$scope.model.accountReceivable.status = 'NOT_RECEIVED';
+        	$scope.model.accountReceivable.dueDate = new Date();
+        	$scope.model.accountReceivable.value = 0;
         	$scope.model.page.pageable = {
                 	size: 9,
                 	page: 0,
@@ -347,11 +349,34 @@
          * 
          */
         $scope.validateForm = function (){
+        	
+        	var today = new Date();
+        	today.setHours(23,59,59);
+        	
         	if($scope.model.accountReceivable.description == null){
         		$mdToast.showSimple("Informe uma descrição para a conta.");
                 return false;
         	}
-        	
+        	if($scope.model.accountReceivable.dueDate == null){
+        		$mdToast.showSimple("Informe a data de vencimento para a conta.");
+        		return false;
+        	}
+        	if($scope.model.accountReceivable.value == null){
+        		$mdToast.showSimple("Informe valor da conta.");
+        		return false;
+        	}
+        	if($scope.model.accountReceivable.bankAccount == null){
+        		$mdToast.showSimple("Selecione uma conta bancária.");
+        		return false;
+        	}
+        	if($scope.model.accountReceivable.category == null){
+        		$mdToast.showSimple("Selecione uma categoria.");
+        		return false;
+        	}
+        	if($scope.model.accountReceivable.receivementDate > today ){
+        		$mdToast.showSimple("Para baixar o recebimento é preciso definir uma data igual ou anterior a hoje.");
+        		return false;
+        	}
         	return true;
         }
         /**

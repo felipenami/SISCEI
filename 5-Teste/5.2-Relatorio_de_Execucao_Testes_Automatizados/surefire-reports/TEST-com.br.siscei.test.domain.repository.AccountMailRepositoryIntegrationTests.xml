@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests" time="0.694" tests="1" errors="1" skipped="0" failures="0">
+<testsuite name="com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests" time="0.901" tests="1" errors="1" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_77\jre\bin"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jre1.8.0_77\bin"/>
     <property name="java.vm.version" value="25.77-b03"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="maven.multiModuleProjectDirectory" value="D:\Development\Workspaces\Práticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution"/>
@@ -19,16 +19,16 @@
     <property name="user.dir" value="D:\Development\Workspaces\Práticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution"/>
     <property name="java.runtime.version" value="1.8.0_77-b03"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
-    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_77\jre\lib\endorsed"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jre1.8.0_77\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.io.tmpdir" value="C:\Users\felip\AppData\Local\Temp\"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="D:\Development\Workspaces\Práticas Profissionais\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf8748593187147943166.tmp"/>
+    <property name="classworlds.conf" value="D:\Development\Workspaces\Práticas Profissionais\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf2959453324826293639.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_77\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_77/bin/server;C:/Program Files/Java/jre1.8.0_77/bin;C:/Program Files/Java/jre1.8.0_77/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\nodejs\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\felip\AppData\Roaming\npm;D:\Development\IDE\eclipse;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jre1.8.0_77\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:/Program Files/Java/jre1.8.0_77/bin/server;C:/Program Files/Java/jre1.8.0_77/bin;C:/Program Files/Java/jre1.8.0_77/lib/amd64;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\nodejs\;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Users\felip\AppData\Roaming\npm;D:\Development\IDE\eclipse;;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
@@ -42,15 +42,15 @@
     <property name="java.class.path" value="/D:/Development/IDE/eclipse/plugins/org.eclipse.m2e.maven.runtime_1.6.2.20150902-0001/jars/plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_77\jre"/>
+    <property name="java.home" value="C:\Program Files\Java\jre1.8.0_77"/>
     <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B test"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="user.language" value="pt"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
     <property name="java.vm.info" value="mixed mode"/>
     <property name="java.version" value="1.8.0_77"/>
-    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_77\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
-    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_77\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_77\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_77\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_77\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_77\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_77\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_77\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_77\jre\classes"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jre1.8.0_77\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jre1.8.0_77\lib\resources.jar;C:\Program Files\Java\jre1.8.0_77\lib\rt.jar;C:\Program Files\Java\jre1.8.0_77\lib\sunrsasign.jar;C:\Program Files\Java\jre1.8.0_77\lib\jsse.jar;C:\Program Files\Java\jre1.8.0_77\lib\jce.jar;C:\Program Files\Java\jre1.8.0_77\lib\charsets.jar;C:\Program Files\Java\jre1.8.0_77\lib\jfr.jar;C:\Program Files\Java\jre1.8.0_77\classes"/>
     <property name="java.vendor" value="Oracle Corporation"/>
     <property name="maven.home" value="D:\Development\Workspaces\Práticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\EMBEDDED"/>
     <property name="file.separator" value="\"/>
@@ -60,7 +60,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase name="sendNewUserAccountTestMustPass" classname="com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests" time="0.694">
+  <testcase name="sendNewUserAccountTestMustPass" classname="com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests" time="0.901">
     <error message="org.springframework.mail.MailSendException: Mail server connection failed; nested exception is com.sun.mail.util.MailConnectException: Couldn&apos;t connect to host, port: host.mail.com, 25; timeout -1;&#10;  nested exception is:&#10;	java.net.UnknownHostException: host.mail.com. Failed messages: com.sun.mail.util.MailConnectException: Couldn&apos;t connect to host, port: host.mail.com, 25; timeout -1;&#10;  nested exception is:&#10;	java.net.UnknownHostException: host.mail.com; message exceptions (1) are:&#10;Failed message 1: com.sun.mail.util.MailConnectException: Couldn&apos;t connect to host, port: host.mail.com, 25; timeout -1;&#10;  nested exception is:&#10;	java.net.UnknownHostException: host.mail.com" type="java.util.concurrent.ExecutionException">java.util.concurrent.ExecutionException: org.springframework.mail.MailSendException: Mail server connection failed; nested exception is com.sun.mail.util.MailConnectException: Couldn't connect to host, port: host.mail.com, 25; timeout -1;
   nested exception is:
 	java.net.UnknownHostException: host.mail.com. Failed messages: com.sun.mail.util.MailConnectException: Couldn't connect to host, port: host.mail.com, 25; timeout -1;
@@ -69,8 +69,8 @@
 Failed message 1: com.sun.mail.util.MailConnectException: Couldn't connect to host, port: host.mail.com, 25; timeout -1;
   nested exception is:
 	java.net.UnknownHostException: host.mail.com
-	at java.util.concurrent.FutureTask.report(FutureTask.java:122)
-	at java.util.concurrent.FutureTask.get(FutureTask.java:192)
+	at java.util.concurrent.FutureTask.report(Unknown Source)
+	at java.util.concurrent.FutureTask.get(Unknown Source)
 	at com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests.sendNewUserAccountTestMustPass(AccountMailRepositoryIntegrationTests.java:49)
 Caused by: org.springframework.mail.MailSendException: Mail server connection failed; nested exception is com.sun.mail.util.MailConnectException: Couldn't connect to host, port: host.mail.com, 25; timeout -1;
   nested exception is:
@@ -83,15 +83,15 @@ Caused by: org.springframework.mail.MailSendException: Mail server connection fa
 	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:350)
 	at com.br.siscei.infrastructure.mail.AccountMailRepository.sendNewUserAccount(AccountMailRepository.java:85)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:302)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
 	at org.springframework.aop.interceptor.AsyncExecutionInterceptor$1.call(AsyncExecutionInterceptor.java:108)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.lang.Thread.run(Thread.java:745)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
 Caused by: com.sun.mail.util.MailConnectException: Couldn't connect to host, port: host.mail.com, 25; timeout -1
 	at com.sun.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:2100)
 	at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:699)
@@ -103,21 +103,21 @@ Caused by: com.sun.mail.util.MailConnectException: Couldn't connect to host, por
 	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:350)
 	at com.br.siscei.infrastructure.mail.AccountMailRepository.sendNewUserAccount(AccountMailRepository.java:85)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:302)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
 	at org.springframework.aop.interceptor.AsyncExecutionInterceptor$1.call(AsyncExecutionInterceptor.java:108)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.lang.Thread.run(Thread.java:745)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
 Caused by: java.net.UnknownHostException: host.mail.com
-	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)
-	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
-	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
-	at java.net.Socket.connect(Socket.java:589)
-	at java.net.Socket.connect(Socket.java:538)
+	at java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.net.PlainSocketImpl.connect(Unknown Source)
+	at java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
+	at java.net.Socket.connect(Unknown Source)
 	at com.sun.mail.util.SocketFetcher.createSocket(SocketFetcher.java:331)
 	at com.sun.mail.util.SocketFetcher.getSocket(SocketFetcher.java:238)
 	at com.sun.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:2066)
@@ -130,42 +130,42 @@ Caused by: java.net.UnknownHostException: host.mail.com
 	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:350)
 	at com.br.siscei.infrastructure.mail.AccountMailRepository.sendNewUserAccount(AccountMailRepository.java:85)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:302)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:190)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:157)
 	at org.springframework.aop.interceptor.AsyncExecutionInterceptor$1.call(AsyncExecutionInterceptor.java:108)
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
-	at java.lang.Thread.run(Thread.java:745)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
 </error>
-    <system-out><![CDATA[21:57:14.632 [main] DEBUG o.s.t.c.j.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
-21:57:14.633 [main] DEBUG o.s.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
-21:57:14.633 [main] DEBUG o.s.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
-21:57:14.635 [main] DEBUG o.s.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests] from class [org.springframework.boot.test.WebAppIntegrationTestContextBootstrapper]
-21:57:14.643 [main] DEBUG o.s.b.t.WebAppIntegrationTestContextBootstrapper - Found explicit ContextLoader class [org.springframework.boot.test.SpringApplicationContextLoader] for context configuration attributes [ContextConfigurationAttributes@4189d70b declaringClass = 'com.br.siscei.test.domain.AbstractIntegrationTests', classes = '{class com.br.siscei.test.TestApplication, class com.br.siscei.Application}', locations = '{}', inheritLocations = true, initializers = '{}', inheritInitializers = true, name = [null], contextLoaderClass = 'org.springframework.boot.test.SpringApplicationContextLoader']
-21:57:14.662 [main] DEBUG o.s.t.c.s.AbstractContextLoader - Did not detect default resource location for test class [com.br.siscei.test.domain.AbstractIntegrationTests]: class path resource [com/br/siscei/test/domain/AbstractIntegrationTests-context.xml] does not exist
-21:57:14.664 [main] DEBUG o.s.t.c.s.AbstractContextLoader - Did not detect default resource location for test class [com.br.siscei.test.domain.AbstractIntegrationTests]: class path resource [com/br/siscei/test/domain/AbstractIntegrationTestsContext.groovy] does not exist
-21:57:14.665 [main] INFO  o.s.t.c.s.AbstractContextLoader - Could not detect default resource locations for test class [com.br.siscei.test.domain.AbstractIntegrationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-21:57:14.667 [main] DEBUG o.s.test.util.ReflectionTestUtils - Setting field 'propertySourceProperties' of type [null] on target object [[WebMergedContextConfiguration@3fa2213 testClass = AccountMailRepositoryIntegrationTests, locations = '{}', classes = '{class com.br.siscei.test.TestApplication, class com.br.siscei.Application}', contextInitializerClasses = '[]', activeProfiles = '{test}', propertySourceLocations = '{}', propertySourceProperties = '{}', resourceBasePath = '', contextLoader = 'org.springframework.boot.test.SpringApplicationContextLoader', parent = [null]]] or target class [class org.springframework.test.context.web.WebMergedContextConfiguration] to value [[Ljava.lang.String;@3e7634b9]
-21:57:14.668 [main] DEBUG o.s.b.t.WebAppIntegrationTestContextBootstrapper - Merging default listeners with listeners configured via @TestExecutionListeners for class [com.br.siscei.test.domain.AbstractIntegrationTests].
-21:57:14.672 [main] INFO  o.s.b.t.WebAppIntegrationTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener]
-21:57:14.673 [main] INFO  o.s.b.t.WebAppIntegrationTestContextBootstrapper - Using TestExecutionListeners: [br.com.eits.common.infrastructure.dbunit.TransactionDbUnitTestExecutionListener@5c00384f, org.springframework.test.context.web.ServletTestExecutionListener@3b7ff809, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1bb564e2, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@62e6b5c8, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3f792b9b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7b8233cd, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4b20ca2b, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@1cbf6e72]
-21:57:14.675 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
-21:57:14.710 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
-21:57:14.711 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
-21:57:14.711 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
-21:57:14.717 [main] DEBUG o.s.t.c.s.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@607fbe09 testClass = AccountMailRepositoryIntegrationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@3fa2213 testClass = AccountMailRepositoryIntegrationTests, locations = '{}', classes = '{class com.br.siscei.test.TestApplication, class com.br.siscei.Application}', contextInitializerClasses = '[]', activeProfiles = '{test}', propertySourceLocations = '{}', propertySourceProperties = '{server.port:0, org.springframework.boot.test.IntegrationTest=true}', resourceBasePath = '', contextLoader = 'org.springframework.boot.test.SpringApplicationContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null].
-21:57:14.718 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
-21:57:14.718 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
-21:57:14.725 [main] DEBUG c.g.s.DbUnitTestExecutionListener - Preparing test instance class com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests for DBUnit
-21:57:14.725 [main] DEBUG c.g.s.DbUnitTestExecutionListener - Using @DbUnitConfiguration configuration
-21:57:14.895 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
-21:57:14.896 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
-21:57:14.897 [main] DEBUG o.s.core.env.StandardEnvironment - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
-21:57:14.899 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [test] PropertySource with highest search precedence
-21:57:14.901 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [integrationTest] PropertySource with search precedence immediately lower than [systemEnvironment]
+    <system-out><![CDATA[11:28:17.609 [main] DEBUG o.s.t.c.j.SpringJUnit4ClassRunner - SpringJUnit4ClassRunner constructor called with [class com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
+11:28:17.610 [main] DEBUG o.s.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+11:28:17.610 [main] DEBUG o.s.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+11:28:17.611 [main] DEBUG o.s.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests] from class [org.springframework.boot.test.WebAppIntegrationTestContextBootstrapper]
+11:28:17.629 [main] DEBUG o.s.b.t.WebAppIntegrationTestContextBootstrapper - Found explicit ContextLoader class [org.springframework.boot.test.SpringApplicationContextLoader] for context configuration attributes [ContextConfigurationAttributes@72cf2de5 declaringClass = 'com.br.siscei.test.domain.AbstractIntegrationTests', classes = '{class com.br.siscei.test.TestApplication, class com.br.siscei.Application}', locations = '{}', inheritLocations = true, initializers = '{}', inheritInitializers = true, name = [null], contextLoaderClass = 'org.springframework.boot.test.SpringApplicationContextLoader']
+11:28:17.631 [main] DEBUG o.s.t.c.s.AbstractContextLoader - Did not detect default resource location for test class [com.br.siscei.test.domain.AbstractIntegrationTests]: class path resource [com/br/siscei/test/domain/AbstractIntegrationTests-context.xml] does not exist
+11:28:17.632 [main] DEBUG o.s.t.c.s.AbstractContextLoader - Did not detect default resource location for test class [com.br.siscei.test.domain.AbstractIntegrationTests]: class path resource [com/br/siscei/test/domain/AbstractIntegrationTestsContext.groovy] does not exist
+11:28:17.633 [main] INFO  o.s.t.c.s.AbstractContextLoader - Could not detect default resource locations for test class [com.br.siscei.test.domain.AbstractIntegrationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+11:28:17.638 [main] DEBUG o.s.test.util.ReflectionTestUtils - Setting field 'propertySourceProperties' of type [null] on target object [[WebMergedContextConfiguration@14b030a0 testClass = AccountMailRepositoryIntegrationTests, locations = '{}', classes = '{class com.br.siscei.test.TestApplication, class com.br.siscei.Application}', contextInitializerClasses = '[]', activeProfiles = '{test}', propertySourceLocations = '{}', propertySourceProperties = '{}', resourceBasePath = '', contextLoader = 'org.springframework.boot.test.SpringApplicationContextLoader', parent = [null]]] or target class [class org.springframework.test.context.web.WebMergedContextConfiguration] to value [[Ljava.lang.String;@41e350f1]
+11:28:17.638 [main] DEBUG o.s.b.t.WebAppIntegrationTestContextBootstrapper - Merging default listeners with listeners configured via @TestExecutionListeners for class [com.br.siscei.test.domain.AbstractIntegrationTests].
+11:28:17.643 [main] INFO  o.s.b.t.WebAppIntegrationTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener]
+11:28:17.654 [main] INFO  o.s.b.t.WebAppIntegrationTestContextBootstrapper - Using TestExecutionListeners: [br.com.eits.common.infrastructure.dbunit.TransactionDbUnitTestExecutionListener@7c2b6087, org.springframework.test.context.web.ServletTestExecutionListener@3fffff43, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@a8e6492, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@1c7fd41f, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3b77a04f, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7b324585, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2e11485, org.springframework.security.test.context.support.WithSecurityContextTestExecutionListener@60dce7ea]
+11:28:17.655 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
+11:28:17.655 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
+11:28:17.655 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
+11:28:17.656 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
+11:28:17.661 [main] DEBUG o.s.t.c.s.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@4fbda97b testClass = AccountMailRepositoryIntegrationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@14b030a0 testClass = AccountMailRepositoryIntegrationTests, locations = '{}', classes = '{class com.br.siscei.test.TestApplication, class com.br.siscei.Application}', contextInitializerClasses = '[]', activeProfiles = '{test}', propertySourceLocations = '{}', propertySourceProperties = '{server.port:0, org.springframework.boot.test.IntegrationTest=true}', resourceBasePath = '', contextLoader = 'org.springframework.boot.test.SpringApplicationContextLoader', parent = [null]]], class annotated with @DirtiesContext [false] with mode [null].
+11:28:17.663 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved @ProfileValueSourceConfiguration [null] for test class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
+11:28:17.664 [main] DEBUG o.s.t.annotation.ProfileValueUtils - Retrieved ProfileValueSource type [class org.springframework.test.annotation.SystemProfileValueSource] for class [com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests]
+11:28:17.672 [main] DEBUG c.g.s.DbUnitTestExecutionListener - Preparing test instance class com.br.siscei.test.domain.repository.AccountMailRepositoryIntegrationTests for DBUnit
+11:28:17.681 [main] DEBUG c.g.s.DbUnitTestExecutionListener - Using @DbUnitConfiguration configuration
+11:28:17.898 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [systemProperties] PropertySource with lowest search precedence
+11:28:17.902 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [systemEnvironment] PropertySource with lowest search precedence
+11:28:17.903 [main] DEBUG o.s.core.env.StandardEnvironment - Initialized StandardEnvironment with PropertySources [systemProperties,systemEnvironment]
+11:28:17.905 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [test] PropertySource with highest search precedence
+11:28:17.909 [main] DEBUG o.s.core.env.StandardEnvironment - Adding [integrationTest] PropertySource with search precedence immediately lower than [systemEnvironment]
    _____ _____  _____  _____ ______ _____ 
   / ____|_   _|/ ____|/ ____|  ____|_   _|
  | (___   | | | (___ | |    | |__    | |  
@@ -175,162 +175,166 @@ Caused by: java.net.UnknownHostException: host.mail.com
                                           
                                           
 http://patorjk.com/software/taag/#p=display&f=Univers&t=eits
-2016-06-22 21:57:15.553  INFO 628 --- [           main] .r.AccountMailRepositoryIntegrationTests : Starting AccountMailRepositoryIntegrationTests on DESKTOP-BVC6HJ4 with PID 628 (started by felip in D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution)
-2016-06-22 21:57:15.556  INFO 628 --- [           main] .r.AccountMailRepositoryIntegrationTests : The following profiles are active: test
-2016-06-22 21:57:16.336  INFO 628 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@692fd26: startup date [Wed Jun 22 21:57:16 BRT 2016]; root of context hierarchy
-2016-06-22 21:57:17.611  INFO 628 --- [           main] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from class path resource [META-INF/spring/application-context.xml]
-2016-06-22 21:57:17.829 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\account\User.class]
-2016-06-22 21:57:17.830 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\account\UserRole.class]
-2016-06-22 21:57:17.831 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\address\Address.class]
-2016-06-22 21:57:17.832 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\address\City.class]
-2016-06-22 21:57:17.834 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\address\Country.class]
-2016-06-22 21:57:17.835 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\address\State.class]
-2016-06-22 21:57:17.836 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\AccountPayable.class]
-2016-06-22 21:57:17.836 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\AccountReceivable.class]
-2016-06-22 21:57:17.837 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\BankAccount.class]
-2016-06-22 21:57:17.838 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\Category.class]
-2016-06-22 21:57:17.839 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\StatusAccountPayable.class]
-2016-06-22 21:57:17.840 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\StatusAccountsReceivable.class]
-2016-06-22 21:57:17.841 DEBUG 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\Supplier.class]
-2016-06-22 21:57:17.847  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.account.User] processed by converter type [bean]
-2016-06-22 21:57:17.893  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.account.UserRole] processed by converter type [enum]
-2016-06-22 21:57:17.898  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.address.Address] processed by converter type [bean]
-2016-06-22 21:57:17.908  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.address.City] processed by converter type [bean]
-2016-06-22 21:57:17.913  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.address.Country] processed by converter type [bean]
-2016-06-22 21:57:17.917  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.address.State] processed by converter type [bean]
-2016-06-22 21:57:17.923  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.AccountPayable] processed by converter type [bean]
-2016-06-22 21:57:17.939  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.AccountReceivable] processed by converter type [bean]
-2016-06-22 21:57:17.944  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.BankAccount] processed by converter type [bean]
-2016-06-22 21:57:17.948  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.Category] processed by converter type [bean]
-2016-06-22 21:57:17.952  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.StatusAccountPayable] processed by converter type [enum]
-2016-06-22 21:57:17.955  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.StatusAccountsReceivable] processed by converter type [enum]
-2016-06-22 21:57:17.958  INFO 628 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.Supplier] processed by converter type [bean]
-2016-06-22 21:57:18.205  INFO 628 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'beanNameViewResolver' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]]
-2016-06-22 21:57:19.046  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Detected candidate bean [accountService]. Remoting using AccountService
-2016-06-22 21:57:19.054  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Detected candidate bean [addressService]. Remoting using AddressService
-2016-06-22 21:57:19.055  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Detected candidate bean [financeService]. Remoting using FinanceService
-2016-06-22 21:57:19.056  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [dbUnitDatabaseDataSourceConnectionFactoryBean]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.056  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [authenticationManagerBuilder]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.057  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [methodSecurityInterceptor]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.057  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [methodSecurityMetadataSource]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.057  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [preInvocationAuthorizationAdvice]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.058  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [objectPostProcessor]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.058  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [authenticationFailureHandler]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.058  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [authenticationSuccessHandler]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.058  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [dwrSpringServletRegistration]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.058  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [localeResolver]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.059  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [localeChangeInterceptor]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.059  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [org.springframework.context.annotation.internalAsyncAnnotationProcessor]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.059  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [messageSource]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.063  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [websocketContainerCustomizer]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.065  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [tomcatEmbeddedServletContainerFactory]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.067  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [dispatcherServlet]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.067  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [dispatcherServletRegistration]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.068  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [error]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.068  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [beanNameViewResolver]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.068  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [errorAttributes]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.069  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [basicErrorController]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.069  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [errorPageCustomizer]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.069  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [resourceHandlerRegistrationCustomizer]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.069  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [requestMappingHandlerAdapter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.070  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [requestMappingHandlerMapping]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.070  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcContentNegotiationManager]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.070  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [viewControllerHandlerMapping]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.070  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [beanNameHandlerMapping]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.070  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [resourceHandlerMapping]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.071  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcResourceUrlProvider]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.071  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [defaultServletHandlerMapping]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.071  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcConversionService]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.072  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcValidator]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.072  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcPathMatcher]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.073  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcUrlPathHelper]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.073  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcUriComponentsContributor]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.073  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [httpRequestHandlerAdapter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.073  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [simpleControllerHandlerAdapter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.074  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [handlerExceptionResolver]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.074  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcViewResolver]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.075  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [faviconHandlerMapping]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.075  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [faviconRequestHandler]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.076  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [defaultViewResolver]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.076  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [requestContextFilter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.076  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [viewResolver]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.077  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [hiddenHttpMethodFilter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.077  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [httpPutFormContentFilter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.082  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [jdbcTemplate]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.082  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [namedParameterJdbcTemplate]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.082  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [dataSource]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.083  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [dataSourceInitializer]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.084  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [hikariPoolDataSourceMetadataProvider]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.085  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [tomcatPoolDataSourceMetadataProvider]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.087  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [transactionManager]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.088  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [jpaVendorAdapter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.088  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [entityManagerFactoryBuilder]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.089  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [entityManagerFactory]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.090  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [jacksonObjectMapperBuilder]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.091  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [jacksonObjectMapper]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.092  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [stringHttpMessageConverter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.092  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mappingJackson2HttpMessageConverter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.093  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [messageConverters]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.093  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [pageableResolver]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.094  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [sortResolver]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.095  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [jacksonGeoModule]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.097  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [flyway]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.168  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [flywayInitializer]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.177  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [stringOrNumberMigrationVersionConverter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.179  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [webSecurityExpressionHandler]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.180  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [springSecurityFilterChain]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.181  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [privilegeEvaluator]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.185  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [autowiredWebSecurityConfigurersIgnoreParents]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.187  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [requestDataValueProcessor]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.188  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [ignoredPathsWebSecurityConfigurerAdapter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.189  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [securityProperties]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.190  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [org.springframework.transaction.config.internalTransactionAdvisor]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.190  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [transactionAttributeSource]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.190  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [transactionInterceptor]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.191  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [org.springframework.transaction.config.internalTransactionalEventListenerFactory]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.192  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mailSender]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.193  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [resourceUrlEncodingFilter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.193  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [thymeleafViewResolver]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.193  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [securityDialect]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.193  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [layoutDialect]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.193  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [templateEngine]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.194  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [defaultTemplateResolver]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.194  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [thymeleafResourceResolver]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.194  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [securityFilterChainRegistration]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.195  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [transactionTemplate]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.196  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [characterEncodingFilter]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.197  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [multipartConfigElement]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.197  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [multipartResolver]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.198  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [serverProperties]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.198  INFO 628 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [duplicateServerPropertiesDetector]. Is it a factory bean? Omitting bean from annotation processing
-2016-06-22 21:57:19.332  INFO 628 --- [           main] org.modeshape.common.logging.LogFactory  : SLF4J implementation located in the classpath. It will be used by ModeShape for logging.
-2016-06-22 21:57:19.373  INFO 628 --- [           main] o.s.s.a.AsyncAnnotationBeanPostProcessor : No TaskExecutor bean found for async annotation processing.
-2016-06-22 21:57:21.028  INFO 628 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 0 (http)
-2016-06-22 21:57:21.055  INFO 628 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
-2016-06-22 21:57:21.058  INFO 628 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.30
-2016-06-22 21:57:21.237  INFO 628 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2016-06-22 21:57:22.016  INFO 628 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'characterEncodingFilter' to: [/*]
-2016-06-22 21:57:22.016  INFO 628 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2016-06-22 21:57:22.017  INFO 628 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'httpPutFormContentFilter' to: [/*]
-2016-06-22 21:57:22.017  INFO 628 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'requestContextFilter' to: [/*]
-2016-06-22 21:57:22.019  INFO 628 --- [ost-startStop-1] .e.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
-2016-06-22 21:57:22.020  INFO 628 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'resourceUrlEncodingFilter' to: [/*]
-2016-06-22 21:57:22.020  INFO 628 --- [ost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dwrSpringServlet' to [/broker/*]
-2016-06-22 21:57:22.023  INFO 628 --- [ost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
-2016-06-22 21:57:23.096  INFO 628 --- [ost-startStop-1] o.f.core.internal.util.VersionPrinter    : Flyway 3.2.1 by Boxfuse
-2016-06-22 21:57:23.098  INFO 628 --- [ost-startStop-1] com.zaxxer.hikari.HikariDataSource       : com.br.siscei - is starting.
-2016-06-22 21:57:23.392  INFO 628 --- [ost-startStop-1] o.f.c.i.dbsupport.DbSupportFactory       : Database: jdbc:postgresql://127.0.0.1:5432/test-siscei (PostgreSQL 9.4)
-2016-06-22 21:57:23.503  INFO 628 --- [ost-startStop-1] o.f.core.internal.command.DbValidate     : Validated 1 migration (execution time 00:00.062s)
-2016-06-22 21:57:23.551  INFO 628 --- [ost-startStop-1] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 0.0.1
-2016-06-22 21:57:23.558  INFO 628 --- [ost-startStop-1] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
-2016-06-22 21:57:23.789  INFO 628 --- [ost-startStop-1] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
-2016-06-22 21:57:29.140  INFO 628 --- [           main] org.modeshape.jcr.JcrRepository          : ModeShape version 4.2.0.Final
-2016-06-22 21:57:29.557  INFO 628 --- [           main] o.i.factories.GlobalComponentRegistry    : ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
-2016-06-22 21:57:29.969  INFO 628 --- [           main] org.infinispan.jmx.CacheJmxRegistration  : ISPN000031: MBeans were successfully registered to the platform MBean server.
-2016-06-22 21:57:30.231  INFO 628 --- [           main] org.infinispan.jmx.CacheJmxRegistration  : ISPN000031: MBeans were successfully registered to the platform MBean server.
-2016-06-22 21:57:30.651  INFO 628 --- [           main] org.infinispan.jmx.CacheJmxRegistration  : ISPN000031: MBeans were successfully registered to the platform MBean server.
-2016-06-22 21:57:32.115  INFO 628 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 51087 (http)
-2016-06-22 21:57:32.121  INFO 628 --- [           main] .r.AccountMailRepositoryIntegrationTests : Started AccountMailRepositoryIntegrationTests in 17.21 seconds (JVM running for 19.667)
+2016-06-26 11:28:18.710  INFO 5504 --- [           main] .r.AccountMailRepositoryIntegrationTests : Starting AccountMailRepositoryIntegrationTests on DESKTOP-BVC6HJ4 with PID 5504 (started by felip in D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution)
+2016-06-26 11:28:18.718  INFO 5504 --- [           main] .r.AccountMailRepositoryIntegrationTests : The following profiles are active: test
+2016-06-26 11:28:19.450  INFO 5504 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@3b95d13c: startup date [Sun Jun 26 11:28:19 BRT 2016]; root of context hierarchy
+2016-06-26 11:28:21.539  INFO 5504 --- [           main] o.s.b.f.xml.XmlBeanDefinitionReader      : Loading XML bean definitions from class path resource [META-INF/spring/application-context.xml]
+2016-06-26 11:28:21.869 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\account\User.class]
+2016-06-26 11:28:21.870 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\account\UserRole.class]
+2016-06-26 11:28:21.871 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\address\Address.class]
+2016-06-26 11:28:21.873 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\address\City.class]
+2016-06-26 11:28:21.874 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\address\Country.class]
+2016-06-26 11:28:21.875 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\address\State.class]
+2016-06-26 11:28:21.877 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\AccountPayable.class]
+2016-06-26 11:28:21.878 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\AccountReceivable.class]
+2016-06-26 11:28:21.879 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\BankAccount.class]
+2016-06-26 11:28:21.881 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\Category.class]
+2016-06-26 11:28:21.882 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\StatusAccountPayable.class]
+2016-06-26 11:28:21.887 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\StatusAccountsReceivable.class]
+2016-06-26 11:28:21.889 DEBUG 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Identified candidate component class: file [D:\Development\Workspaces\PrÃ¡ticas Profissionais\SISCEI\4-Implementacao\4.1-Codigo_Fonte\solution\target\classes\com\br\siscei\domain\entity\finance\Supplier.class]
+2016-06-26 11:28:21.898  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.account.User] processed by converter type [bean]
+2016-06-26 11:28:21.978  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.account.UserRole] processed by converter type [enum]
+2016-06-26 11:28:21.987  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.address.Address] processed by converter type [bean]
+2016-06-26 11:28:21.998  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.address.City] processed by converter type [bean]
+2016-06-26 11:28:22.013  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.address.Country] processed by converter type [bean]
+2016-06-26 11:28:22.021  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.address.State] processed by converter type [bean]
+2016-06-26 11:28:22.026  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.AccountPayable] processed by converter type [bean]
+2016-06-26 11:28:22.035  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.AccountReceivable] processed by converter type [bean]
+2016-06-26 11:28:22.041  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.BankAccount] processed by converter type [bean]
+2016-06-26 11:28:22.044  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.Category] processed by converter type [bean]
+2016-06-26 11:28:22.048  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.StatusAccountPayable] processed by converter type [enum]
+2016-06-26 11:28:22.056  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.StatusAccountsReceivable] processed by converter type [enum]
+2016-06-26 11:28:22.065  INFO 5504 --- [           main] o.d.s.DwrClassPathBeanDefinitionScanner  : Dwr classpath scanning detected candidate DTO [com.br.siscei.domain.entity.finance.Supplier] processed by converter type [bean]
+2016-06-26 11:28:22.429  INFO 5504 --- [           main] o.s.b.f.s.DefaultListableBeanFactory     : Overriding bean definition for bean 'beanNameViewResolver' with a different definition: replacing [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/ErrorMvcAutoConfiguration$WhitelabelErrorViewConfiguration.class]] with [Root bean: class [null]; scope=; abstract=false; lazyInit=false; autowireMode=3; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=org.springframework.boot.autoconfigure.web.WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter; factoryMethodName=beanNameViewResolver; initMethodName=null; destroyMethodName=(inferred); defined in class path resource [org/springframework/boot/autoconfigure/web/WebMvcAutoConfiguration$WebMvcAutoConfigurationAdapter.class]]
+2016-06-26 11:28:23.339  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Detected candidate bean [accountPayableService]. Remoting using AccountPayableService
+2016-06-26 11:28:23.345  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Detected candidate bean [accountReceivableService]. Remoting using AccountReceivableService
+2016-06-26 11:28:23.346  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Detected candidate bean [accountService]. Remoting using AccountService
+2016-06-26 11:28:23.347  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Detected candidate bean [addressService]. Remoting using AddressService
+2016-06-26 11:28:23.348  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Detected candidate bean [bankAccountService]. Remoting using BankAccountService
+2016-06-26 11:28:23.348  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Detected candidate bean [categoryService]. Remoting using CategoryService
+2016-06-26 11:28:23.349  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Detected candidate bean [supplierService]. Remoting using SupplierService
+2016-06-26 11:28:23.350  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [dbUnitDatabaseDataSourceConnectionFactoryBean]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.350  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [authenticationManagerBuilder]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.350  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [methodSecurityInterceptor]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.350  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [methodSecurityMetadataSource]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.351  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [preInvocationAuthorizationAdvice]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.351  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [objectPostProcessor]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.351  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [authenticationFailureHandler]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.351  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [authenticationSuccessHandler]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.352  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [dwrSpringServletRegistration]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.352  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [localeResolver]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.352  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [localeChangeInterceptor]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.352  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [org.springframework.context.annotation.internalAsyncAnnotationProcessor]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.352  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [messageSource]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.355  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [websocketContainerCustomizer]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.358  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [tomcatEmbeddedServletContainerFactory]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.359  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [dispatcherServlet]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.360  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [dispatcherServletRegistration]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.361  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [error]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.362  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [beanNameViewResolver]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.362  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [errorAttributes]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.363  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [basicErrorController]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.363  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [errorPageCustomizer]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.363  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [resourceHandlerRegistrationCustomizer]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.364  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [requestMappingHandlerAdapter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.364  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [requestMappingHandlerMapping]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.364  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcContentNegotiationManager]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.365  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [viewControllerHandlerMapping]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.365  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [beanNameHandlerMapping]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.366  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [resourceHandlerMapping]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.366  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcResourceUrlProvider]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.367  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [defaultServletHandlerMapping]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.368  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcConversionService]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.368  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcValidator]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.368  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcPathMatcher]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.368  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcUrlPathHelper]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.368  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcUriComponentsContributor]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.369  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [httpRequestHandlerAdapter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.369  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [simpleControllerHandlerAdapter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.369  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [handlerExceptionResolver]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.369  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mvcViewResolver]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.369  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [faviconHandlerMapping]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.370  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [faviconRequestHandler]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.370  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [defaultViewResolver]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.370  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [requestContextFilter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.370  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [viewResolver]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.371  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [hiddenHttpMethodFilter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.371  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [httpPutFormContentFilter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.372  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [jdbcTemplate]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.372  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [namedParameterJdbcTemplate]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.372  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [dataSource]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.373  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [dataSourceInitializer]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.373  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [hikariPoolDataSourceMetadataProvider]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.373  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [tomcatPoolDataSourceMetadataProvider]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.374  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [transactionManager]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.374  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [jpaVendorAdapter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.374  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [entityManagerFactoryBuilder]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.374  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [entityManagerFactory]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.375  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [jacksonObjectMapperBuilder]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.375  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [jacksonObjectMapper]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.376  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [stringHttpMessageConverter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.376  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mappingJackson2HttpMessageConverter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.376  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [messageConverters]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.376  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [pageableResolver]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.376  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [sortResolver]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.377  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [jacksonGeoModule]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.379  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [flyway]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.379  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [flywayInitializer]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.379  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [stringOrNumberMigrationVersionConverter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.380  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [webSecurityExpressionHandler]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.380  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [springSecurityFilterChain]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.380  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [privilegeEvaluator]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.380  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [autowiredWebSecurityConfigurersIgnoreParents]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.380  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [requestDataValueProcessor]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.381  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [ignoredPathsWebSecurityConfigurerAdapter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.382  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [securityProperties]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.382  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [org.springframework.transaction.config.internalTransactionAdvisor]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.382  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [transactionAttributeSource]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.383  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [transactionInterceptor]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.383  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [org.springframework.transaction.config.internalTransactionalEventListenerFactory]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.386  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [mailSender]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.386  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [resourceUrlEncodingFilter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.386  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [thymeleafViewResolver]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.386  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [securityDialect]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.386  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [layoutDialect]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.387  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [templateEngine]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.387  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [defaultTemplateResolver]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.387  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [thymeleafResourceResolver]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.388  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [securityFilterChainRegistration]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.389  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [transactionTemplate]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.390  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [characterEncodingFilter]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.390  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [multipartConfigElement]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.391  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [multipartResolver]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.391  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [serverProperties]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.391  INFO 5504 --- [           main] o.d.spring.DwrAnnotationPostProcessor    : Could not infer class for [duplicateServerPropertiesDetector]. Is it a factory bean? Omitting bean from annotation processing
+2016-06-26 11:28:23.533  INFO 5504 --- [           main] org.modeshape.common.logging.LogFactory  : SLF4J implementation located in the classpath. It will be used by ModeShape for logging.
+2016-06-26 11:28:23.581  INFO 5504 --- [           main] o.s.s.a.AsyncAnnotationBeanPostProcessor : No TaskExecutor bean found for async annotation processing.
+2016-06-26 11:28:25.234  INFO 5504 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 0 (http)
+2016-06-26 11:28:25.259  INFO 5504 --- [           main] o.apache.catalina.core.StandardService   : Starting service Tomcat
+2016-06-26 11:28:25.262  INFO 5504 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/8.0.30
+2016-06-26 11:28:25.478  INFO 5504 --- [ost-startStop-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2016-06-26 11:28:26.358  INFO 5504 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'characterEncodingFilter' to: [/*]
+2016-06-26 11:28:26.359  INFO 5504 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2016-06-26 11:28:26.360  INFO 5504 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'httpPutFormContentFilter' to: [/*]
+2016-06-26 11:28:26.360  INFO 5504 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'requestContextFilter' to: [/*]
+2016-06-26 11:28:26.362  INFO 5504 --- [ost-startStop-1] .e.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
+2016-06-26 11:28:26.362  INFO 5504 --- [ost-startStop-1] o.s.b.c.embedded.FilterRegistrationBean  : Mapping filter: 'resourceUrlEncodingFilter' to: [/*]
+2016-06-26 11:28:26.363  INFO 5504 --- [ost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dwrSpringServlet' to [/broker/*]
+2016-06-26 11:28:26.365  INFO 5504 --- [ost-startStop-1] o.s.b.c.e.ServletRegistrationBean        : Mapping servlet: 'dispatcherServlet' to [/]
+2016-06-26 11:28:27.309  INFO 5504 --- [ost-startStop-1] o.f.core.internal.util.VersionPrinter    : Flyway 3.2.1 by Boxfuse
+2016-06-26 11:28:27.311  INFO 5504 --- [ost-startStop-1] com.zaxxer.hikari.HikariDataSource       : com.br.siscei - is starting.
+2016-06-26 11:28:27.604  INFO 5504 --- [ost-startStop-1] o.f.c.i.dbsupport.DbSupportFactory       : Database: jdbc:postgresql://127.0.0.1:5432/test-siscei (PostgreSQL 9.4)
+2016-06-26 11:28:27.722  INFO 5504 --- [ost-startStop-1] o.f.core.internal.command.DbValidate     : Validated 1 migration (execution time 00:00.070s)
+2016-06-26 11:28:27.780  INFO 5504 --- [ost-startStop-1] o.f.core.internal.command.DbMigrate      : Current version of schema "public": 0.0.1
+2016-06-26 11:28:27.801  INFO 5504 --- [ost-startStop-1] o.f.core.internal.command.DbMigrate      : Schema "public" is up to date. No migration necessary.
+2016-06-26 11:28:28.054  INFO 5504 --- [ost-startStop-1] j.LocalContainerEntityManagerFactoryBean : Building JPA container EntityManagerFactory for persistence unit 'default'
+2016-06-26 11:28:33.820  INFO 5504 --- [           main] org.modeshape.jcr.JcrRepository          : ModeShape version 4.2.0.Final
+2016-06-26 11:28:34.200  INFO 5504 --- [           main] o.i.factories.GlobalComponentRegistry    : ISPN000128: Infinispan version: Infinispan 'Infinium' 6.0.2.Final
+2016-06-26 11:28:34.615  INFO 5504 --- [           main] org.infinispan.jmx.CacheJmxRegistration  : ISPN000031: MBeans were successfully registered to the platform MBean server.
+2016-06-26 11:28:34.899  INFO 5504 --- [           main] org.infinispan.jmx.CacheJmxRegistration  : ISPN000031: MBeans were successfully registered to the platform MBean server.
+2016-06-26 11:28:35.336  INFO 5504 --- [           main] org.infinispan.jmx.CacheJmxRegistration  : ISPN000031: MBeans were successfully registered to the platform MBean server.
+2016-06-26 11:28:37.004  INFO 5504 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 52652 (http)
+2016-06-26 11:28:37.012  INFO 5504 --- [           main] .r.AccountMailRepositoryIntegrationTests : Started AccountMailRepositoryIntegrationTests in 19.088 seconds (JVM running for 21.793)
 DEBUG: JavaMail version 1.5.5
 DEBUG: successfully loaded resource: /META-INF/javamail.default.providers
 DEBUG: Tables of loaded providers

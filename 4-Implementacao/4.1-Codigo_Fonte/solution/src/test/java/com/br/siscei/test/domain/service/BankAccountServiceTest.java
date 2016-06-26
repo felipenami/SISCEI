@@ -5,6 +5,8 @@ package com.br.siscei.test.domain.service;
 
 import java.math.BigDecimal;
 
+import javax.validation.ValidationException;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +74,26 @@ public class BankAccountServiceTest extends AbstractIntegrationTests
 		Assert.assertNotNull(bankAccount.getDescription());
 		Assert.assertNotNull(bankAccount.getName());
 		Assert.assertNotNull(bankAccount.getBalance());
+		
+	}
+	/**
+	 * Objetivo: Fail.
+	 * Motivo: O objeto {@link BankAccount} é instanciado e inserido corretamente
+	 */
+	@Test(expected = ValidationException.class )
+	public void insertBankAccountMustFailWithoutMandatoryFields()
+	{
+		
+		
+		BankAccount bankAccount = new BankAccount();
+		
+		bankAccount.setName( null );
+		bankAccount.setDescription( null );
+		bankAccount.setBalance( null );
+		
+		bankAccount  = this.bankAccountService.insertBankAccount( bankAccount  );
+		
+		Assert.fail( "Deveria falhar se os campos estão nulos" );
 		
 	}
 	/**

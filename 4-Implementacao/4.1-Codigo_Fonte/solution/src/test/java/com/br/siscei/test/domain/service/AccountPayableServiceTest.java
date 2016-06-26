@@ -7,6 +7,8 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import javax.validation.ValidationException;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -132,6 +134,43 @@ public class AccountPayableServiceTest extends AbstractIntegrationTests
 		Assert.assertNotNull( accountsPayable.getEntryDate() );
 		Assert.assertNotNull( accountsPayable.getPaymentDate() );
 		Assert.assertNotNull( accountsPayable.getStatus() );
+	}	
+	/**
+	 * Objetivo: Fail.
+	 * Motivo: O objeto {@link AccountPayable} é instanciado e inserido corretamente
+	 */
+	@Test(expected = ValidationException.class )
+	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
+			"/dataset/address/CountryDataSet.xml",
+			"/dataset/address/StateDataSet.xml",
+			"/dataset/address/CityDataSet.xml",
+			"/dataset/address/AddressDataSet.xml",
+			"/dataset/finance/BankAccountDataSet.xml",
+			"/dataset/finance/CategoryDataSet.xml",
+			"/dataset/finance/SupplierDataSet.xml",
+			"/dataset/finance/AccountPayableDataSet.xml",
+	})
+	public void insertAccountPayableMustFailWithoutMandatoryFields()
+	{
+		final Supplier supplier = this.supplierService.findSupplierById( 9999L );
+		
+		final Calendar paymentDate = new GregorianCalendar(2050,9,5, 12,00,00);
+		
+		AccountPayable accountsPayable = new AccountPayable( );
+		
+		accountsPayable.setSupplier( supplier );
+		accountsPayable.setBankAccount( null );
+		accountsPayable.setCategory( null );
+		accountsPayable.setDescription( null );
+		accountsPayable.setValue( null );
+		accountsPayable.setDueDate( null );
+		accountsPayable.setEntryDate( null );
+		accountsPayable.setPaymentDate( paymentDate );
+		accountsPayable.setStatus( null );
+		
+		accountsPayable = this.accountPayableService.insertAccountPayable( accountsPayable );
+		
+		Assert.fail( "Deveria falhar se os campos estão nulos" );
 	}	
 	/**
      * Objetivo: Success.

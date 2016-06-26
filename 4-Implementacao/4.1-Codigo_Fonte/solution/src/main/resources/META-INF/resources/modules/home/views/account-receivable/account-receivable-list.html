@@ -44,7 +44,7 @@
 				        	<md-icon ng-if="accountReceivable.status == 'RECEIVED'" class="zmdi zmdi-check zmdi-hc-2x" style=" color: #4CAF50;font-weight: bold;">
 				        	<md-tooltip>Paga</md-tooltip>
 				        	</td>
-				        <td md-cell>{{accountReceivable.value | currency }}</td>
+				        <td md-cell style="color: #4CAF50" >{{accountReceivable.value | number:2 }}</td>
 				        <td md-cell style="width: 5px; padding: 0 0 0 0;">
 				        	<md-menu md-offset="-30 25">
 								<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
@@ -74,33 +74,26 @@
 			<label class="grey">Nenhum registro encontrado</label>
 		</div>
 		
-		<md-card style="height: 225px;">
-			<div layout="column" flex>
+		<md-card style="height: 150px;">
+			<div layout="column" >
            		<div layout="row" flex style="padding-left: 25px; padding-top: 25px;">
-            		<label class="gray" flex> Recebidas: </label>
-					<label class="text-word-wrap not-margin" flex="80">{{model.totalReceived | currency }}</label>
+            		<label class="gray" flex="50"> Recebidas: </label>
+					<label style="color: #4CAF50" class="text-word-wrap not-margin" flex="50">{{model.totalReceived | currency }}</label>
+					
+					<label class="gray" flex="50"> Vencidas: </label>
+					<h4 style="color: #4CAF50" class="text-word-wrap not-margin" flex="50"><strong> {{model.totalOverdue | currency }}</strong></h4>
+					
            		</div>
        		</div>
-			<div layout="column" flex>
+			<div layout="column" >
            		<div layout="row" flex style="padding-left: 25px; padding-top: 25px;">
-            		<label class="gray" flex>A Receber: </label>
-					<label class="text-word-wrap not-margin" flex="80">{{model.totalNotReceived | currency }}</label>
+            		<label class="gray" flex="50">A Receber: </label>
+					<label style="color: #4CAF50" class="text-word-wrap not-margin" flex="50">{{model.totalNotReceived | currency }}</label>
+					
+					<label class="gray" flex="50"> Total de Recebimentos: </label>
+					<h4 class="text-word-wrap not-margin" flex="50"><strong> {{model.totalAccountReceivable | currency }}</strong></h4>
            		</div>
        		</div>
-			<div layout="column" flex>
-           		<div layout="row" flex style="padding-left: 25px; padding-top: 25px;">
-            		<label class="gray" flex> Vencidas: </label>
-					<h4 class="text-word-wrap not-margin" flex="80"><strong> {{model.totalOverdue | currency }}</strong></h4>
-           		</div>
-       		</div>
-			<div layout="column" flex>
-           		<div layout="row" flex style="padding-left: 25px; padding-top: 25px;">
-            		<label class="gray" flex> Total de Recebimentos: </label>
-					<h4 class="text-word-wrap not-margin" flex="80"><strong> {{model.totalAccountReceivable | currency }}</strong></h4>
-           		</div>
-       		</div>
-			
-		
 		</md-card>
 		<eits-vbox ng-show="model.showLoading" horizontal-align="center" vertical-align="center">
 			<md-progress-circular md-mode="indeterminate"></md-progress-circular>
