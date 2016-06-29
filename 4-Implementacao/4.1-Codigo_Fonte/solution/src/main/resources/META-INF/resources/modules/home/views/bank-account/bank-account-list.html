@@ -34,9 +34,9 @@
 				    </thead>
 				    <tbody md-body>
 				      <tr  md-row md-select="bankAccount" ng-repeat="bankAccount in model.bankAccounts">
-				        <td ng-click="$state.go( DETAIL_STATE, {id:bankAccount.id})" md-cell>{{bankAccount.name}}</td>
-				        <td ng-click="$state.go( DETAIL_STATE, {id:bankAccount.id})" md-cell>{{bankAccount.description}}</td>
-				        <td ng-click="$state.go( DETAIL_STATE, {id:bankAccount.id})" md-cell>{{bankAccount.balance | currency}}</td>
+				        <td md-cell>{{bankAccount.name}}</td>
+				        <td md-cell>{{bankAccount.description}}</td>
+				        <td md-cell>{{bankAccount.balance | currency}}</td>
 				        <td md-cell style="width: 5px; padding: 0 0 0 0;">
 				        	<md-menu md-offset="-30 25">
 								<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">

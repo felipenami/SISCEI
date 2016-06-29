@@ -225,32 +225,10 @@
         	$scope.model.accountPayable.status = 'NOT_PAID';
         	$scope.model.accountPayable.dueDate = new Date();
         	$scope.model.accountPayable.value = 0;
-        	$scope.model.page.pageable = {
-                	size: 9,
-                	page: 0,
-                	sort: {
-                		orders: [{ 
-                			direction: 'ASC',
-                			property: 'name',
-                			nullHandlingHint: null
-                		}]
-                    }
-                };
-        	$scope.listBankAccountsByFilters($scope.model.filters, $scope.model.page.pageable);
-        	$scope.listCategoriesByFilters($scope.model.filters, $scope.model.page.pageable);
         	
-        	$scope.model.page.pageable = {
-                	size: 9,
-                	page: 0,
-                	sort: {
-                		orders: [{ 
-                			direction: 'ASC',
-                			property: 'tradeName',
-                			nullHandlingHint: null
-                		}]
-                    }
-                };
-        	$scope.listSuppliersByFilters( $scope.model.filters, $scope.model.page.pageable );
+        	$scope.listBankAccountsByFilters($scope.model.filters, null);
+        	$scope.listCategoriesByFilters($scope.model.filters, null);
+        	$scope.listSuppliersByFilters( $scope.model.filters, null );
         	$scope.model.accountPayable.entryDate = new Date();
         }
 
@@ -434,7 +412,7 @@
          */
         $scope.listCategoriesByFilters = function(filters, pageRequest){
         	
-        	categoryService.listCategoriesByFilters( filters.terms.toString(), pageRequest, {
+        	categoryService.listCategoriesByFilters( filters.terms.toString(), null, {
                 callback: function (result) {
                     $scope.model.categories = $scope.model.categories.concat(result.content);
                     $scope.model.showLoading = false;
@@ -452,7 +430,7 @@
          */
         $scope.listBankAccountsByFilters = function(filters, pageRequest){
         	
-        	bankAccountService.listBankAccountsByFilters( filters.terms.toString(), pageRequest, {
+        	bankAccountService.listBankAccountsByFilters( filters.terms.toString(), null, {
                 callback: function (result) {
                     $scope.model.bankAccounts = $scope.model.bankAccounts.concat(result.content);
                     $scope.model.showLoading = false;
@@ -470,7 +448,7 @@
          */
         $scope.listSuppliersByFilters = function(filters, pageRequest){
         	console.debug("test");
-        	supplierService.listSuppliersByFilters( filters.terms.toString(), pageRequest, {
+        	supplierService.listSuppliersByFilters( filters.terms.toString(), null, {
                 callback: function (result) {
                     $scope.model.suppliers = $scope.model.suppliers.concat(result.content);
                     $scope.model.showLoading = false;

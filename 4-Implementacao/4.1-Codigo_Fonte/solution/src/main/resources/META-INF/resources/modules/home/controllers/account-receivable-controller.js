@@ -406,7 +406,7 @@
          */
         $scope.listCategoriesByFilters = function(filters, pageRequest){
         	
-        	categoryService.listCategoriesByFilters( filters.terms.toString(), pageRequest, {
+        	categoryService.listCategoriesByFilters( filters.terms.toString(), null, {
                 callback: function (result) {
                     $scope.model.categories = $scope.model.categories.concat(result.content);
                     $scope.model.showLoading = false;
@@ -424,7 +424,7 @@
          */
         $scope.listBankAccountsByFilters = function(filters, pageRequest){
         	
-        	bankAccountService.listBankAccountsByFilters( filters.terms.toString(), pageRequest, {
+        	bankAccountService.listBankAccountsByFilters( filters.terms.toString(), null, {
                 callback: function (result) {
                     $scope.model.bankAccounts = $scope.model.bankAccounts.concat(result.content);
                     $scope.model.showLoading = false;
@@ -442,7 +442,7 @@
          */
         $scope.listUsersByFilters = function(filters, pageRequest){
         	console.debug("test");
-        	accountService.listUsersByFilters( filters.terms.toString(), pageRequest, {
+        	accountService.listUsersByFilters( filters.terms.toString(), null, {
                 callback: function (result) {
                     $scope.model.users = $scope.model.users.concat(result.content);
                     $scope.model.showLoading = false;
