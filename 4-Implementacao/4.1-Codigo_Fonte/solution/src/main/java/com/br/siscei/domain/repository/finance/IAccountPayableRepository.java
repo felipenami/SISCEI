@@ -4,6 +4,8 @@
 package com.br.siscei.domain.repository.finance;
 
 
+import java.util.Calendar;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,7 +27,14 @@ public interface IAccountPayableRepository extends JpaRepository<AccountPayable,
 												 "accountPayable.description, accountPayable.value, accountPayable.bankAccount, " +
 												 "accountPayable.category, accountPayable.status) " +
 											 "FROM AccountPayable accountPayable " +
-											 "WHERE( (FILTER(accountPayable.description, :filter) = TRUE )) " ) 
+											 "WHERE(((accountPayable.dueDate >= :beginDate OR CAST(:beginDate AS calendar) = NULL)" +
+													  "AND (accountPayable.dueDate <= :endDate OR CAST(:endDate AS calendar) = NULL) ))"  + 
+											  		  "OR FILTER(accountPayable.description, :filter) = TRUE") 
 	public Page<AccountPayable>listByFilters(@Param("filter") String filter, 
+												@Param("beginDate") Calendar beginDate,
+												@Param("endDate") Calendar endDate,
 											  Pageable pageable );
+	
+	
+//	select  account_payable.* from account_payable where account_payable.due_date >= '2016-08-01' and account_payable.due_date <= '2016-08-31'
 }

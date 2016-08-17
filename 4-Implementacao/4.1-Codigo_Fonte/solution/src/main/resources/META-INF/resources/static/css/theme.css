@@ -5,7 +5,7 @@ html{
 body{
     min-width: 1000px;
     font-size: 13px;
-    background-color: #E0E0E0;
+    background-color: #E0E0E0 !important;
     overflow: hidden !important;
 }
 md-toolbar.md-menu-toolbar{

@@ -52,15 +52,16 @@
 						            {{bankAccount.name}}
 						          </md-option>
 						        </md-select>
-						        <div class="errors" ng-messages="model.form.bankAccount.$error">
+						        <div ng-messages="model.form.bankAccount.$error">
           							<div ng-message="required">Obrigatório.</div>
    								</div>
 	                		</md-input-container>
 	                		<md-input-container flex="50" style="margin-right:15px;" >
 	                    		<label>Valor</label>
-	                 			<input type="text" ng-model="model.accountPayable.value" name="value"  ng-currency required>
+	                 			<input type="text" ng-model="model.accountPayable.value" name="value"  ng-currency required min="1">
 	                 			<div ng-messages="model.form.value.$error">
           							<div ng-message="required">Obrigatório.</div>
+          							<div ng-message="min">O valor deve ser maior que zero!</div>
           						</div>
 	                		</md-input-container>
 	            		</div>

@@ -255,7 +255,7 @@
          */
         $scope.listAccountsPayableByFilters = function(filters, pageRequest){
         	
-        	accountPayableService.listAccountsPayableByFilters( filters.terms.toString() , pageRequest, {
+        	accountPayableService.listAccountsPayableByFilters( filters.terms.toString() , null,null, pageRequest, {
                 callback: function (result) {
                     $scope.model.accountsPayable = $scope.model.accountsPayable.concat(result.content);
                     $scope.getAccountsPayableTotal($scope.model.accountsPayable);

@@ -221,7 +221,7 @@ public class AccountPayableServiceTest extends AbstractIntegrationTests
 		})
 	public void listAllAccountsPayableMustPass()
 	{
-		final Page<AccountPayable> accountsPayable = this.accountPayableService.listAccountsPayableByFilters( null, null );
+		final Page<AccountPayable> accountsPayable = this.accountPayableService.listAccountsPayableByFilters( null, null, null, null );
 		
 		Assert.assertNotNull(accountsPayable);
 		Assert.assertTrue(accountsPayable.getContent().size() == 3 );
@@ -243,7 +243,11 @@ public class AccountPayableServiceTest extends AbstractIntegrationTests
 	})
 	public void listAccountsPayableMustReturn1()
 	{
-		final Page<AccountPayable> accountsPayable = this.accountPayableService.listAccountsPayableByFilters( "carlão", null );
+		Calendar beginDate 	= new GregorianCalendar(2016,2,1);
+		Calendar endDate 	= new GregorianCalendar(2016,2,31);
+		
+		
+		final Page<AccountPayable> accountsPayable = this.accountPayableService.listAccountsPayableByFilters( "TESTE", beginDate, endDate, null );
 		
 		Assert.assertNotNull(accountsPayable);
 		Assert.assertTrue(accountsPayable.getContent().size() == 1 );
