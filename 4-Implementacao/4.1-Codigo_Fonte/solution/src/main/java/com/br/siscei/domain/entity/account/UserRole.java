@@ -15,12 +15,15 @@ public enum UserRole implements GrantedAuthority
 	 *				 		     ENUMS
 	 *-------------------------------------------------------------------*/
 	ADMINISTRATOR, // 0
-	MANAGER, // 1
-	USER; // 2
+	SECRETARY, // 1
+	TEACHER, // 2
+	STUDENT; // 3
+	
 
 	public static final String ADMINISTRATOR_VALUE 	= "ADMINISTRATOR";
-	public static final String MANAGER_VALUE 		= "MANAGER";
-	public static final String USER_VALUE 			= "USER";
+	public static final String SECRETARY_VALUE 		= "SECRETARY";
+	public static final String TEACHER_VALUE 		= "TEACHER";
+	public static final String STUDENT_VALUE		= "STUDENT";
 	
 	/*
 	 * (non-Javadoc)

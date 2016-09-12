@@ -33,7 +33,8 @@ public class UserTests extends AbstractUnitTests
 		
 		Assert.assertNotNull( user.getAuthorities() );
 		Assert.assertTrue( user.getAuthorities().contains( UserRole.ADMINISTRATOR ) );
-		Assert.assertTrue( user.getAuthorities().contains( UserRole.MANAGER ) );
-		Assert.assertTrue( user.getAuthorities().contains( UserRole.USER ) );
+		Assert.assertTrue( user.getAuthorities().contains( UserRole.SECRETARY ) );
+		Assert.assertTrue( user.getAuthorities().contains( UserRole.TEACHER ) );
+		Assert.assertTrue( user.getAuthorities().contains( UserRole.STUDENT ) );
 	}
 }
