@@ -7,11 +7,22 @@
 	/**
 	 * 
 	 */
-	module.config( function( $stateProvider, $urlRouterProvider, $importServiceProvider, $translateProvider, $mdThemingProvider ) {
+	module.config( function( $stateProvider, $urlRouterProvider, $importServiceProvider, $translateProvider, $mdThemingProvider, $mdDateLocaleProvider ) {
 		
-        //-------
-        //CONFIGURAÇÕES DE TEMA
-        //-------
+		
+    	/*-------------------------------------------------------------------
+    	 *				 		   CONFIGURAÇÕES FORMATO DE DATA
+    	 *-------------------------------------------------------------------*/
+		
+		$mdDateLocaleProvider.formatDate = function(date) {
+		      var m = moment(date);
+		      return m.isValid() ? m.format('L') : '';
+		    };
+		    
+    	/*-------------------------------------------------------------------
+    	 *				 		   CONFIGURAÇÕES DE TEMA
+    	 *-------------------------------------------------------------------*/
+		    
 		$mdThemingProvider.definePalette('buttonsPalette', {
 		    '50': '4CAF50',
 		    '100': '01579B',
@@ -47,21 +58,28 @@
                 'hue-3': '200'
             });
 		
-		//-------
-		//Broker configuration
-		//-------
+        
+    	/*-------------------------------------------------------------------
+    	 *				 		   Broker configuration
+    	 *-------------------------------------------------------------------*/
+        
 		$importServiceProvider.setBrokerURL("./broker/interface");
-		//-------
-		//Translate configuration
-		//-------
+    	/*-------------------------------------------------------------------
+    	 *				 		   Translate configuration
+    	 *-------------------------------------------------------------------*/
+		
 		$translateProvider.useURL('./bundles');
-
-		//-------
-		//URL Router
-		//-------
+		
+    	/*-------------------------------------------------------------------
+    	 *				 		     URL Router
+    	 *-------------------------------------------------------------------*/
+		
         $urlRouterProvider.otherwise("/accountPayable/list");
         
-    	//SUPPLIER
+    	/*-------------------------------------------------------------------
+    	 *				 		     SUPPLIER
+    	 *-------------------------------------------------------------------*/
+        
 		$stateProvider.state('supplier',{
 			abstract: true,
 			url : "/supplier",
@@ -85,7 +103,10 @@
 			templateUrl : "./modules/home/views/supplier/supplier-detail.html"
 		});
 		
-		//BANKACCOUNT
+    	/*-------------------------------------------------------------------
+    	 *				 		     BANKACCOUNT
+    	 *-------------------------------------------------------------------*/
+		
 		$stateProvider.state('bankAccount',{
 			abstract: true,
 			url : "/bankAccount",
@@ -108,7 +129,11 @@
 			url : "/detail/{id:[0-9]{1,10}}",
 			templateUrl : "./modules/home/views/bank-account/bank-account-detail.html"
 		});
-		//ACCOUNTPAYABLE
+		
+    	/*-------------------------------------------------------------------
+    	 *				 		     ACCOUNTPAYABLE
+    	 *-------------------------------------------------------------------*/
+		
 		$stateProvider.state('accountPayable',{
 			abstract: true,
 			url : "/accountPayable",
@@ -131,7 +156,11 @@
 			url : "/detail/{id:[0-9]{1,10}}",
 			templateUrl : "./modules/home/views/account-payable/account-payable-detail.html"
 		});
-		//ACCOUNTRECEIVABLE
+		
+    	/*-------------------------------------------------------------------
+    	 *				 		     ACCOUNTRECEIVABLE
+    	 *-------------------------------------------------------------------*/
+		
 		$stateProvider.state('accountReceivable',{
 			abstract: true,
 			url : "/accountReceivable",
@@ -156,7 +185,6 @@
 		});
 		
 	});
-
 	/**
 	 * 
 	 */

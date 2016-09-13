@@ -3,7 +3,6 @@
  */
 package com.br.siscei.domain.service;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.directwebremoting.annotations.RemoteProxy;
@@ -78,7 +77,7 @@ public class AccountPayableService
 	 */
 	public Page<AccountPayable> listAccountsPayableByFilters( String filter,  Calendar beginDate, Calendar endDate, PageRequest pageable )
 	{
-	
+		
 		return this.accountPayableRepository.listByFilters( filter, beginDate, endDate, pageable );
 	}
 	/**

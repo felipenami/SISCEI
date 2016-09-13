@@ -23,6 +23,10 @@
 		<script type="text/javascript" th:src="@{/modules/home/controllers/bank-account-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/account-payable-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/account-receivable-controller.js}"></script>
+		<!-- moment.js -->
+		<script type="text/javascript" th:src="@{/webjars/momentjs/moment.min.js}"></script>
+		<script type="text/javascript" th:src="@{/webjars/momentjs/locales.min.js}"></script>
+		<script>moment.locale(navigator.language.toLowerCase());</script>
 	</head>
 		
 	<body ng-controller="HomeController">

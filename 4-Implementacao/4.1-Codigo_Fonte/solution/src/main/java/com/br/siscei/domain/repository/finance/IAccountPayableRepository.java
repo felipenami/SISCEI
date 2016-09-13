@@ -29,7 +29,7 @@ public interface IAccountPayableRepository extends JpaRepository<AccountPayable,
 											 "FROM AccountPayable accountPayable " +
 											 "WHERE(((accountPayable.dueDate >= :beginDate OR CAST(:beginDate AS calendar) = NULL)" +
 													  "AND (accountPayable.dueDate <= :endDate OR CAST(:endDate AS calendar) = NULL) ))"  + 
-											  		  "OR FILTER(accountPayable.description, :filter) = TRUE") 
+											  		  "AND FILTER(accountPayable.description, :filter) = TRUE") 
 	public Page<AccountPayable>listByFilters(@Param("filter") String filter, 
 												@Param("beginDate") Calendar beginDate,
 												@Param("endDate") Calendar endDate,
