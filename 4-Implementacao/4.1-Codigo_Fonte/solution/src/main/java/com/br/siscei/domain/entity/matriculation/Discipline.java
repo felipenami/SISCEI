@@ -3,11 +3,8 @@
  */
 package com.br.siscei.domain.entity.matriculation;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.directwebremoting.annotations.DataTransferObject;
@@ -45,9 +42,6 @@ public class Discipline extends AbstractEntity
 	 */
 	@Column(nullable = false, length = 144)
 	private String description;
-	
-	@ManyToOne(fetch=FetchType.EAGER,optional=false, cascade={CascadeType.MERGE, CascadeType.PERSIST} )
-	private ClassRoom classRoom;
 	/**
 	 * 
 	 */

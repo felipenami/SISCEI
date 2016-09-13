@@ -86,7 +86,7 @@
 				
 				<!-- Others -->
 				<mvn.cache.enabled>false</mvn.cache.enabled>
-				<mvn.flyway.enabled>false</mvn.flyway.enabled>
+				<mvn.flyway.enabled>true</mvn.flyway.enabled>
 			</properties>
 		</profile>
 		

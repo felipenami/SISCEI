@@ -10,7 +10,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.directwebremoting.annotations.DataTransferObject;
@@ -52,7 +51,7 @@ public class ClassRoom extends AbstractEntity
 	/**
 	 * 
 	 */
-	@OneToMany(mappedBy = "discipline", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER,optional=false, cascade={CascadeType.MERGE, CascadeType.PERSIST} )
 	private Discipline discipline;
 	/**
 	 * 
