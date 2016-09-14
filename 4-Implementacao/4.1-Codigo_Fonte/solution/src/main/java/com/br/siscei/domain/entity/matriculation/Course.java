@@ -8,9 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.eits.common.domain.entity.AbstractEntity;
 
@@ -39,16 +41,19 @@ public class Course extends AbstractEntity
 	/**
 	 * 
 	 */
+	@NotEmpty
 	@Column(nullable = false)
 	private String name;
 	/**
 	 * 
 	 */
+	@NotEmpty
 	@Column(nullable = false)
 	private String description;
 	/**
 	 * 
 	 */
+	@NotNull
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private CourseType type;
@@ -62,6 +67,15 @@ public class Course extends AbstractEntity
 	public Course()
 	{
 		
+	}
+	/**
+	 * 
+	 */
+	public Course(Long id, String name, String description)
+	{
+		super(id);
+		this.name 			= name;
+		this.description 	= description;
 	}
 	
 	/*-------------------------------------------------------------------

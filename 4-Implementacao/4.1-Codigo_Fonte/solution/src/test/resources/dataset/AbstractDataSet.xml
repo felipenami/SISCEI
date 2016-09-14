@@ -10,4 +10,5 @@
 	<public.supplier/>
 	<public.account_payable/>
 	<public.account_receivable/>
+	<public.course/>
 </dataset>
