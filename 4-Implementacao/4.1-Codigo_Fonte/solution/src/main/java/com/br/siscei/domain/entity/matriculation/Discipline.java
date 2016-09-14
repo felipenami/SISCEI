@@ -3,8 +3,11 @@
  */
 package com.br.siscei.domain.entity.matriculation;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.directwebremoting.annotations.DataTransferObject;
@@ -45,6 +48,8 @@ public class Discipline extends AbstractEntity
 	/**
 	 * 
 	 */
+	@ManyToOne(fetch=FetchType.EAGER,optional=false, cascade={CascadeType.MERGE, CascadeType.PERSIST} )
+	private ClassRoom classroom;
 	/*-------------------------------------------------------------------
 	 * 		 					CONSTRUCTORS
 	 *-------------------------------------------------------------------*/
@@ -69,6 +74,7 @@ public class Discipline extends AbstractEntity
 	{
 		final int prime = 31;
 		int result = super.hashCode();
+		result = prime * result + ( ( classroom == null ) ? 0 : classroom.hashCode() );
 		result = prime * result + ( ( description == null ) ? 0 : description.hashCode() );
 		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
 		return result;
@@ -84,6 +90,11 @@ public class Discipline extends AbstractEntity
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
 		Discipline other = ( Discipline ) obj;
+		if ( classroom == null )
+		{
+			if ( other.classroom != null ) return false;
+		}
+		else if ( !classroom.equals( other.classroom ) ) return false;
 		if ( description == null )
 		{
 			if ( other.description != null ) return false;
@@ -130,5 +141,21 @@ public class Discipline extends AbstractEntity
 	public void setDescription( String description )
 	{
 		this.description = description;
+	}
+
+	/**
+	 * @return the classroom
+	 */
+	public ClassRoom getClassroom()
+	{
+		return classroom;
+	}
+
+	/**
+	 * @param classroom the classroom to set
+	 */
+	public void setClassroom( ClassRoom classroom )
+	{
+		this.classroom = classroom;
 	}
 }

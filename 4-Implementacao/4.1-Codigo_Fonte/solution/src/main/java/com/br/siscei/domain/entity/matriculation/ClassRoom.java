@@ -3,6 +3,9 @@
  */
 package com.br.siscei.domain.entity.matriculation;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +13,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.directwebremoting.annotations.DataTransferObject;
@@ -51,8 +55,8 @@ public class ClassRoom extends AbstractEntity
 	/**
 	 * 
 	 */
-	@ManyToOne(fetch=FetchType.EAGER,optional=false, cascade={CascadeType.MERGE, CascadeType.PERSIST} )
-	private Discipline discipline;
+	@OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true)
+	private Set<Discipline> discipline = new HashSet<Discipline>();
 	/**
 	 * 
 	 */
@@ -73,9 +77,6 @@ public class ClassRoom extends AbstractEntity
 		
 	}
 	
-	/*-------------------------------------------------------------------
-	 *							BEHAVIORS
-	 *-------------------------------------------------------------------*/
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -85,7 +86,6 @@ public class ClassRoom extends AbstractEntity
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ( ( course == null ) ? 0 : course.hashCode() );
-		result = prime * result + ( ( discipline == null ) ? 0 : discipline.hashCode() );
 		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
 		result = prime * result + ( ( status == null ) ? 0 : status.hashCode() );
 		return result;
@@ -106,11 +106,6 @@ public class ClassRoom extends AbstractEntity
 			if ( other.course != null ) return false;
 		}
 		else if ( !course.equals( other.course ) ) return false;
-		if ( discipline == null )
-		{
-			if ( other.discipline != null ) return false;
-		}
-		else if ( !discipline.equals( other.discipline ) ) return false;
 		if ( name == null )
 		{
 			if ( other.name != null ) return false;
@@ -157,7 +152,7 @@ public class ClassRoom extends AbstractEntity
 	/**
 	 * @return the discipline
 	 */
-	public Discipline getDiscipline()
+	public Set<Discipline> getDiscipline()
 	{
 		return discipline;
 	}
@@ -165,7 +160,7 @@ public class ClassRoom extends AbstractEntity
 	/**
 	 * @param discipline the discipline to set
 	 */
-	public void setDiscipline( Discipline discipline )
+	public void setDiscipline( Set<Discipline> discipline )
 	{
 		this.discipline = discipline;
 	}
