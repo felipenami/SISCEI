@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+<meta charset="UTF-8">
+<div ng-init="calculateWindowHeight()" id="sectionsWindow" style="overflow:auto;" class="training-form" >
+
+    <div layout-align="center center" style="width:820px;margin:0 auto;position:relative;top:-1px;z-index:2;" class="training-form">
+        <form name="model.form" novalidate>
+	        <eits-paper-sheet id="information" ng-init="openPaper('information')">
+	            <content-closed>
+	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
+	                    <h3>Informações</h3>
+	                </eits-vbox>
+	            </content-closed>
+	            <content-opened>
+			  		<div layout="column" flex>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;" >
+	                    		<label>Nome do banco</label>
+	                 			<input type="text" ng-model="model.bankAccount.name" name="name" required>
+	                 			<div ng-messages="model.form.name.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	            		</div>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;">
+	                    		<label>Descrição</label>
+	                 			<input type="text" ng-model="model.bankAccount.description" name="description" required>
+	                 			<div ng-messages="model.form.description.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	            		</div>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;">
+	                    		<label>Saldo inicial</label>
+	                 			<input type="text" ng-model="model.bankAccount.balance" name="balance" ng-currency required>
+	                 			<div ng-messages="model.form.balance.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	            		</div>
+	            		<div>
+	            		</div>
+	           		</div>
+	            </content-opened>
+	        </eits-paper-sheet>
+        </form>
+    </div>
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="!model.bankAccount.id">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertBankAccountHandler(model.bankAccount)">
+            <md-tooltip>Criar</md-tooltip>
+        </md-button>
+     </eits-hbox>
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="model.bankAccount.id">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertBankAccountHandler(model.bankAccount)">
+            <md-tooltip>Alterar</md-tooltip>
+        </md-button>
+     </eits-hbox>
+</div>
+</html>

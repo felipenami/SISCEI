@@ -66,16 +66,16 @@ public class Course extends AbstractEntity
 	 */
 	public Course()
 	{
-		
 	}
 	/**
 	 * 
 	 */
-	public Course(Long id, String name, String description)
+	public Course(Long id, String name, String description, CourseType type)
 	{
 		super(id);
 		this.name 			= name;
 		this.description 	= description;
+		this.type			= type;
 	}
 	
 	/*-------------------------------------------------------------------

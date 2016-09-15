@@ -184,6 +184,33 @@
 			templateUrl : "./modules/home/views/account-receivable/account-receivable-detail.html"
 		});
 		
+		
+    	/*-------------------------------------------------------------------
+    	 *				 		     COURSE
+    	 *-------------------------------------------------------------------*/
+		$stateProvider.state('course',{
+			abstract: true,
+			url : "/course",
+			template: '<div ui-view/>',
+			controller : 'CourseController as courseController'
+		})
+		.state('course.list',{
+			url : "/list",
+			templateUrl : "./modules/home/views/course/course-list.html"
+		})
+		.state('course.add',{
+			url : "/add",
+			templateUrl : "./modules/home/views/course/course-form.html"
+		})
+		.state('course.edit',{
+			url : "/edit/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/course/course-form.html"
+		})
+		.state('course.detail',{
+			url : "/detail/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/course/course-detail.html"
+		});
+		
 	});
 	/**
 	 * 

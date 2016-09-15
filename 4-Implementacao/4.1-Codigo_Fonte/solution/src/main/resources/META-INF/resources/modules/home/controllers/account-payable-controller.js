@@ -105,7 +105,7 @@
          * 
          */
         $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-          $state.current.breadCrumbs = [{'state': $scope.LIST_STATE, 'name': 'AccountPayable'}];
+          $state.current.breadCrumbs = [{'state': $scope.LIST_STATE, 'name': 'Contas a Pagar'}];
 
             //Controle para mudar o botão do menu para o botão voltar da página
             $state.current.currentState = {

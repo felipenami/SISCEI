@@ -3,19 +3,19 @@
 	<public.course
 		id="9999"
 		created="2015-03-30 00:00:00"
-		description="Sala de aula com 4 computadores"
-		name="Sala 3"
-		type = "1"/>
+		description="Curso de excel"
+		name="Excel"
+		type = "0"/>
 	<public.course
 		id="9998"
 		created="2015-03-30 00:00:00"
-		description="Sala de aula com 7 computadores"
-		name="Sala 2"
+		description="Módulo 1"
+		name="Ingles"
 		type = "1"/>
 	<public.course
 		id="9997"
 		created="2015-03-30 00:00:00"
-		description="Sala de aula com 14 computadores"
-		name="Sala 1"
+		description="Photoshop, corel"
+		name="Informática avançada"
 		type = "1"/>
 </dataset>

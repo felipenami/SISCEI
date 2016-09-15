@@ -68,7 +68,7 @@ public class CourseServiceTest extends AbstractIntegrationTests
 		Course course = new Course();
 		
 		course.setDescription( "Descrição teste" );
-		course.setName( "Sala teste" );
+		course.setName( "Curso teste" );
 		course.setType( CourseType.COMPUTING );
 		
 		course = this.courseService.insertCourse( course );
@@ -120,7 +120,7 @@ public class CourseServiceTest extends AbstractIntegrationTests
 		})
 	public void list1CourseMustPass()
 	{
-		final Page<Course> course = this.courseService.listCoursesByFilters( "Sala 1", null );
+		final Page<Course> course = this.courseService.listCoursesByFilters( "Excel", null );
 													   
 		Assert.assertNotNull(course);
 		Assert.assertTrue(course.getContent().size() == 1 );	
@@ -161,17 +161,17 @@ public class CourseServiceTest extends AbstractIntegrationTests
 		Course course = this.courseService.findCourseById( 9999L );
 		Assert.assertNotNull(course);
 		
-		course.setDescription( "Sala de aula com 25 computadores" );
-		course.setName( "Sala" );
-		course.setType( CourseType.ENGLISH );
+		course.setDescription( "Curso de excel" );
+		course.setName( "Excel" );
+		course.setType( CourseType.COMPUTING );
 		
 		course = this.courseService.insertCourse( course );
 		
 		Assert.assertNotNull(course);
 		Assert.assertNotNull(course.getId());
-		Assert.assertTrue(course.getDescription() == "Sala de aula com 25 computadores");
-		Assert.assertTrue(course.getName() == "Sala");
-		Assert.assertTrue(course.getType() == CourseType.ENGLISH);
+		Assert.assertTrue(course.getDescription() == "Curso de excel");
+		Assert.assertTrue(course.getName() == "Excel");
+		Assert.assertTrue(course.getType() == CourseType.COMPUTING);
 		
 	}
 	 

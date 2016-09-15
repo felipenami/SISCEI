@@ -23,6 +23,7 @@
 		<script type="text/javascript" th:src="@{/modules/home/controllers/bank-account-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/account-payable-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/account-receivable-controller.js}"></script>
+		<script type="text/javascript" th:src="@{/modules/home/controllers/course-controller.js}"></script>
 		<!-- moment.js -->
 		<script type="text/javascript" th:src="@{/webjars/momentjs/moment.min.js}"></script>
 		<script type="text/javascript" th:src="@{/webjars/momentjs/locales.min.js}"></script>
@@ -39,7 +40,13 @@
     				ng-click="toggleMenuSideNavHandler($event)">
         			<md-icon class="zmdi zmdi-menu zmdi-hc-2x"></md-icon>
       			</md-button>
-      			
+						<div class="md-toolbar-item md-breadcrumb">
+							<breadcrumb ng-repeat="item in $state.current.breadCrumbs">
+								<a ui-sref="{{ item.state }}">
+									<span class="md-breadcrumb-page"> {{ item.name }} </span>
+								</a>
+							</breadcrumb>
+						</div>
 				<span flex=""></span>
 				
 				<label class="md-body-1" th:text="${#authentication.name}"></label>

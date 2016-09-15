@@ -2,35 +2,34 @@
   'use strict';
   /**
    * 
-   */
+   */	
+	
   angular.module('siscei')
-	.controller('SupplierController', function ($scope, $rootScope,$state, $importService, $mdDialog, $mdSidenav, $mdToast, $timeout, $window, $location, $locale , $q, $http) {
-		 /**
+	.controller('CourseController', function ($scope, $rootScope,$state, $importService, $mdDialog, $mdSidenav, $mdToast, $timeout, $window, $location, $locale , $q) {
+		/**
          * Serviços importados do DWR
          */
-		$importService("supplierService");
+		$importService("courseService");
 		/**
 		 * 
 		 */
-		$importService("addressService");
-		
 		 //----STATES
         /**
          * Representa o estado de listagem de registros.
          */
-        $scope.LIST_STATE = "supplier.list";
+        $scope.LIST_STATE = "course.list";
         /**
          * Representa o estado para a criação de registros.
          */
-        $scope.ADD_STATE = "supplier.add";
+        $scope.ADD_STATE = "course.add";
         /**
          * Representa o estado para a edição de registros.
          */
-        $scope.EDIT_STATE = "supplier.edit";
+        $scope.EDIT_STATE = "course.edit";
         /**
          * Representa o estado de detalhe de um registro.
          */
-        $scope.DETAIL_STATE = "supplier.detail";		
+        $scope.DETAIL_STATE = "course.detail";		
         /**
          * 
          */
@@ -50,9 +49,6 @@
         /**
          * 
          */
-        /**
-         * 
-         */
         $scope.filter = {
         		show : false
         }
@@ -61,14 +57,11 @@
          */
         $scope.model = {
                 form    : {},
-                supplier : new Supplier(),
+                course : new Course(),
                 filters: {
                     terms: [],
                 },
-                states : [],
-                cities : [],
-                state : {},
-                suppliers : [],
+                courses : [],
                 page: {//PageImpl
                     content: null,
                     pageable: {//PageRequest
@@ -89,7 +82,7 @@
          * 
          */
         $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-          $state.current.breadCrumbs = [{'state': $scope.LIST_STATE, 'name': 'Fornecedores'}];
+          $state.current.breadCrumbs = [{'state': $scope.LIST_STATE, 'name': 'Cursos'}];
 
             //Controle para mudar o botão do menu para o botão voltar da página
             $state.current.currentState = {
@@ -116,27 +109,19 @@
                     
             }
         });
+        
         /*-------------------------------------------------------------------
          * 		 				  		HANDLERS
          *-------------------------------------------------------------------*/
-        $scope.calculateWindowHeight = function(){
-
-            var sectionsWindow = angular.element(document.querySelector('#sectionsWindow'));
-            if (sectionsWindow != null) {
-                var windowHeight = window.innerHeight;
-                var height = windowHeight - sectionsWindow.offset().top + 'px';
-                sectionsWindow.css('height', height);
-            }
-        };
         /**
-         *  
+         * 
          */
         $scope.changeToEdit = function (id) {
+        	console.debug("edit");
         	
-        	supplierService.findSupplierById(id,{
+        	bankAccountService.findBankAccountById(id,{
         		callback: function (result) {
-        			$scope.model.supplier = result;
-        			$scope.listCitiesByState($scope.model.supplier.address.city.state.id);
+        			$scope.model.bankAccount = result;
         			$scope.$apply();
         		},
                 errorHandler: function (message, exception) {
@@ -145,6 +130,7 @@
 		            $scope.$apply();
                 }
         	})
+        	
         }
         /**
          * 
@@ -158,37 +144,50 @@
             	sort: {
             		orders: [{ 
             			direction: 'ASC',
-            			property: 'tradeName',
+            			property: 'name',
             			nullHandlingHint: null
             		}]
                 }
             };
                 
                 //Limpamos a lista para um nova consulta
-                $scope.model.supplier = new Supplier();
-                $scope.model.suppliers = [];
-                $scope.listSuppliersByFilters( $scope.model.filters,  $scope.model.page.pageable );
+                $scope.model.course = new Course();
+                $scope.model.courses = [];
+                $scope.listCoursesByFilters( $scope.model.filters,  $scope.model.page.pageable );
         };
         /**
          * 
          */
-        $scope.changeToAdd = function(){
-        	console.debug("changeToAdd");
-        	
-        	$scope.model.states = [];
-        	$scope.model.cities = [];
-        	$scope.model.state = {};
-        	$scope.model.supplier = new Supplier();
+        $scope.changeToAdd = function () {
+        	console.debug("Add");
+        	$scope.model.bankAccount = new BankAccount();
+        	$scope.model.bankAccount.balance = 0;
         }
+
         /**
          * 
          */
-    	$scope.changeToDetail = function (id) {
+        $scope.changeToDetail = function (id) {
         	console.debug("Detail");
+        	$scope.model.page.pageable = {
+                	size: 9,
+                	page: 0,
+                	sort: {
+                		orders: [{ 
+                			direction: 'ASC',
+                			property: 'dueDate',
+                			nullHandlingHint: null
+                		}]
+                    }
+                };
+        	 $scope.model.accountsPayable = [];
+        	 $scope.model.accountsReceivable = [];
+        	$scope.listAccountsPayableByFilters( $scope.model.filters,  $scope.model.page.pageable );
+        	$scope.listAccountReceivableByFilters( $scope.model.filters,  $scope.model.page.pageable );
         	
-        	supplierService.findSupplierById(id,{
+        	bankAccountService.findBankAccountById(id,{
         		callback: function (result) {
-        			$scope.model.supplier = result;
+        			$scope.model.bankAccount = result;
         			$scope.$apply();
         		},
                 errorHandler: function (message, exception) {
@@ -197,6 +196,61 @@
 		            $scope.$apply();
                 }
         	})
+        }
+        /**
+         * 
+         */
+        $scope.listCoursesByFilters = function(filters, pageRequest){
+        	
+        	courseService.listCoursesByFilters( filters.terms.toString(), pageRequest, {
+                callback: function (result) {
+                    $scope.model.courses = $scope.model.courses.concat(result.content);
+                    $scope.model.showLoading = false;
+                    $scope.model.notFound = result.totalElements == 0 ? true : false;
+                    $scope.$apply();
+                },
+                errorHandler: function (message, exception) {
+                    $mdToast.showSimple(message);
+                    $scope.$apply();
+                }
+            });
+        }
+        /**
+         * 
+         */
+        $scope.insertBankAccountHandler= function(bankAccount){
+        	if($scope.validateForm()){
+        		bankAccountService.insertBankAccount( bankAccount, {
+	        		callback: function(result){
+	        			$mdToast.showSimple("Conta bancária salva com sucesso!");
+	                    $state.go($scope.LIST_STATE);
+	                    $scope.$apply();
+	        		},
+	        		 errorHandler: function (message, exception) {
+	                     $mdToast.showSimple(message);
+	                     $scope.$apply();
+	                 }
+	        	})
+        	}
+        }
+        /**
+         * 
+         */
+        $scope.updateBankAccountHandler = function( bankAccount ){
+        	if($scope.validateForm()){
+        		bankAccountService.updateBankAccount( bankAccount, {
+	        		callback: function(result){
+	        			$mdToast.showSimple("Registro alterado com sucesso!");
+	                    $state.go($scope.LIST_STATE);
+	                    $scope.$apply();
+	        		},
+	        		 errorHandler: function (message, exception) {
+	                     $mdToast.showSimple(message);
+	                     $scope.$apply();
+	                 }
+	        	})        		
+        		
+        	}
         }
         /**
          * 
@@ -213,7 +267,7 @@
 
             $mdDialog.show(confirm).then(function (result) {
             	
-            	supplierService.removeSupplier(entity.id, {
+            	bankAccountService.removeBankAccount(entity.id, {
                     callback: function (result) {
                         if( $state.current.name == $scope.LIST_STATE){
                             $scope.changeToList();
@@ -224,108 +278,28 @@
                         $scope.$apply();
                     },
                     errorHandler: function (message, exception) {
-                        $mdToast.showSimple("O registro não pode ser excluído.");
+                        $mdToast.showSimple(message);
                         $state.go($scope.LIST_STATE);
                         $scope.$apply();
                     }
                 });
             });
         };
-    	/**
-    	 * 
-    	 */
-        $scope.listSuppliersByFilters = function(filters, pageRequest){
-        	console.debug("test");
-        	supplierService.listSuppliersByFilters( filters.terms.toString(), pageRequest, {
-                callback: function (result) {
-                    $scope.model.suppliers = $scope.model.suppliers.concat(result.content);
-                    $scope.model.showLoading = false;
-                    $scope.model.notFound = result.totalElements == 0 ? true : false;
-                    $scope.$apply();
-                },
-                errorHandler: function (message, exception) {
-                    $mdToast.showSimple(message);
-                    $scope.$apply();
-                }
-            });
-        }
-        /**
-         * 
-         */
-        $scope.insertSupplierHandler = function (supplier){
-        	if($scope.validateForm()){
-        		supplierService.insertSupplier( supplier, {
-	        		callback: function(result){
-	        			$mdToast.showSimple("Fornecedor	 salvo com sucesso!");
-	                    $state.go($scope.LIST_STATE);
-	                    $scope.$apply();
-	        		},
-	        		 errorHandler: function (message, exception) {
-	                     $mdToast.showSimple(message);
-	                     $scope.$apply();
-	                 }
-	        	})
-        	}
-        }
-        /**
-         * 
-         */
-        $scope.updateSupplierHandler = function(supplier){
-        	if($scope.validateForm()){
-        		supplierService.updateSupplier(supplier, {
-        			callback: function(result){
-	        			$mdToast.showSimple("Fornecedor	alterado com sucesso!");
-	                    $state.go($scope.LIST_STATE);
-	                    $scope.$apply();
-	        		},
-	        		 errorHandler: function (message, exception) {
-	                     $mdToast.showSimple(message);
-	                     $scope.$apply();
-	                 }
-        		})
-        	}
-        	
-        }
         
         /**
          * 
          */
-        $scope.listAllStates = function(){
-        	
-        	addressService.listAllStates({
-        		callback: function (result) {
-                    $scope.model.states = result;
-                    $scope.$apply();
-                },
-                errorHandler: function (message, exception) {
-                    $mdToast.showSimple(message);
-                    $scope.$apply();
-                }
-        	});
-        }
-        /**
-         * 
-         */
-        $scope.listCitiesByState = function( state ){
-	        	addressService.listCitiesByState( state, {
-	        		callback: function (result) {
-	                    $scope.model.cities = result;
-	                    $scope.$apply();
-	                },
-	                errorHandler: function (message, exception) {
-	                    $mdToast.showSimple(message);
-	                    $scope.$apply();
-	                }
-	        	});
-        }
-        
         $scope.validateForm = function (){
-        	if($scope.model.supplier.tradeName == null){
-        		$mdToast.showSimple("O nome fantasia deve ser informado.");
+        	if($scope.model.bankAccount.name == null){
+        		$mdToast.showSimple("O nome do banco deve ser informado.");
                 return false;
         	}
-        	if($scope.model.supplier.companyName == null){
-        		$mdToast.showSimple("A razão social deve ser informado.");
+        	if($scope.model.bankAccount.description == null){
+        		$mdToast.showSimple("Informe uma descrição da conta.");
+        		return false;
+        	}
+        	if($scope.model.bankAccount.balance == null){
+        		$mdToast.showSimple("Informe o saldo inicial da conta.");
         		return false;
         	}
         	return true;
@@ -333,7 +307,7 @@
         /**
          * 
          */
-        $scope.listSyppliersByEvents = function ( event ) {
+        $scope.listBankAccountsByEvents = function ( event ) {
         	
 	    	if( event.keyCode == 13 || $scope.model.filters.terms == "" ){
 	          $scope.changeToList();
@@ -347,6 +321,46 @@
 	    	$scope.model.filters.terms = "";
 	    	$scope.changeToList();
 	    };
-		
+	    /**
+	     * 
+	     */
+	    $scope.listAccountsPayableByFilters = function(filters, pageRequest){
+        	
+        	accountPayableService.listAccountsPayableByFilters( filters.terms.toString() , pageRequest, {
+                callback: function (result) {
+                    $scope.model.accountsPayable = $scope.model.accountsPayable.concat(result.content);
+                    $scope.getAccountsPayableTotal($scope.model.accountsPayable);
+                    $scope.model.showLoading = false;
+                    $scope.model.notFound = result.totalElements == 0 ? true : false;
+                    $scope.$apply();
+                },
+                errorHandler: function (message, exception) {
+                    $mdToast.showSimple(message);
+                    $scope.$apply();
+                }
+            });
+        }
+        /**
+         * 
+         */
+        $scope.listAccountReceivableByFilters = function(filters, pageRequest){
+        				   
+        	accountReceivableService.listAccountsReceivableByFilters( filters.terms.toString() , pageRequest, {
+                callback: function (result) {
+                    $scope.model.accountsReceivable = $scope.model.accountsReceivable.concat(result.content);
+                    $scope.getAccountsReceivableTotal($scope.model.accountsReceivable);
+                    $scope.model.showLoading = false;
+                    $scope.model.notFound = result.totalElements == 0 ? true : false;
+                    $scope.$apply();
+                },
+                errorHandler: function (message, exception) {
+                    $mdToast.showSimple(message);
+                    $scope.$apply();
+                }
+            });
+        }	    
+	
+        
 	});
-  })(window.angular);
+	
+})(window.angular);
