@@ -3,12 +3,15 @@
  */
 package com.br.siscei.domain.entity.matriculation;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
@@ -53,11 +56,11 @@ public class Course extends AbstractEntity
 	/**
 	 * 
 	 */
-	@NotNull
-	@Column(nullable = false)
-	@Enumerated(EnumType.ORDINAL)
-	private CourseType type;
-	
+	@OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true)
+	private Set<Discipline> discipline = new HashSet<Discipline>();
+	/**
+	 * 
+	 */
 	/*-------------------------------------------------------------------
 	 * 		 					CONSTRUCTORS
 	 *-------------------------------------------------------------------*/
@@ -75,12 +78,8 @@ public class Course extends AbstractEntity
 		super(id);
 		this.name 			= name;
 		this.description 	= description;
-		this.type			= type;
 	}
 	
-	/*-------------------------------------------------------------------
-	 *							BEHAVIORS
-	 *-------------------------------------------------------------------*/
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -90,8 +89,8 @@ public class Course extends AbstractEntity
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ( ( description == null ) ? 0 : description.hashCode() );
+		result = prime * result + ( ( discipline == null ) ? 0 : discipline.hashCode() );
 		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
-		result = prime * result + ( ( type == null ) ? 0 : type.hashCode() );
 		return result;
 	}
 
@@ -110,12 +109,16 @@ public class Course extends AbstractEntity
 			if ( other.description != null ) return false;
 		}
 		else if ( !description.equals( other.description ) ) return false;
+		if ( discipline == null )
+		{
+			if ( other.discipline != null ) return false;
+		}
+		else if ( !discipline.equals( other.discipline ) ) return false;
 		if ( name == null )
 		{
 			if ( other.name != null ) return false;
 		}
 		else if ( !name.equals( other.name ) ) return false;
-		if ( type != other.type ) return false;
 		return true;
 	}	
 	
@@ -153,21 +156,19 @@ public class Course extends AbstractEntity
 	{
 		this.description = description;
 	}
-
 	/**
-	 * @return the type
+	 * @return the discipline
 	 */
-	public CourseType getType()
+	public Set<Discipline> getDiscipline()
 	{
-		return type;
+		return discipline;
+	}
+	/**
+	 * @param discipline the discipline to set
+	 */
+	public void setDiscipline( Set<Discipline> discipline )
+	{
+		this.discipline = discipline;
 	}
 
-	/**
-	 * @param type the type to set
-	 */
-	public void setType( CourseType type )
-	{
-		this.type = type;
-	}
-	
 }

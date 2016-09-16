@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 import com.br.siscei.domain.entity.matriculation.Course;
-import com.br.siscei.domain.entity.matriculation.CourseType;
 import com.br.siscei.domain.service.CourseService;
 import com.br.siscei.test.domain.AbstractIntegrationTests;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
@@ -69,14 +68,12 @@ public class CourseServiceTest extends AbstractIntegrationTests
 		
 		course.setDescription( "Descrição teste" );
 		course.setName( "Curso teste" );
-		course.setType( CourseType.COMPUTING );
 		
 		course = this.courseService.insertCourse( course );
 		
 		Assert.assertNotNull(course);
 		Assert.assertNotNull(course.getDescription());
 		Assert.assertNotNull(course.getName());
-		Assert.assertNotNull(course.getType());
 	}
 	/**
 	 * Objetivo: Fail.
@@ -89,7 +86,6 @@ public class CourseServiceTest extends AbstractIntegrationTests
 		
 		course.setDescription( null );
 		course.setName( null );
-		course.setType( null);
 		
 		course = this.courseService.insertCourse( course );
 		
@@ -163,7 +159,6 @@ public class CourseServiceTest extends AbstractIntegrationTests
 		
 		course.setDescription( "Curso de excel" );
 		course.setName( "Excel" );
-		course.setType( CourseType.COMPUTING );
 		
 		course = this.courseService.insertCourse( course );
 		
@@ -171,7 +166,6 @@ public class CourseServiceTest extends AbstractIntegrationTests
 		Assert.assertNotNull(course.getId());
 		Assert.assertTrue(course.getDescription() == "Curso de excel");
 		Assert.assertTrue(course.getName() == "Excel");
-		Assert.assertTrue(course.getType() == CourseType.COMPUTING);
 		
 	}
 	 

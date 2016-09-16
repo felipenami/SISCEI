@@ -46,6 +46,7 @@
 		<uirouter.version>0.2.18</uirouter.version>
 		<iconic-font.version>2.2.0</iconic-font.version>
 		<ng-currency.version>0.9.2</ng-currency.version>
+		<jasperfonts.version>6.0.0</jasperfonts.version>
 	</properties>
 	
 	<!-- Profiles -->
@@ -562,6 +563,12 @@
 		    <groupId>org.webjars.bower</groupId>
 		    <artifactId>material-design-iconic-font</artifactId>
 		    <version>${iconic-font.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports-fonts</artifactId>
+			<version>${jasperfonts.version}</version>
 		</dependency>
 	</dependencies>
 	

@@ -3,17 +3,12 @@
  */
 package com.br.siscei.domain.entity.matriculation;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.directwebremoting.annotations.DataTransferObject;
@@ -55,17 +50,13 @@ public class ClassRoom extends AbstractEntity
 	/**
 	 * 
 	 */
-	@OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true)
-	private Set<Discipline> discipline = new HashSet<Discipline>();
-	/**
-	 * 
-	 */
 	@Column(nullable = false)
 	@Enumerated(EnumType.ORDINAL)
 	private StatusClassRoom status;
 	/**
 	 * 
 	 */
+	
 	/*-------------------------------------------------------------------
 	 * 		 					CONSTRUCTORS
 	 *-------------------------------------------------------------------*/
@@ -148,23 +139,6 @@ public class ClassRoom extends AbstractEntity
 	{
 		this.course = course;
 	}
-
-	/**
-	 * @return the discipline
-	 */
-	public Set<Discipline> getDiscipline()
-	{
-		return discipline;
-	}
-
-	/**
-	 * @param discipline the discipline to set
-	 */
-	public void setDiscipline( Set<Discipline> discipline )
-	{
-		this.discipline = discipline;
-	}
-
 	/**
 	 * @return the status
 	 */
