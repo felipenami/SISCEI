@@ -188,8 +188,8 @@
                 		}]
                     }
                 };
-        	 $scope.model.accountsPayable = [];
-        	 $scope.model.accountsReceivable = [];
+        	$scope.model.accountsPayable = [];
+        	$scope.model.accountsReceivable = [];
         	$scope.listAccountsPayableByFilters( $scope.model.filters,  $scope.model.page.pageable );
         	$scope.listAccountReceivableByFilters( $scope.model.filters,  $scope.model.page.pageable );
         	

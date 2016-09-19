@@ -29,14 +29,12 @@
 				      <tr md-row>
 				        <th md-column ><span>Curso</span></th>
 				        <th md-column ><span>Descrição</span></th>
-				        <th md-column ><span>Tipo</span></th>
 				      </tr>
 				    </thead>
 				    <tbody md-body>
 				      <tr  md-row md-select="course" ng-repeat="course in model.courses">
 				        <td md-cell>{{course.name}}</td>
 				        <td md-cell>{{course.description}}</td>
-				        <td md-cell>{{::course.type | translate}}</td>
 				        <td md-cell style="width: 5px; padding: 0 0 0 0;">
 				        	<md-menu md-offset="-30 25">
 								<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
@@ -44,13 +42,13 @@
 								</md-button>
 								<md-menu-content width="2">
 									<md-menu-item>
-										<md-button ng-click="$state.go( EDIT_STATE, {id:bankAccount.id})"><span md-menu-align-target>Editar</span></md-button>
+										<md-button ng-click="$state.go( EDIT_STATE, {id:course.id})"><span md-menu-align-target>Editar</span></md-button>
 									</md-menu-item>
 									<md-menu-item>
-										<md-button ng-click="$state.go( DETAIL_STATE, {id:bankAccount.id})"><span md-menu-align-target>Visualizar</span></md-button>
+										<md-button ng-click="$state.go( DETAIL_STATE, {id:course.id})"><span md-menu-align-target>Visualizar</span></md-button>
 									</md-menu-item>
 									<md-menu-item>
-										<md-button ng-click="changeToRemove($event, bankAccount)"><span md-menu-align-target>Excluir</span></md-button>
+										<md-button ng-click="changeToRemove($event, course)"><span md-menu-align-target>Excluir</span></md-button>
 									</md-menu-item>
 								</md-menu-content>
 							</md-menu>
@@ -70,5 +68,5 @@
 		</eits-vbox>
 	</div>
 </div>
-<md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-plus  zmdi-hc-2x" ng-click="$state.go( ADD_STATE )" aria-label="Nova Conta Bancária"></md-button>
+<md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-plus  zmdi-hc-2x" ng-click="$state.go( ADD_STATE )" aria-label="Novo curso"></md-button>
 </html>

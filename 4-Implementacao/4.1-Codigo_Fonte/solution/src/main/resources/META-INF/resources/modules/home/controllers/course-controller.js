@@ -119,9 +119,9 @@
         $scope.changeToEdit = function (id) {
         	console.debug("edit");
         	
-        	bankAccountService.findBankAccountById(id,{
+        	bankAccountService.findCourseById(id,{
         		callback: function (result) {
-        			$scope.model.bankAccount = result;
+        			$scope.model.course = result;
         			$scope.$apply();
         		},
                 errorHandler: function (message, exception) {
@@ -160,8 +160,7 @@
          */
         $scope.changeToAdd = function () {
         	console.debug("Add");
-        	$scope.model.bankAccount = new BankAccount();
-        	$scope.model.bankAccount.balance = 0;
+        	$scope.model.course = new Course();
         }
 
         /**
@@ -180,14 +179,12 @@
                 		}]
                     }
                 };
-        	 $scope.model.accountsPayable = [];
-        	 $scope.model.accountsReceivable = [];
-        	$scope.listAccountsPayableByFilters( $scope.model.filters,  $scope.model.page.pageable );
-        	$scope.listAccountReceivableByFilters( $scope.model.filters,  $scope.model.page.pageable );
+//        	$scope.model.accountsReceivable = [];
+//        	$scope.listAccountReceivableByFilters( $scope.model.filters,  $scope.model.page.pageable );
         	
-        	bankAccountService.findBankAccountById(id,{
+        	courseService.findCourseById(id,{
         		callback: function (result) {
-        			$scope.model.bankAccount = result;
+        			$scope.model.course = result;
         			$scope.$apply();
         		},
                 errorHandler: function (message, exception) {
@@ -218,11 +215,11 @@
         /**
          * 
          */
-        $scope.insertBankAccountHandler= function(bankAccount){
+        $scope.insertCourseHandler= function(course){
         	if($scope.validateForm()){
-        		bankAccountService.insertBankAccount( bankAccount, {
+        		courseService.insertCourse( course, {
 	        		callback: function(result){
-	        			$mdToast.showSimple("Conta bancária salva com sucesso!");
+	        			$mdToast.showSimple("Curso salvo com sucesso!");
 	                    $state.go($scope.LIST_STATE);
 	                    $scope.$apply();
 	        		},
@@ -267,7 +264,7 @@
 
             $mdDialog.show(confirm).then(function (result) {
             	
-            	bankAccountService.removeBankAccount(entity.id, {
+            	courseService.removeCourse(entity.id, {
                     callback: function (result) {
                         if( $state.current.name == $scope.LIST_STATE){
                             $scope.changeToList();
@@ -290,16 +287,12 @@
          * 
          */
         $scope.validateForm = function (){
-        	if($scope.model.bankAccount.name == null){
-        		$mdToast.showSimple("O nome do banco deve ser informado.");
+        	if($scope.model.course.name == null){
+        		$mdToast.showSimple("Informe o nome do curso.");
                 return false;
         	}
-        	if($scope.model.bankAccount.description == null){
-        		$mdToast.showSimple("Informe uma descrição da conta.");
-        		return false;
-        	}
-        	if($scope.model.bankAccount.balance == null){
-        		$mdToast.showSimple("Informe o saldo inicial da conta.");
+        	if($scope.model.course.description == null){
+        		$mdToast.showSimple("Informe uma descrição do curso.");
         		return false;
         	}
         	return true;
@@ -307,7 +300,7 @@
         /**
          * 
          */
-        $scope.listBankAccountsByEvents = function ( event ) {
+        $scope.listCoursesByEvents = function ( event ) {
         	
 	    	if( event.keyCode == 13 || $scope.model.filters.terms == "" ){
 	          $scope.changeToList();

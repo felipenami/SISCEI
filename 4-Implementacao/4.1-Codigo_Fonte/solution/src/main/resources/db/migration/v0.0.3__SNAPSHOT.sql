@@ -118,7 +118,6 @@ CREATE TABLE "public"."classroom"
 
 CREATE TABLE "public"."discipline"
 (
-(
   id bigint NOT NULL DEFAULT nextval('discipline_id_seq'::regclass),
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,

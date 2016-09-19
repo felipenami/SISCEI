@@ -73,13 +73,16 @@ public class Course extends AbstractEntity
 	/**
 	 * 
 	 */
-	public Course(Long id, String name, String description, Set<Discipline> discipline )
+	public Course(Long id, String name, String description )
 	{
 		super(id);
 		this.name 			= name;
 		this.description 	= description;
-		this.discipline		= discipline;
 	}
+	
+	/*-------------------------------------------------------------------
+	 *							BEHAVIORS
+	 *-------------------------------------------------------------------*/
 	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()

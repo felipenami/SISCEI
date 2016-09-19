@@ -16,8 +16,8 @@
 			  		<div layout="column" flex>
 	            		<div layout="row" flex>
 	            			<md-input-container flex="50" style="margin-right:15px;" >
-	                    		<label>Nome do banco</label>
-	                 			<input type="text" ng-model="model.bankAccount.name" name="name" required>
+	                    		<label>Nome do curso</label>
+	                 			<input type="text" ng-model="model.course.name" name="name" required>
 	                 			<div ng-messages="model.form.name.$error">
           							<div ng-message="required">Obrigatório.</div>
           						</div>
@@ -26,35 +26,36 @@
 	            		<div layout="row" flex>
 	            			<md-input-container flex="50" style="margin-right:15px;">
 	                    		<label>Descrição</label>
-	                 			<input type="text" ng-model="model.bankAccount.description" name="description" required>
+	                    		<textarea ng-model="model.course.description" name="description" md-select-on-focus required>
+	                    		
+	                    		</textarea>
 	                 			<div ng-messages="model.form.description.$error">
           							<div ng-message="required">Obrigatório.</div>
           						</div>
 	                		</md-input-container>
 	            		</div>
-	            		<div layout="row" flex>
-	            			<md-input-container flex="50" style="margin-right:15px;">
-	                    		<label>Saldo inicial</label>
-	                 			<input type="text" ng-model="model.bankAccount.balance" name="balance" ng-currency required>
-	                 			<div ng-messages="model.form.balance.$error">
-          							<div ng-message="required">Obrigatório.</div>
-          						</div>
-	                		</md-input-container>
-	            		</div>
-	            		<div>
-	            		</div>
 	           		</div>
+	            </content-opened>
+	        </eits-paper-sheet>
+	         <eits-paper-sheet id="discipline">
+	            <content-closed>
+	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
+	                    <h3>Disciplinas</h3>
+	                </eits-vbox>
+	            </content-closed>
+	            <content-opened>
+	            
 	            </content-opened>
 	        </eits-paper-sheet>
         </form>
     </div>
-     <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="!model.bankAccount.id">
-        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertBankAccountHandler(model.bankAccount)">
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="!model.course.id">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertCourseHandler(model.course)"/>
             <md-tooltip>Criar</md-tooltip>
         </md-button>
      </eits-hbox>
-     <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="model.bankAccount.id">
-        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertBankAccountHandler(model.bankAccount)">
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="model.course.id">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertCourseHandler(model.course)"/>
             <md-tooltip>Alterar</md-tooltip>
         </md-button>
      </eits-hbox>

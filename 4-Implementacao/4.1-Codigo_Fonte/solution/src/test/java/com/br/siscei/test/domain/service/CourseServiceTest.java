@@ -44,6 +44,7 @@ public class CourseServiceTest extends AbstractIntegrationTests
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 			"/dataset/matriculation/CourseDataSet.xml",
+			"/dataset/matriculation/DisciplineDataSet.xml",
 		})
 	public void findCourseByIdMustPass()
 	{
@@ -57,6 +58,7 @@ public class CourseServiceTest extends AbstractIntegrationTests
 	@Test(expected = IllegalArgumentException.class)
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 			"/dataset/matriculation/CourseDataSet.xml",
+			"/dataset/matriculation/DisciplineDataSet.xml",
 		})
 	public void findCourseByIdMustFail()
 	{
@@ -173,12 +175,22 @@ public class CourseServiceTest extends AbstractIntegrationTests
 		})
 	public void updateCourseMustPass()
 	{
+		Set<Discipline> disciplines = new HashSet<Discipline>();
+		
+		Discipline discipline = new Discipline("Excel", "Informática Básica");		
+		Discipline discipline1 = new Discipline("World", "Informática Básica");
+		
+		
+		disciplines.add( discipline );
+		disciplines.add( discipline1 );
+		
 		
 		Course course = this.courseService.findCourseById( 9999L );
 		Assert.assertNotNull(course);
 		
 		course.setDescription( "Curso de excel" );
 		course.setName( "Excel" );
+		course.setDiscipline( disciplines );
 		
 		course = this.courseService.insertCourse( course );
 		

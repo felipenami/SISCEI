@@ -15,75 +15,20 @@
 	            <content-opened>
 			  		<div layout="column" flex>
 	            		<div layout="row" flex style="padding-bottom: 50px;">
-		            		<label class="gray" flex> Nome do banco: </label>
-							<h4 class="text-word-wrap not-margin" flex="80">{{model.bankAccount.name}} </h4>
+		            		<label class="gray" flex> Nome do curso: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.course.name}} </h4>
 	            		</div>
 	            		<div layout="row" flex style="padding-bottom: 50px;">
 		            		<label class="gray" flex> Descrição: </label>
-							<h4 class="text-word-wrap not-margin" flex="80">{{model.bankAccount.description}} </h4>
-	            		</div>
-	            		<div layout="row" flex >
-	            			<label class="gray" flex> Saldo inicial: </label>
-							<h4 class="text-word-wrap not-margin" flex="80">{{model.bankAccount.balance | currency}} </h4>
-	            		</div>
-	            		<div>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.course.description}} </h4>
 	            		</div>
 	           		</div>
 	            </content-opened>
 	        </eits-paper-sheet>
-<!-- 	        <eits-paper-sheet id="movimentation"> -->
-<!-- 	            <content-closed> -->
-<!-- 	                <eits-vbox padding-left="30" padding-right="30" padding-top="5"> -->
-<!-- 	                    <h3>Movimentações</h3> -->
-<!-- 	                </eits-vbox> -->
-<!-- 	            </content-closed> -->
-<!-- 	            <content-opened> -->
-<!-- 	            <md-card> -->
-<!-- 					<h4 flex style="margin-left:24px">Contas a pagar</h4> -->
-<!-- 					<md-table-container> -->
-<!-- 						<table md-table> -->
-<!-- 						    <tbody md-body> -->
-<!-- 						      <tr md-row  ng-repeat="accountPayable in model.accountsPayable" ng-style="accountPayableLate(accountPayable)"> -->
-<!-- 						        <td md-cell>{{accountPayable.description}}</td> -->
-<!-- 						        <td md-cell></td> -->
-<!-- 						        <td md-cell>{{accountPayable.dueDate | date: 'dd/MM/yyyy' }}</td> -->
-<!-- 						        <td md-cell> -->
-						        	
-<!-- 					        	</td> -->
-<!-- 						        <td md-cell style="color: #F44336" >{{-accountPayable.value | number: 2 }}</td> -->
-<!-- 						        <td md-cell style="width: 5px; padding: 0 0 0 0;"> -->
-<!-- 						        </td> -->
-<!-- 						      </tr> -->
-<!-- 						    </tbody> -->
-<!-- 						</table> -->
-<!-- 					</md-table-container> -->
-<!-- 					</md-card> -->
-<!-- 					<md-card> -->
-<!-- 					<h4 flex style="margin-left:24px">Contas a Receber</h4> -->
-<!-- 					<md-table-container> -->
-<!-- 						<table md-table> -->
-<!-- 						    <tbody md-body> -->
-<!-- 						      <tr md-row  ng-repeat="accountReceivable in model.accountsReceivable" ng-style="accountReceivableLate(accountReceivable)"> -->
-<!-- 						        <td md-cell>{{accountReceivable.description}}</td> -->
-<!-- 						        <td md-cell></td> -->
-<!-- 						        <td md-cell>{{accountReceivable.dueDate | date: 'dd/MM/yyyy' }}</td> -->
-<!-- 						        <td md-cell> -->
-						        	
-<!-- 					        	</td> -->
-<!-- 						        <td md-cell style="color: #4CAF50" >{{accountReceivable.value | number:2 }}</td> -->
-<!-- 						        <td md-cell style="width: 5px; padding: 0 0 0 0;"> -->
-<!-- 						        </td> -->
-<!-- 						      </tr> -->
-<!-- 						    </tbody> -->
-<!-- 						</table> -->
-<!-- 					</md-table-container> -->
-<!-- 					</md-card> -->
-<!-- 	            </content-opened> -->
-<!-- 	        </eits-paper-sheet> -->
         </form>
     </div>
      <eits-hbox vertical-align="center" horizontal-align="center" gap="90">
-        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-long-arrow-return md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="$state.go('bankAccount.list')">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-long-arrow-return md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="$state.go('course.list')">
             <md-tooltip>Voltar</md-tooltip>
         </md-button>
      </eits-hbox>
