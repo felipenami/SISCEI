@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<public.course
+	<public.discipline
 		id="9999"
 		created="2015-03-30 00:00:00"
 		description="Curso de excel"
-		name="Excel"/>
-	<public.course
+		name="Excel"
+		course_id = "9999"/>
+	<public.discipline
 		id="9998"
 		created="2015-03-30 00:00:00"
 		description="Módulo 1"
-		name="Ingles"/>
-	<public.course
+		name="Ingles"
+		course_id = "9999"/>
+	<public.discipline
 		id="9997"
 		created="2015-03-30 00:00:00"
 		description="Photoshop, corel"
-		name="Informática avançada"/>
+		name="Informática avançada"
+		course_id = "9999"/>
 </dataset>

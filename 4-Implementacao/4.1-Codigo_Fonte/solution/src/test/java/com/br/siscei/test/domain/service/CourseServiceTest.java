@@ -3,6 +3,9 @@
  */
 package com.br.siscei.test.domain.service;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.ValidationException;
 
 import org.junit.Assert;
@@ -11,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
 import com.br.siscei.domain.entity.matriculation.Course;
+import com.br.siscei.domain.entity.matriculation.Discipline;
 import com.br.siscei.domain.service.CourseService;
 import com.br.siscei.test.domain.AbstractIntegrationTests;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
@@ -27,7 +31,9 @@ public class CourseServiceTest extends AbstractIntegrationTests
 	 *-------------------------------------------------------------------*/
 	@Autowired
 	private CourseService courseService;
-	
+	/**
+	 * 
+	 */
 	/*-------------------------------------------------------------------
 	 *				 		    COURSE TESTS
 	 *-------------------------------------------------------------------*/
@@ -61,19 +67,33 @@ public class CourseServiceTest extends AbstractIntegrationTests
      * Objetivo: Success.
      * Motivo: O objeto {@link Course} é instanciado e inserido corretamente
      */
+	
 	@Test
 	public void insertCourseMustPass()
 	{
+		Set<Discipline> disciplines = new HashSet<Discipline>();
+				
+		Discipline discipline = new Discipline("Excel", "Informática Básica");		
+		Discipline discipline1 = new Discipline("World", "Informática Básica");
+		Discipline discipline2 = new Discipline("Power Point","Informática Básica");
+		
+		disciplines.add( discipline );
+		disciplines.add( discipline1 );
+		disciplines.add( discipline2 );
+		
+		
 		Course course = new Course();
 		
 		course.setDescription( "Descrição teste" );
 		course.setName( "Curso teste" );
+		course.setDiscipline( disciplines );
 		
 		course = this.courseService.insertCourse( course );
 		
 		Assert.assertNotNull(course);
 		Assert.assertNotNull(course.getDescription());
 		Assert.assertNotNull(course.getName());
+		Assert.assertNotNull(course.getDiscipline());
 	}
 	/**
 	 * Objetivo: Fail.

@@ -56,7 +56,7 @@ public class Course extends AbstractEntity
 	/**
 	 * 
 	 */
-	@OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true)
 	private Set<Discipline> discipline = new HashSet<Discipline>();
 	/**
 	 * 
@@ -73,11 +73,12 @@ public class Course extends AbstractEntity
 	/**
 	 * 
 	 */
-	public Course(Long id, String name, String description, CourseType type)
+	public Course(Long id, String name, String description, Set<Discipline> discipline )
 	{
 		super(id);
 		this.name 			= name;
 		this.description 	= description;
+		this.discipline		= discipline;
 	}
 	
 	/* (non-Javadoc)
@@ -89,7 +90,6 @@ public class Course extends AbstractEntity
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result + ( ( description == null ) ? 0 : description.hashCode() );
-		result = prime * result + ( ( discipline == null ) ? 0 : discipline.hashCode() );
 		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
 		return result;
 	}
@@ -109,11 +109,6 @@ public class Course extends AbstractEntity
 			if ( other.description != null ) return false;
 		}
 		else if ( !description.equals( other.description ) ) return false;
-		if ( discipline == null )
-		{
-			if ( other.discipline != null ) return false;
-		}
-		else if ( !discipline.equals( other.discipline ) ) return false;
 		if ( name == null )
 		{
 			if ( other.name != null ) return false;

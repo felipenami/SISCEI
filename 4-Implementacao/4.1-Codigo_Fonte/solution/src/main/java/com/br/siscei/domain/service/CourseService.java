@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import com.br.siscei.domain.entity.matriculation.Course;
+import com.br.siscei.domain.entity.matriculation.Discipline;
 import com.br.siscei.domain.repository.matriculation.ICourseRepository;
+import com.br.siscei.domain.repository.matriculation.IDisciplineRepository;
 
 /**
  * @author felipenami
@@ -34,6 +36,11 @@ public class CourseService
 	/**
 	 * 
 	 */
+	@Autowired
+	private IDisciplineRepository disciplineRepository;
+	/**
+	 * 
+	 */
 	/*-------------------------------------------------------------------
 	 *				 		     SERVICES
 	 *-------------------------------------------------------------------*/
@@ -49,14 +56,24 @@ public class CourseService
 		return course;
 	}
 	/**
-	 * 
 	 * @param course
 	 * @return
 	 */
 	public Course insertCourse(Course course)
 	{
 		Assert.notNull(course);
-		return this.courseRepository.saveAndFlush( course );
+		
+		if(course.getDiscipline()!= null)
+		{
+			for( Discipline discipline : course.getDiscipline() )
+			{
+				discipline.setCourse( course );
+			}
+		}
+		
+		course =  this.courseRepository.saveAndFlush( course );
+		
+		return course;
 	}
 	
 	public Page<Course> listCoursesByFilters(String filter, PageRequest pageable)
@@ -74,6 +91,30 @@ public class CourseService
 		
 		this.courseRepository.delete( id );
 		
+	}
+	/*-------------------------------------------------------------------
+	 *				 		     DISCIPLINE
+	 *-------------------------------------------------------------------*/	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Discipline findDisciplineById( Long id )
+	{
+		final Discipline discipline = this.disciplineRepository.findOne( id );
+		Assert.notNull(discipline, "Não foi possivel encontar a disciplina com o id: "+id);
+		return discipline;
+	}
+	/**
+	 * 
+	 * @param filter
+	 * @param pageable
+	 * @return
+	 */
+	public Page<Discipline> listDisciplinesByFilters(String filter, PageRequest pageable)
+	{
+		return this.disciplineRepository.listByFilters( filter, pageable );
 	}
 	
 }

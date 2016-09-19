@@ -48,8 +48,11 @@ public class Discipline extends AbstractEntity
 	/**
 	 * 
 	 */
-	@ManyToOne(fetch=FetchType.EAGER,optional=false, cascade={CascadeType.MERGE, CascadeType.PERSIST} )
-	private ClassRoom classroom;
+	@ManyToOne(fetch=FetchType.EAGER,optional=false, cascade={CascadeType.ALL, CascadeType.PERSIST} )
+	private Course course;
+	/**
+	 * 
+	 */
 	/*-------------------------------------------------------------------
 	 * 		 					CONSTRUCTORS
 	 *-------------------------------------------------------------------*/
@@ -60,6 +63,30 @@ public class Discipline extends AbstractEntity
 	public Discipline()
 	{
 		
+	}
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param description
+	 */
+	public Discipline(String name, String description)
+	{
+		this.name			= name;
+		this.description	= description;
+	}
+	/**
+	 * @param id
+	 * @param name
+	 * @param description
+	 * @param course
+	 */
+	public Discipline(Long id, String name, String description, Course course)
+	{
+		super(id);
+		this.name			= name;
+		this.description	= description;
+		this.course			= course;
 	}
 	
 	/*-------------------------------------------------------------------
@@ -74,7 +101,7 @@ public class Discipline extends AbstractEntity
 	{
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ( ( classroom == null ) ? 0 : classroom.hashCode() );
+		result = prime * result + ( ( course == null ) ? 0 : course.hashCode() );
 		result = prime * result + ( ( description == null ) ? 0 : description.hashCode() );
 		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
 		return result;
@@ -90,11 +117,11 @@ public class Discipline extends AbstractEntity
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
 		Discipline other = ( Discipline ) obj;
-		if ( classroom == null )
+		if ( course == null )
 		{
-			if ( other.classroom != null ) return false;
+			if ( other.course != null ) return false;
 		}
-		else if ( !classroom.equals( other.classroom ) ) return false;
+		else if ( !course.equals( other.course ) ) return false;
 		if ( description == null )
 		{
 			if ( other.description != null ) return false;
@@ -144,18 +171,19 @@ public class Discipline extends AbstractEntity
 	}
 
 	/**
-	 * @return the classroom
+	 * @return the course
 	 */
-	public ClassRoom getClassroom()
+	public Course getCourse()
 	{
-		return classroom;
+		return course;
 	}
 
 	/**
-	 * @param classroom the classroom to set
+	 * @param course the course to set
 	 */
-	public void setClassroom( ClassRoom classroom )
+	public void setCourse( Course course )
 	{
-		this.classroom = classroom;
+		this.course = course;
 	}
+
 }

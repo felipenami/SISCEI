@@ -10,7 +10,6 @@ CREATE TABLE auditing.course_audited
   revision_type smallint,
   description character varying(255),
   name character varying(255),
-  type integer,
   CONSTRAINT course_audited_pkey PRIMARY KEY (id, revision),
   CONSTRAINT fk_course_audited_revision FOREIGN KEY (revision)
       REFERENCES auditing.revision (id) MATCH SIMPLE
@@ -44,7 +43,7 @@ CREATE TABLE auditing.discipline_audited
   revision_type smallint,
   description character varying(144),
   name character varying(144),
-  classroom_id bigint,
+  course_id bigint,
   CONSTRAINT discipline_audited_pkey PRIMARY KEY (id, revision),
   CONSTRAINT fk_discipline_audited_revision FOREIGN KEY (revision)
       REFERENCES auditing.revision (id) MATCH SIMPLE
@@ -56,7 +55,7 @@ CREATE TABLE auditing.discipline_audited
 --
 CREATE TABLE auditing.student_audited
 (
-  dtype character varying(31) NOT NULL,
+	dtype character varying(31) NOT NULL,
   id bigint NOT NULL,
   revision bigint NOT NULL,
   revision_type smallint,
@@ -86,12 +85,11 @@ CREATE TABLE auditing.student_audited
 --
 CREATE TABLE "public"."course"
 (
-  id bigserial NOT NULL,
+  id bigint NOT NULL DEFAULT nextval('course_id_seq'::regclass),
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
   description character varying(255) NOT NULL,
   name character varying(255) NOT NULL,
-  type integer NOT NULL,
   CONSTRAINT course_pkey PRIMARY KEY (id)
 );
 --
@@ -101,7 +99,7 @@ CREATE TABLE "public"."course"
 
 CREATE TABLE "public"."classroom"
 (
-  id bigserial NOT NULL,
+  id bigint NOT NULL DEFAULT nextval('classroom_id_seq'::regclass),
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
   name character varying(144) NOT NULL,
@@ -109,7 +107,7 @@ CREATE TABLE "public"."classroom"
   course_id bigint,
   CONSTRAINT classroom_pkey PRIMARY KEY (id),
   CONSTRAINT fk_classroom_course_id FOREIGN KEY (course_id)
-      REFERENCES course (id) MATCH SIMPLE
+      REFERENCES public.course (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
@@ -120,15 +118,16 @@ CREATE TABLE "public"."classroom"
 
 CREATE TABLE "public"."discipline"
 (
-  id bigserial NOT NULL,
+(
+  id bigint NOT NULL DEFAULT nextval('discipline_id_seq'::regclass),
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
   description character varying(144) NOT NULL,
   name character varying(144) NOT NULL,
-  classroom_id bigint NOT NULL,
+  course_id bigint NOT NULL,
   CONSTRAINT discipline_pkey PRIMARY KEY (id),
-  CONSTRAINT fk_discipline_classroom_id FOREIGN KEY (classroom_id)
-      REFERENCES classroom (id) MATCH SIMPLE
+  CONSTRAINT fk_discipline_course_id FOREIGN KEY (course_id)
+      REFERENCES public.course (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 --
@@ -139,7 +138,7 @@ CREATE TABLE "public"."discipline"
 CREATE TABLE "public"."student"
 (
   dtype character varying(31) NOT NULL,
-  id bigserial NOT NULL,
+  id bigint NOT NULL DEFAULT nextval('student_id_seq'::regclass),
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
   cpf character varying(16) NOT NULL,
@@ -152,9 +151,9 @@ CREATE TABLE "public"."student"
   user_id bigint,
   CONSTRAINT student_pkey PRIMARY KEY (id),
   CONSTRAINT fk_student_address_id FOREIGN KEY (address_id)
-      REFERENCES address (id) MATCH SIMPLE
+      REFERENCES public.address (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT fk_student_user_id FOREIGN KEY (user_id)
-      REFERENCES "user" (id) MATCH SIMPLE
+      REFERENCES public."user" (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );

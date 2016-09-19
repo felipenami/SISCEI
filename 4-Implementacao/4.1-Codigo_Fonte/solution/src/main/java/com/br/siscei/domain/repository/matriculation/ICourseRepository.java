@@ -20,7 +20,7 @@ import com.br.siscei.domain.entity.matriculation.Course;
 public interface ICourseRepository extends JpaRepository<Course, Long>
 {
 
-	@Query(value = "SELECT new Course (course.id, course.name, course.description) " +
+	@Query(value = "SELECT new Course (course.id, course.name, course.description, course.discipline) " +
 				   	"From Course course " +
 			 	   	"WHERE ((FILTER( course.name, :filter ) = TRUE)) ")
 			public Page<Course>listByFilters(@Param("filter") String filter, Pageable pageable);

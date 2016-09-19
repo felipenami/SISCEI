@@ -11,4 +11,5 @@
 	<public.account_payable/>
 	<public.account_receivable/>
 	<public.course/>
+	<public.discipline/>
 </dataset>
