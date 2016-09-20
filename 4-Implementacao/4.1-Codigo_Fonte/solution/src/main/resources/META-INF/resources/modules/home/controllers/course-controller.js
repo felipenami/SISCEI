@@ -58,6 +58,7 @@
         $scope.model = {
                 form    : {},
                 course : new Course(),
+                listDisciplines : [],
                 filters: {
                     terms: [],
                 },
@@ -351,8 +352,54 @@
                     $scope.$apply();
                 }
             });
-        }	    
-	
+        }
+        /**
+         * 
+         */
+        $scope.downloadCourseReport = function( courseId ){
+        	
+        	courseService.downloadCourseReport( courseId,{
+        		callBack : function(result){
+        			dwr.engine.openInDownload( result );
+        			$scope.$apply();
+        		},
+        		errorHandler : function(message, exception){
+        			 $mdToast.showSimple(message);
+                     $scope.$apply();
+        		}
+        	});
+        };
+        /**
+         * 
+         */
+        $scope.openPopupDiscipline = function(event, discipline){
+
+            $mdDialog.show({
+                templateUrl: 'modules/home/views/course/popup/discipline-popup.html',
+                targetEvent: event,
+                scope: $scope.$new(),
+                resolve: {
+                    discipline: function() {
+                        return discipline;
+                    },
+                    listDisiciplines: function() {
+                        return $scope.model.listDisciplines;
+                    }
+                }
+            }).then(function(result){
+                $timeout( function(){angular.element('md-tab-item')[0].click();});
+                $scope.model.listDisciplines = result;
+
+            });
+            
+            $scope.close = function () {
+                $mdDialog.cancel();
+            };
+        };
+        
+        
+        
+        
         
 	});
 	

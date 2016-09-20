@@ -30,6 +30,8 @@ import com.br.siscei.application.security.AuthenticationFailureHandler;
 import com.br.siscei.application.security.AuthenticationSuccessHandler;
 
 import br.com.eits.common.application.i18n.ResourceBundleMessageSource;
+import br.com.eits.common.infrastructure.report.IReportManager;
+import br.com.eits.common.infrastructure.report.jasper.JasperReportManager;
 
 /**
  * 
@@ -152,6 +154,16 @@ public class Application extends SpringBootServletInitializer
 								.logoutUrl( "/logout" );
 		}
 	}
+	/**
+	 * 
+	 * @return
+	 */
+	@Bean
+	public IReportManager reportManager()
+	{
+		return new JasperReportManager();
+	}
+	
 	
 	//---------
 	// Web Config

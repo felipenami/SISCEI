@@ -37,16 +37,60 @@
 	           		</div>
 	            </content-opened>
 	        </eits-paper-sheet>
-	         <eits-paper-sheet id="discipline">
-	            <content-closed>
-	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
-	                    <h3>Disciplinas</h3>
-	                </eits-vbox>
-	            </content-closed>
-	            <content-opened>
-	            
-	            </content-opened>
-	        </eits-paper-sheet>
+			<eits-paper-sheet id="discipline">
+                <content-closed style="height:110px">
+                    <eits-vbox padding-left="30" padding-right="30">
+                        <div layout="row">
+                            <div layout="row" flex="20">
+                                <h3>Disciplina</h3>
+                            </div>
+
+                            <div layout="row" layout-align="end start" class="colorNested" flex style="padding-top:10px;">
+                                <md-button ng-click="openPopupDiscipline(event, model.course)" name="user" ng-model="model.training.user.name" class="md-raised">ADICIONAR DISCIPLINA</md-button>
+                            </div>
+                        </div>
+                    </eits-vbox>
+                </content-closed>
+                <content-opened>
+                    <div>
+                        <md-tabs md-dynamic-height md-border-bottom>
+                            <md-tab label="Disciplinas">
+                                <md-content class="md-padding tab-internal-user">
+                                    <md-list ng-if="model.listInternalUsers.length > 0" style="max-height:500px;overflow:auto;">
+                                        <md-list-item class="md-3-line box-list-item box-whiteframe md-whiteframe-z2" ng-repeat="internalUser in model.listInternalUsers">
+
+                                            <div layout="row" flex>
+                                                 <div layout="column" style="padding-bottom:15px;" flex="80">
+                                                    <div class="box-text-overflow" style="margin: 15px 0 15px 0;">
+                                                        <label>{{internalUser.name}}</label>
+                                                    </div>
+                                                    <div layout="row">
+                                                        <div class="box-text-overflow" style="margin-right:10px;" flex>
+                                                            <label class="grey" title="{{user.department.name}}">Depto: {{internalUser.department.name}}</label>
+                                                        </div>
+                                                        <div class="box-text-overflow" flex>
+                                                            <label class="grey" title="{{user.department.manager.name}}">Gestor: {{internalUser.department.manager.name}}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div layout="row" layout-align="end center" flex>
+                                                    <md-button class="md-icon-lg md-icon-delete remove-item" aria-label="blue" ng-click="removeInternalUser(internalUser)">
+                                                        <md-tooltip>Remover</md-tooltip>
+                                                    </md-button>
+                                                </div>
+                                            </div>
+                                        </md-list-item>
+                                    </md-list>
+                                    <eits-vbox horizontal-align="center" vertical-align="center" gap="20" width="100%" ng-if="model.listInternalUsers.length == 0">
+                                        <md-icon class="md-icon-5x md-icon-search" style="color:#A2A2A2;margin-right:390px"></md-icon>
+                                        <label class="grey">Nenhum participante adicionado no momento</label>
+                                    </eits-vbox>
+                                </md-content>
+                            </md-tab>
+                        </md-tabs>
+                    </div>
+                </content-opened>
+            </eits-paper-sheet>	        
         </form>
     </div>
      <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="!model.course.id">
