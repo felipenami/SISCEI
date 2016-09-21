@@ -211,6 +211,34 @@
 			templateUrl : "./modules/home/views/course/course-detail.html"
 		});
 		
+    	/*-------------------------------------------------------------------
+    	 *				 		     CLASSROOM
+    	 *-------------------------------------------------------------------*/
+		$stateProvider.state('classroom',{
+			abstract: true,
+			url : "/classroom",
+			template: '<div ui-view/>',
+			controller : 'ClassroomController as classroomController'
+		})
+		.state('classroom.list',{
+			url : "/list",
+			templateUrl : "./modules/home/views/classroom/classroom-list.html"
+		})
+		.state('classroom.add',{
+			url : "/add",
+			templateUrl : "./modules/home/views/classroom/classroom-form.html"
+		})
+		.state('classroom.edit',{
+			url : "/edit/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/classroom/classroom-form.html"
+		})
+		.state('classroom.detail',{
+			url : "/detail/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/classroom/classroom-detail.html"
+		});
+		
+		
+		
 	});
 	/**
 	 * 

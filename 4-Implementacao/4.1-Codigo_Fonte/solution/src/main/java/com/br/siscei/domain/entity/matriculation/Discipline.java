@@ -48,7 +48,7 @@ public class Discipline extends AbstractEntity
 	/**
 	 * 
 	 */
-	@ManyToOne(fetch=FetchType.EAGER,optional=false, cascade={CascadeType.ALL, CascadeType.PERSIST} )
+	@ManyToOne(fetch=FetchType.EAGER,optional=false, cascade={CascadeType.PERSIST} )
 	private Course course;
 	/**
 	 * 

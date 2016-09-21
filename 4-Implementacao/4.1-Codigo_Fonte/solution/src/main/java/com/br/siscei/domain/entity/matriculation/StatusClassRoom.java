@@ -16,45 +16,7 @@ public enum StatusClassRoom
 	 *				 		     ENUMS
 	 *-------------------------------------------------------------------*/
 	
-	OPEN("Aberto"),
-	CLOSED("Fechado");
+	OPEN, //0
+	CLOSED; //1
 	
-	/*-------------------------------------------------------------------
-	 *				 		     ATTRIBUTE
-	 *-------------------------------------------------------------------*/
-	/**
-	 * 
-	 */
-	private String description;
-	/*-------------------------------------------------------------------
-	 *				 		     CONSTRUCTOR
-	 *-------------------------------------------------------------------*/
-
-	/**
-	 * @param description
-	 */
-	private StatusClassRoom( String description )
-	{
-		this.description = description;
-	}
-
-	/*-------------------------------------------------------------------
-	 *						GETTERS AND SETTERS
-	 *-------------------------------------------------------------------*/
-
-	/**
-	 * @return the description
-	 */
-	public String getDescription()
-	{
-		return description;
-	}
-
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription( String description )
-	{
-		this.description = description;
-	}
 }

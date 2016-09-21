@@ -21,10 +21,11 @@ CREATE TABLE auditing.course_audited
 --
 CREATE TABLE auditing.classroom_audited
 (
-  id bigint NOT NULL,
+   id bigint NOT NULL,
   revision bigint NOT NULL,
   revision_type smallint,
-  name character varying(144),
+  name character varying(60),
+  schedule timestamp without time zone,
   status integer,
   course_id bigint,
   CONSTRAINT classroom_audited_pkey PRIMARY KEY (id, revision),
@@ -99,15 +100,16 @@ CREATE TABLE "public"."course"
 
 CREATE TABLE "public"."classroom"
 (
-  id bigint NOT NULL DEFAULT nextval('classroom_id_seq'::regclass),
+  id bigserial NOT NULL,
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
-  name character varying(144) NOT NULL,
+  name character varying(60) NOT NULL,
+  schedule timestamp without time zone,
   status integer NOT NULL,
   course_id bigint,
   CONSTRAINT classroom_pkey PRIMARY KEY (id),
   CONSTRAINT fk_classroom_course_id FOREIGN KEY (course_id)
-      REFERENCES public.course (id) MATCH SIMPLE
+      REFERENCES course (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 

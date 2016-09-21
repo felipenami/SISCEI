@@ -3,7 +3,11 @@
  */
 package com.br.siscei.domain.repository.matriculation;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.br.siscei.domain.entity.matriculation.ClassRoom;
 
@@ -15,5 +19,9 @@ import com.br.siscei.domain.entity.matriculation.ClassRoom;
  */
 public interface IClassRoomRepository extends JpaRepository<ClassRoom, Long>
 {
-
+	@Query(value = "SELECT new ClassRoom (classRoom.id, classRoom.name, classRoom.schedule, classRoom.status, classRoom.course ) " +
+		   	"From ClassRoom classRoom " +
+	 	   	"WHERE ((FILTER( classRoom.name, :filter ) = TRUE)) ")
+	public Page<ClassRoom>listByFilters(@Param("filter") String filter, 
+										Pageable pageable);
 }

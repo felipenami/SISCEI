@@ -120,9 +120,10 @@
         $scope.changeToEdit = function (id) {
         	console.debug("edit");
         	
-        	bankAccountService.findCourseById(id,{
+        	courseService.findCourseById(id,{
         		callback: function (result) {
         			$scope.model.course = result;
+        			$scope.model.listDisciplines = $scope.model.course.discipline;
         			$scope.$apply();
         		},
                 errorHandler: function (message, exception) {
@@ -170,20 +171,6 @@
          */
         $scope.changeToDetail = function (id) {
         	console.debug("Detail");
-        	$scope.model.page.pageable = {
-                	size: 9,
-                	page: 0,
-                	sort: {
-                		orders: [{ 
-                			direction: 'ASC',
-                			property: 'dueDate',
-                			nullHandlingHint: null
-                		}]
-                    }
-                };
-//        	$scope.model.accountsReceivable = [];
-//        	$scope.listAccountReceivableByFilters( $scope.model.filters,  $scope.model.page.pageable );
-        	
         	courseService.findCourseById(id,{
         		callback: function (result) {
         			$scope.model.course = result;
@@ -236,25 +223,6 @@
         /**
          * 
          */
-        $scope.updateBankAccountHandler = function( bankAccount ){
-        	if($scope.validateForm()){
-        		bankAccountService.updateBankAccount( bankAccount, {
-	        		callback: function(result){
-	        			$mdToast.showSimple("Registro alterado com sucesso!");
-	                    $state.go($scope.LIST_STATE);
-	                    $scope.$apply();
-	        		},
-	        		 errorHandler: function (message, exception) {
-	                     $mdToast.showSimple(message);
-	                     $scope.$apply();
-	                 }
-	        	})        		
-        		
-        	}
-        }
-        /**
-         * 
-         */
         $scope.changeToRemove = function (event, entity) {
             console.debug("changeToRemove", entity);
 
@@ -298,7 +266,7 @@
         		$mdToast.showSimple("Informe uma descrição do curso.");
         		return false;
         	}
-        	if($scope.model.course.discipline == null){
+        	if($scope.model.course.discipline == "" ){
         		$mdToast.showSimple("O curso dever ter ao menos uma disciplina.");
         		return false;
         	}
@@ -321,44 +289,6 @@
 	    	$scope.model.filters.terms = "";
 	    	$scope.changeToList();
 	    };
-	    /**
-	     * 
-	     */
-	    $scope.listAccountsPayableByFilters = function(filters, pageRequest){
-        	
-        	accountPayableService.listAccountsPayableByFilters( filters.terms.toString() , pageRequest, {
-                callback: function (result) {
-                    $scope.model.accountsPayable = $scope.model.accountsPayable.concat(result.content);
-                    $scope.getAccountsPayableTotal($scope.model.accountsPayable);
-                    $scope.model.showLoading = false;
-                    $scope.model.notFound = result.totalElements == 0 ? true : false;
-                    $scope.$apply();
-                },
-                errorHandler: function (message, exception) {
-                    $mdToast.showSimple(message);
-                    $scope.$apply();
-                }
-            });
-        }
-        /**
-         * 
-         */
-        $scope.listAccountReceivableByFilters = function(filters, pageRequest){
-        				   
-        	accountReceivableService.listAccountsReceivableByFilters( filters.terms.toString() , pageRequest, {
-                callback: function (result) {
-                    $scope.model.accountsReceivable = $scope.model.accountsReceivable.concat(result.content);
-                    $scope.getAccountsReceivableTotal($scope.model.accountsReceivable);
-                    $scope.model.showLoading = false;
-                    $scope.model.notFound = result.totalElements == 0 ? true : false;
-                    $scope.$apply();
-                },
-                errorHandler: function (message, exception) {
-                    $mdToast.showSimple(message);
-                    $scope.$apply();
-                }
-            });
-        }
         /**
          * 
          */

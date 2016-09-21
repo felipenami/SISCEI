@@ -10,7 +10,7 @@
 					<span ng-if="!filter.show"  flex >Cursos</span>
 					<form flex ng-if="filter.show">
 						<md-icon class="zmdi zmdi-search zmdi-hc-lg" ></md-icon>
-               			<input ng-model="model.filters.terms" type="text" style="border:none; outline: none;" placeholder="Pesquisar" ng-keyup="listBankAccountsByEvents($event)">
+               			<input ng-model="model.filters.terms" type="text" style="border:none; outline: none;" placeholder="Pesquisar" ng-keyup="listCoursesByEvents($event)">
                		</form>
                		<md-button ng-if="filter.show" class="md-icon-button md-button md-ink-ripple" ng-click="clearFilters()">
               			<md-icon class="zmdi zmdi-close zmdi-hc-lg"></md-icon>

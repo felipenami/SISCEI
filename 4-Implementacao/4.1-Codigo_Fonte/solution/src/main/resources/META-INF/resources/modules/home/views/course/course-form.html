@@ -59,7 +59,7 @@
 							      </tr>
 							    </thead>
 							    <tbody md-body>
-							      <tr  md-row md-select="discipline" ng-repeat="discipline in model.listDisciplines">
+							      <tr  md-row md-select="discipline" ng-repeat="discipline in model.listDisciplines | orderBy:'name'">
 							        <td md-cell>{{discipline.name}}</td>
 							        <td md-cell>{{discipline.description}}</td>
 							        <td md-cell style="width: 5px;">

@@ -56,7 +56,7 @@ public class Course extends AbstractEntity
 	/**
 	 * 
 	 */
-	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, fetch=FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(mappedBy = "course", cascade = {CascadeType.ALL}, fetch=FetchType.EAGER, orphanRemoval = true)
 	private Set<Discipline> discipline = new HashSet<Discipline>();
 	/**
 	 * 
