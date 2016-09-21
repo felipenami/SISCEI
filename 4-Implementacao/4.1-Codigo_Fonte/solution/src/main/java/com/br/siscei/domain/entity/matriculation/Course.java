@@ -45,13 +45,13 @@ public class Course extends AbstractEntity
 	 * 
 	 */
 	@NotEmpty
-	@Column(nullable = false)
+	@Column(nullable = false, length = 60)
 	private String name;
 	/**
 	 * 
 	 */
 	@NotEmpty
-	@Column(nullable = false)
+	@Column(nullable = false, length = 144 )
 	private String description;
 	/**
 	 * 

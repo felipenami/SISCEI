@@ -38,7 +38,7 @@ public class Discipline extends AbstractEntity
 	/**
 	 * 
 	 */
-	@Column(nullable = false, length = 144)
+	@Column(nullable = false, length = 60)
 	private String name;
 	/**
 	 * 

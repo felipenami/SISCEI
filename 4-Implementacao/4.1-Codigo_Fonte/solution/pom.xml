@@ -219,8 +219,13 @@
         		<artifactId>maven-resources-plugin</artifactId>
         		<configuration>
           			<nonFilteredFileExtensions>
-            			<nonFilteredFileExtension>ico</nonFilteredFileExtension>
-            			<nonFilteredFileExtension>pdf</nonFilteredFileExtension>
+						<nonFilteredFileExtension>ico</nonFilteredFileExtension>
+						<nonFilteredFileExtension>pdf</nonFilteredFileExtension>
+						<nonFilteredFileExtension>jasper</nonFilteredFileExtension>
+						<nonFilteredFileExtension>zip</nonFilteredFileExtension>
+						<nonFilteredFileExtension>db</nonFilteredFileExtension>
+						<nonFilteredFileExtension>tar</nonFilteredFileExtension>
+						<nonFilteredFileExtension>tar.gz</nonFilteredFileExtension>
           			</nonFilteredFileExtensions>
         		</configuration>
       		</plugin>

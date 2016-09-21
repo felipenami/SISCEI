@@ -162,6 +162,7 @@
         $scope.changeToAdd = function () {
         	console.debug("Add");
         	$scope.model.course = new Course();
+        	$scope.model.listDisciplines = [];
         }
 
         /**
@@ -217,6 +218,7 @@
          * 
          */
         $scope.insertCourseHandler= function(course){
+        	course.discipline = $scope.model.listDisciplines;
         	if($scope.validateForm()){
         		courseService.insertCourse( course, {
 	        		callback: function(result){
@@ -296,6 +298,10 @@
         		$mdToast.showSimple("Informe uma descrição do curso.");
         		return false;
         	}
+        	if($scope.model.course.discipline == null){
+        		$mdToast.showSimple("O curso dever ter ao menos uma disciplina.");
+        		return false;
+        	}
         	return true;
         }
         /**
@@ -356,19 +362,19 @@
         /**
          * 
          */
+        
         $scope.downloadCourseReport = function( courseId ){
-        	
-        	courseService.downloadCourseReport( courseId,{
-        		callBack : function(result){
-        			dwr.engine.openInDownload( result );
-        			$scope.$apply();
+        	courseService.downloadCourseReport( courseId, {
+        		callback: function (result) {
+        				dwr.engine.openInDownload( result );
+        				$scope.$apply();
         		},
-        		errorHandler : function(message, exception){
-        			 $mdToast.showSimple(message);
-                     $scope.$apply();
+        		errorHandler: function (message, exception) {
+    				$eitsToast.error(message);
+    				$scope.$apply();
         		}
-        	});
-        };
+       		});
+       };
         /**
          * 
          */
@@ -378,27 +384,25 @@
                 templateUrl: 'modules/home/views/course/popup/discipline-popup.html',
                 targetEvent: event,
                 scope: $scope.$new(),
-                resolve: {
-                    discipline: function() {
+                controller: "DisciplinePopupController",
+                resolve:{
+                	discipline: function(){
                         return discipline;
-                    },
-                    listDisiciplines: function() {
-                        return $scope.model.listDisciplines;
                     }
                 }
             }).then(function(result){
-                $timeout( function(){angular.element('md-tab-item')[0].click();});
-                $scope.model.listDisciplines = result;
-
+                $scope.model.listDisciplines.push( result );
             });
-            
-            $scope.close = function () {
-                $mdDialog.cancel();
-            };
         };
-        
-        
-        
+        /**
+         * 
+         */
+        $scope.removeDiscipline = function (discipline){
+
+            var index = $scope.model.listDisciplines.indexOf(discipline);
+            $scope.model.listDisciplines.splice(index, 1);
+        };
+
         
         
 	});
