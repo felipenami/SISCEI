@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+<meta charset="UTF-8">
+<div ng-init="calculateWindowHeight()" id="sectionsWindow" style="overflow:auto;" class="training-form" >
+
+    <div layout-align="center center" style="width:820px;margin:0 auto;position:relative;top:-1px;z-index:2;" class="training-form">
+        <form name="model.form" novalidate>
+	        <eits-paper-sheet id="information" ng-init="openPaper('information')">
+	            <content-closed>
+	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
+	                    	<h3>Informações</h3>
+	                </eits-vbox>
+	            </content-closed>
+	            <content-opened>
+			  		<div layout="column" flex>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+		            		<label class="gray" flex> Nome do curso: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.course.name}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+		            		<label class="gray" flex> Descrição: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.course.description}} </h4>
+	            		</div>
+	           		</div>
+	            </content-opened>
+	        </eits-paper-sheet>
+	        
+	        <eits-paper-sheet id="discipline" >
+                <content-closed style="height:110px">
+                    <eits-vbox padding-left="30" padding-right="30">
+                        <div layout="row">
+                            <div layout="row" flex="20">
+                                <h3>Disciplinas</h3>
+                            </div>
+                        </div>
+                    </eits-vbox>
+                </content-closed>
+                <content-opened>
+                    <div>
+                    	<md-table-container ng-if=" model.course.discipline.length != 0">
+                        	<table md-table>
+							    <thead md-head >
+							      <tr md-row>
+							        <th md-column ><span>Disciplina</span></th>
+							        <th md-column ><span>Descrição</span></th>
+							      </tr>
+							    </thead>
+							    <tbody md-body>
+							      <tr  md-row md-select="discipline" ng-repeat="discipline in model.course.discipline  | orderBy:'name'">
+							        <td md-cell>{{discipline.name}}</td>
+							        <td md-cell>{{discipline.description}}</td>
+							        <td md-cell style="width: 5px;">
+							        </td>
+							      </tr>
+							    </tbody>
+							</table>
+                    	</md-table-container>
+                    	<eits-vbox horizontal-align="center" vertical-align="center" gap="20" width="100%" ng-if=" model.course.discipline.length == 0">
+                           <md-icon class="zmdi zmdi-search zmdi-hc-fw zmdi-hc-3x" style="color:#A2A2A2;margin-right:390px"></md-icon>
+                           <label class="grey">Nenhuma disciplina adicionada no momento</label>
+                       </eits-vbox>
+                    </div>
+                </content-opened>
+            </eits-paper-sheet>	
+	        
+	        
+        </form>
+    </div>
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-long-arrow-return md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="$state.go('course.list')">
+            <md-tooltip>Voltar</md-tooltip>
+        </md-button>
+     </eits-hbox>
+</div>
+</html>

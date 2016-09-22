@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+<meta charset="UTF-8">
+<div style="width: 800px;margin:0 auto;position:relative; overflow:auto;">
+	<div vertical-align="center" width="800px">
+		<md-card>
+			<md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
+			<div class="md-toolbar-tools">
+					<span ng-if="!filter.show"  flex >Turmas</span>
+					<form flex ng-if="filter.show">
+						<md-icon class="zmdi zmdi-search zmdi-hc-lg" ></md-icon>
+               			<input ng-model="model.filters.terms" type="text" style="border:none; outline: none;" placeholder="Pesquisar" ng-keyup="listClassRoomsByEvents($event)">
+               		</form>
+               		<md-button ng-if="filter.show" class="md-icon-button md-button md-ink-ripple" ng-click="clearFilters()">
+              			<md-icon class="zmdi zmdi-close zmdi-hc-lg"></md-icon>
+              			<md-tooltip>Fechar</md-tooltip>
+            		</md-button>
+					<md-button ng-if="!filter.show"  class="md-icon-button md-button md-ink-ripple" ng-click="filter.show = true">
+	              		<md-icon class="zmdi zmdi-filter-list zmdi-hc-lg"></md-icon>
+	              		<md-tooltip>Filtrar contas</md-tooltip>
+	            	</md-button>
+				</div>
+			</md-toolbar>
+	        
+			<md-table-container>
+				<table md-table>
+				    <thead md-head >
+				      <tr md-row>
+				        <th md-column ><span>Turma</span></th>
+				        <th md-column ><span>Horário</span></th>
+				        <th md-column ><span>Situação</span></th>
+				      </tr>
+				    </thead>
+				    <tbody md-body>
+				      <tr  md-row md-select="classroom" ng-repeat="classroom in model.classrooms">
+				        <td md-cell>{{classroom.name}}</td>
+				        <td md-cell>{{classroom.schedule | date: 'HH:mm' }}</td>
+				        <td md-cell>{{::classroom.status | translate}}</td>
+				        <td md-cell style="width: 5px; padding: 0 0 0 0;">
+				        	<md-menu md-offset="-30 25">
+								<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
+									<md-icon class="zmdi zmdi-more-vert zmdi-hc-fw zmdi-hc-2x"></md-icon>
+								</md-button>
+								<md-menu-content width="2">
+									<md-menu-item>
+										<md-button ng-click="$state.go( EDIT_STATE, {id:classroom.id})"><span md-menu-align-target>Editar</span></md-button>
+									</md-menu-item>
+									<md-menu-item>
+										<md-button ng-click="$state.go( DETAIL_STATE, {id:classroom.id})"><span md-menu-align-target>Visualizar</span></md-button>
+									</md-menu-item>
+									<md-menu-item>
+										<md-button ng-click="changeToRemove($event, classroom)"><span md-menu-align-target>Excluir</span></md-button>
+									</md-menu-item>
+								</md-menu-content>
+							</md-menu>
+							<md-tooltip>Opções do registro</md-tooltip>
+				        </td>
+				      </tr>
+				    </tbody>
+				</table>
+			</md-table-container>
+		</md-card>
+		<div layout="column" layout-align="space-between center" ng-if="model.notFound">
+			<md-icon style=" height:70px; margin-top: 20px;"class="zmdi zmdi-search zmdi-hc-fw zmdi-hc-4x"></md-icon>
+			<label class="grey">Nenhum registro encontrado</label>
+		</div>
+		<eits-vbox ng-show="model.showLoading" horizontal-align="center" vertical-align="center">
+			<md-progress-circular md-mode="indeterminate"></md-progress-circular>
+		</eits-vbox>
+	</div>
+</div>
+<md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-plus  zmdi-hc-2x" ng-click="$state.go( ADD_STATE )" aria-label="Novo curso"></md-button>
+</html>

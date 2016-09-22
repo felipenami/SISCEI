@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+<meta charset="UTF-8">
+<div ng-init="calculateWindowHeight()" id="sectionsWindow" style="overflow:auto;" class="training-form" >
+
+    <div layout-align="center center" style="width:820px;margin:0 auto;position:relative;top:-1px;z-index:2;" class="training-form">
+        <form name="model.form" novalidate>
+	        <eits-paper-sheet id="information" ng-init="openPaper('information')">
+	            <content-closed>
+	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
+	                    <h3>Informações</h3>
+	                </eits-vbox>
+	            </content-closed>
+	            <content-opened>
+			  		<div layout="column" flex>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;" >
+	                    		<label>Nome da turma</label>
+	                 			<input type="text" ng-model="model.course.name" name="name" required maxlength="60">
+	                 			<div ng-messages="model.form.name.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	            		</div>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;" >
+	                    		<label>Hora Inicio</label>
+	                 			<input type="text" name="begintime" mask="99:99" ng-model="model.classroom.beginHour" aria-label="Hora Inicial" required/> 
+	                 			<div ng-messages="model.form.begintime.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	                		<md-input-container flex="50" style="margin-right:15px;">
+	                    		<label>Hora Fim</label>
+	                 			<input type="text" name="endtime" mask="99:99" ng-model="model.classroom.endHour" aria-label="Hora Final" required/>
+	                 			<div ng-messages="model.form.endtime.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	            		</div>
+	            		<div layout="row" flex>
+                        	<md-input-container flex="50" style="margin-right:15px;">
+	            				<label>Curso </label>
+	                    		<md-select  ng-model="model.classroom.course" name="course" ng-model-options="{trackBy: '$value.id'}" required>
+						          <md-option ng-repeat="course in model.courses" ng-value=course >
+						            {{course.name}}
+						          </md-option>
+						        </md-select>
+						        <div ng-messages="model.form.course.$error">
+          							<div ng-message="required">Obrigatório.</div>
+   								</div>
+	                		</md-input-container>
+                		</div>
+                		<md-radio-group ng-model="model.classroom.status" class="md-primary">
+					      <md-radio-button value="OPEN" >Aberta</md-radio-button>
+					      <md-radio-button value="CLOSED" > Fechada </md-radio-button>
+					    </md-radio-group>
+	           		</div>
+	            </content-opened>
+	        </eits-paper-sheet>
+        </form>
+    </div>
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="!model.course.id">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertCourseHandler(model.course)">
+            <md-tooltip>Criar</md-tooltip>
+        </md-button>
+     </eits-hbox>
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="model.course.id">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertCourseHandler(model.course)">
+            <md-tooltip>Alterar</md-tooltip>
+        </md-button>
+     </eits-hbox>
+</div>
+</html>
