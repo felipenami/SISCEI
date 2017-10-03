@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import com.br.siscei.domain.entity.matriculation.ClassRoom;
+import com.br.siscei.domain.entity.matriculation.Classroom;
 import com.br.siscei.domain.entity.matriculation.StatusClassRoom;
 import com.br.siscei.domain.repository.matriculation.IClassRoomRepository;
 
@@ -31,7 +31,7 @@ public class ClassRoomService
 	 * 
 	 */
 	@Autowired
-	private IClassRoomRepository classRoomRepository;
+	private IClassRoomRepository classroomRepository;
 	/**
 	 * 
 	 */
@@ -43,24 +43,24 @@ public class ClassRoomService
 	 * @param id
 	 * @return
 	 */
-	public ClassRoom findClassRoomById(Long id)
+	public Classroom findClassroomById(Long id)
 	{
-		final ClassRoom classRoom = this.classRoomRepository.findOne( id );
-		Assert.notNull(classRoom, "Não foi possivel encontar Turma com o id: "+id);
-		return classRoom;
+		final Classroom classroom = this.classroomRepository.findOne( id );
+		Assert.notNull(classroom, "Não foi possivel encontar Turma com o id: "+id);
+		return classroom;
 	}
 	/**
 	 * 
-	 * @param classRoom
+	 * @param classroom
 	 * @return
 	 */
-	public ClassRoom insertClassRoom(ClassRoom classRoom)
+	public Classroom insertClassroom(Classroom classroom)
 	{
-		Assert.notNull(classRoom);
+		Assert.notNull(classroom);
+		classroom.addList();
+		classroom = this.classroomRepository.saveAndFlush( classroom );
 		
-		classRoom = this.classRoomRepository.save( classRoom );
-		
-		return classRoom;
+		return classroom;
 	}
 	/**
 	 * 
@@ -69,21 +69,21 @@ public class ClassRoomService
 	 * @param pageable
 	 * @return
 	 */
-	public Page<ClassRoom>listClassRoomsByFilters(String filter, StatusClassRoom status, PageRequest pageable)
+	public Page<Classroom>listClassroomsByFilters(String filter, StatusClassRoom status, PageRequest pageable)
 	{
 		
-		return this.classRoomRepository.listByFilters( filter, pageable );
+		return this.classroomRepository.listByFilters( filter, pageable );
 	}
 	/**
 	 * 
 	 * @param id
 	 */
-	public void removeClassRoom(Long id)
+	public void removeClassroom(Long id)
 	{
-		ClassRoom classRoom  = new ClassRoom();
-		classRoom.setId( id );
+		Classroom classroom  = new Classroom();
+		classroom.setId( id );
 		
-		this.classRoomRepository.delete( id );
+		this.classroomRepository.delete( id );
 		
 	}
 	

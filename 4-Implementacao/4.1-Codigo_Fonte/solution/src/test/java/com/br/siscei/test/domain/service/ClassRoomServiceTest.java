@@ -5,20 +5,26 @@ package com.br.siscei.test.domain.service;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 
-import com.br.siscei.domain.entity.matriculation.ClassRoom;
+import com.br.siscei.domain.entity.matriculation.Classroom;
 import com.br.siscei.domain.entity.matriculation.Course;
+import com.br.siscei.domain.entity.matriculation.Schedule;
+import com.br.siscei.domain.entity.matriculation.ScheduleWeek;
 import com.br.siscei.domain.entity.matriculation.StatusClassRoom;
 import com.br.siscei.domain.service.ClassRoomService;
 import com.br.siscei.domain.service.CourseService;
 import com.br.siscei.test.domain.AbstractIntegrationTests;
 import com.github.springtestdbunit.annotation.DatabaseOperation;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
+
+import scala.annotation.meta.setter;
 
 /**
  * @author biogasfert
@@ -53,11 +59,12 @@ public class ClassRoomServiceTest extends AbstractIntegrationTests
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 			"/dataset/matriculation/CourseDataSet.xml",
 			"/dataset/matriculation/ClassRoomDataSet.xml",
+			"/dataset/matriculation/ScheduleDataSet.xml",
 		})
 	public void findClassRoomByIdMustPass()
 	{
-		final ClassRoom classRoom = this.classRoomService.findClassRoomById( 9999L );
-		Assert.assertNotNull(classRoom);
+		final Classroom classroom = this.classRoomService.findClassroomById( 9999L );
+		Assert.assertNotNull(classroom);
 	}
 	/**
      * Objetivo: Fail.
@@ -67,15 +74,16 @@ public class ClassRoomServiceTest extends AbstractIntegrationTests
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 			"/dataset/matriculation/CourseDataSet.xml",
 			"/dataset/matriculation/ClassRoomDataSet.xml",
+			"/dataset/matriculation/ScheduleDataSet.xml",
 		})
 	public void findClassRoomByIdMustFail()
 	{
-		final ClassRoom classRoom = this.classRoomService.findClassRoomById( 999L );
-		Assert.assertNotNull(classRoom);
+		final Classroom classroom = this.classRoomService.findClassroomById( 999L );
+		Assert.assertNotNull(classroom);
 	}
 	/**
      * Objetivo: Success.
-     * Motivo: O objeto {@link ClassRoom} é instanciado e inserido corretamente
+     * Motivo: O objeto {@link Classroom} é instanciado e inserido corretamente
      */
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
@@ -84,48 +92,80 @@ public class ClassRoomServiceTest extends AbstractIntegrationTests
 	public void insertClassRoomMustPass()
 	{
 		final Course course = this.courseService.findCourseById( 9999L );
-		final Calendar schedule = new GregorianCalendar(2050,9,5, 11,00,00);
 		
-		ClassRoom classRoom = new ClassRoom();
+
+		final Calendar beginHour = new GregorianCalendar(2050,9,5, 11,00,00);
+		final Calendar endHour = new GregorianCalendar(2050,9,5, 12,00,00);
 		
-		classRoom.setName( "Turma 1" );
-		classRoom.setStatus( StatusClassRoom.OPEN );
-		classRoom.setSchedule( schedule );
-		classRoom.setCourse( course );
+		Set<Schedule> schedules = new HashSet<Schedule>();
 		
-		classRoom = this.classRoomService.insertClassRoom( classRoom );
+		Schedule schedule1 = new Schedule( beginHour, endHour, ScheduleWeek.FRIDAY );
+		Schedule schedule2 = new Schedule(beginHour, endHour, ScheduleWeek.MONDAY);
+		Schedule schedule3 = new Schedule(beginHour, endHour, ScheduleWeek.TUESDAY);
 		
-		Assert.assertNotNull(classRoom);
-		Assert.assertNotNull(classRoom.getName());
-		Assert.assertNotNull(classRoom.getStatus());
-		Assert.assertNotNull(classRoom.getCourse());
+		schedules.add( schedule1 );
+		schedules.add( schedule2 );
+		schedules.add( schedule3 );
+		
+		Classroom classroom = new Classroom();
+		
+		classroom.setName( "Turma 1" );
+		classroom.setStatus( StatusClassRoom.OPEN );
+		classroom.setCourse( course );
+		classroom.setSchedule( schedules );
+		
+		classroom = this.classRoomService.insertClassroom( classroom );
+		
+		Assert.assertNotNull(classroom);
+		Assert.assertNotNull(classroom.getName());
+		Assert.assertNotNull(classroom.getStatus());
+		Assert.assertNotNull(classroom.getCourse());
 	}
 	/**
      * Objetivo: Fail.
-     * Motivo: O objeto {@link ClassRoom} é instanciado e inserido incorretamente
+     * Motivo: O objeto {@link Classroom} é instanciado e inserido incorretamente
      * 
      */
 	@Test(expected = IllegalArgumentException.class )
 	public void insertClassRoomMustFailWithoutMandatoryFieldName()
 	{
 		final Course course = this.courseService.findCourseById( 9999L );
-		final Calendar schedule = new GregorianCalendar(2050,9,5, 11,00,00);
 		
-		ClassRoom classRoom = new ClassRoom();
+		Classroom classroom = new Classroom();
 		
-		classRoom.setName( null );
-		classRoom.setStatus( StatusClassRoom.OPEN );
-		classRoom.setSchedule( schedule );
-		classRoom.setCourse( course );
+		Set<Schedule> scedules = new HashSet<Schedule>();
 		
-		classRoom = this.classRoomService.insertClassRoom( classRoom );
+		Schedule schedule1 = new Schedule();
+		schedule1.setBeginHour( new GregorianCalendar() );
+		schedule1.setEndHour( new GregorianCalendar() );
+		schedule1.setWeekDay( ScheduleWeek.MONDAY );
+		
+		Schedule schedule2 = new Schedule();
+		schedule2.setBeginHour( new GregorianCalendar() );
+		schedule2.setEndHour( new GregorianCalendar() );
+		schedule2.setWeekDay( ScheduleWeek.MONDAY );
+		
+		Schedule schedule3 = new Schedule();
+		schedule3.setBeginHour( new GregorianCalendar() );
+		schedule3.setEndHour( new GregorianCalendar() );
+		schedule3.setWeekDay( ScheduleWeek.WEDNESDAY );
+		
+		scedules.add( schedule1 );
+		scedules.add( schedule2 );
+		scedules.add( schedule3 );
+		
+		classroom.setName( null );
+		classroom.setStatus( StatusClassRoom.OPEN );
+		classroom.setCourse( course );
+		
+		classroom = this.classRoomService.insertClassroom( classroom );
 		
 		Assert.fail( "Deveria falhar se os campos estão nulos" );
 		
 	}
 	/**
      * Objetivo: Fail.
-     * Motivo: O objeto {@link ClassRoom} é instanciado e inserido incorretamente
+     * Motivo: O objeto {@link Classroom} é instanciado e inserido incorretamente
      * 
      */
 	@Test(expected = IllegalArgumentException.class )
@@ -133,14 +173,13 @@ public class ClassRoomServiceTest extends AbstractIntegrationTests
 	{
 		final Course course = this.courseService.findCourseById( 9999L );
 		
-		ClassRoom classRoom = new ClassRoom();
+		Classroom classroom = new Classroom();
 		
-		classRoom.setName( "sala 1" );
-		classRoom.setStatus( StatusClassRoom.OPEN );
-		classRoom.setSchedule( null );
-		classRoom.setCourse( course );
+		classroom.setName( "sala 1" );
+		classroom.setStatus( StatusClassRoom.OPEN );
+		classroom.setCourse( course );
 		
-		classRoom = this.classRoomService.insertClassRoom( classRoom );
+		classroom = this.classRoomService.insertClassroom( classroom );
 		
 		Assert.fail( "Deveria falhar se os campos estão nulos" );
 	}
@@ -152,13 +191,14 @@ public class ClassRoomServiceTest extends AbstractIntegrationTests
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 			"/dataset/matriculation/CourseDataSet.xml",
 			"/dataset/matriculation/ClassRoomDataSet.xml",
+			"/dataset/matriculation/ScheduleDataSet.xml",
 		})
 	public void listAllClassRoomsMustPass()
 	{
-		final Page<ClassRoom> classRoom = this.classRoomService.listClassRoomsByFilters( null, null, null );
+		final Page<Classroom> classroom = this.classRoomService.listClassroomsByFilters( null, null, null );
 		
-		Assert.assertNotNull(classRoom);
-		Assert.assertTrue(classRoom.getContent().size() == 3 );
+		Assert.assertNotNull(classroom);
+		Assert.assertTrue(classroom.getContent().size() == 3 );
 	}
 	/**
      * Objetivo: Success.
@@ -171,61 +211,77 @@ public class ClassRoomServiceTest extends AbstractIntegrationTests
 		})
 	public void listAllClassRoomsMustReturn1()
 	{
-		final Page<ClassRoom> classRoom = this.classRoomService.listClassRoomsByFilters( "Turma sala 3", null,null );
+		final Page<Classroom> classroom = this.classRoomService.listClassroomsByFilters( "Turma sala 3", null,null );
 		
-		Assert.assertNotNull(classRoom);
-		Assert.assertTrue(classRoom.getContent().size() == 1 );
+		Assert.assertNotNull(classroom);
+		Assert.assertTrue(classroom.getContent().size() == 1 );
 	}
 	
 	/**
 	 * Objetivo: Success.
-	 * Motivo: O objeto {@link ClassRoom} é instanciado e alterado corretamente
+	 * Motivo: O objeto {@link Classroom} é instanciado e alterado corretamente
 	 */
 	@Test
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 			"/dataset/matriculation/CourseDataSet.xml",
 			"/dataset/matriculation/ClassRoomDataSet.xml",
+			"/dataset/matriculation/ScheduleDataSet.xml",
 		})
 	public void updateClassRoomMustPass()
 	{
 		final Course course = this.courseService.findCourseById( 9999L );
-		final Calendar schedule = new GregorianCalendar(2050,9,5, 11,00,00);
 		
-		ClassRoom classRoom = new ClassRoom();
+		Set<Schedule> schedules = new HashSet<Schedule>();
 		
-		classRoom.setName( "Turma 1" );
-		classRoom.setStatus( StatusClassRoom.OPEN );
-		classRoom.setSchedule( schedule );
-		classRoom.setCourse( course );
+		Schedule schedule1 = new Schedule();
+		schedule1.setBeginHour( new GregorianCalendar() );
+		schedule1.setEndHour( new GregorianCalendar() );
+		schedule1.setWeekDay( ScheduleWeek.TUESDAY );
 		
-		classRoom = this.classRoomService.insertClassRoom( classRoom );
+		Schedule schedule2 = new Schedule();
+		schedule2.setBeginHour( new GregorianCalendar() );
+		schedule2.setEndHour( new GregorianCalendar() );
+		schedule2.setWeekDay( ScheduleWeek.MONDAY );
 		
-		Assert.assertNotNull(classRoom);
-		Assert.assertNotNull(classRoom.getId());
-		Assert.assertTrue(classRoom.getName() == "Turma 1");
-		Assert.assertTrue(classRoom.getStatus() == StatusClassRoom.OPEN);
+		schedules.add( schedule1 );
+		schedules.add( schedule2 );
+		
+		Classroom classroom = this.classRoomService.findClassroomById( 9999L );
+		
+		classroom.setName( "Turma 2" );
+		classroom.setStatus( StatusClassRoom.OPEN );
+		classroom.setCourse( course );
+		classroom.setSchedule( schedules );
+		
+		classroom = this.classRoomService.insertClassroom( classroom );
+		
+		Assert.assertNotNull(classroom);
+		Assert.assertNotNull(classroom.getId());
+		Assert.assertTrue(classroom.getName() == "Turma 2");
+		Assert.assertTrue(classroom.getStatus() == StatusClassRoom.OPEN);
 	}
 	/**
      * Objetivo: Success.
-     * Motivo: O objeto {@link ClassRoom} é instanciado e removido, corretamente
+     * Motivo: O objeto {@link Classroom} é instanciado e removido, corretamente
      */
 	@Test(expected = IllegalArgumentException.class)
 	@DatabaseSetup(type = DatabaseOperation.INSERT, value = {
 			"/dataset/matriculation/CourseDataSet.xml",
 			"/dataset/matriculation/ClassRoomDataSet.xml",
+			"/dataset/matriculation/ScheduleDataSet.xml",
 		})
 	public void removeCourseClassRoomMustPass()
 	{
-		ClassRoom classRoom = new ClassRoom();
+		Classroom classroom = new Classroom();
 		
 		
-		classRoom = this.classRoomService.findClassRoomById( 9999L );
-		Assert.assertNotNull(classRoom);
+		classroom = this.classRoomService.findClassroomById( 9999L );
+		Assert.assertNotNull(classroom);
 		
-		this.classRoomService.removeClassRoom( classRoom.getId() );
-		this.classRoomService.findClassRoomById( classRoom.getId() );
+		this.classRoomService.removeClassroom( classroom.getId() );
+		this.classRoomService.findClassroomById( classroom.getId() );
 		
-		Assert.assertNotNull(classRoom);
+		Assert.assertNotNull(classroom);
 	}
 	
 }

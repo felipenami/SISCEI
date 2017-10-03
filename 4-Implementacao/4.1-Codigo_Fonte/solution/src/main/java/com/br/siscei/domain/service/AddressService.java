@@ -35,9 +35,9 @@ public class AddressService
 	 */
 	@Autowired
 	private IAddressRepository addressRepository;
-	@Autowired
 	/**
 	 */
+	@Autowired
 	private ICityRepository cityRepository;
 	/**
 	 * 

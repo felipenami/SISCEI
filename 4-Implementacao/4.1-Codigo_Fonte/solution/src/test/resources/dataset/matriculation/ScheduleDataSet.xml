@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<public.schedule
+		id="9999"
+		created="2015-03-30 00:00:00"
+		begin_hour = "2015-03-30 11:00:00"
+		end_hour  = "2015-03-30 13:00:00"
+		week_day = "0"
+		classroom_id = "9999"/>
+	<public.schedule
+		id="9998"
+		created="2015-03-30 00:00:00"
+		begin_hour = "2015-03-30 11:00:00"
+		end_hour  = "2015-03-30 13:00:00"
+		week_day = "0"
+		classroom_id = "9999"/>
+	<public.schedule
+		id="9997"
+		created= "2015-03-30 00:00:00"
+		begin_hour = "2015-03-30 11:00:00"
+		end_hour  = "2015-03-30 13:00:00"
+		week_day = "1"
+		classroom_id = "9998"/>
+</dataset>

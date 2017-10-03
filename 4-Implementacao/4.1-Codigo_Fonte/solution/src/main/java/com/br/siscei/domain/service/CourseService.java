@@ -74,13 +74,7 @@ public class CourseService
 	{
 		Assert.notNull(course);
 		
-		if(course.getDiscipline()!= null)
-		{
-			for( Discipline discipline : course.getDiscipline() )
-			{
-				discipline.setCourse( course );
-			}
-		}
+		course.addList();
 		
 		course =  this.courseRepository.saveAndFlush( course );
 		

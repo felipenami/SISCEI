@@ -61,10 +61,11 @@
          */
         $scope.model = {
                 form    : {},
-                Classroom : new Classroom(),
+                classroom : new Classroom(),
                 filters: {
                     terms: [],
                 },
+                listSchedules : [],
                 courses :[],
                 classrooms : [],
                 page: {//PageImpl
@@ -167,7 +168,7 @@
         $scope.changeToAdd = function () {
         	console.debug("Add");
         	$scope.model.classroom = new Classroom();
-        	$scope.model.listDisciplines = [];
+        	$scope.model.listSchedules = [];
         	$scope.model.courses = [];
         	$scope.model.classroom.status = "OPEN";
         	
@@ -244,12 +245,13 @@
         /**
          * 
          */
-        $scope.insertCourseHandler= function(course){
-        	course.discipline = $scope.model.listDisciplines;
+        $scope.insertClassRoomHandler = function(classroom){
+        	classroom.schedule =  $scope.model.listSchedules;
+        	$scope.prepareHour($scope.model.listSchedules);
         	if($scope.validateForm()){
-        		courseService.insertCourse( course, {
+        		classRoomService.insertClassroom( classroom, {
 	        		callback: function(result){
-	        			$mdToast.showSimple("Curso salvo com sucesso!");
+	        			$mdToast.showSimple("Turma salvo com sucesso!");
 	                    $state.go($scope.LIST_STATE);
 	                    $scope.$apply();
 	        		},
@@ -278,6 +280,27 @@
 	        	})        		
         		
         	}
+        }
+        /**
+         * 
+         */
+        $scope.prepareHour = function(listSchedules){
+        	var beginHour, beginMinute, endHour, endMinute;
+        	
+        	angular.forEach(listSchedules, function( obj, key ) {
+        		beginHour   = parseFloat(obj.beginHour.split(":")[0]),
+	            beginMinute = parseFloat(obj.beginHour.split(":")[1]);
+        		
+        		endHour   = parseFloat(obj.endHour.split(":")[0]),
+	            endMinute = parseFloat(obj.endHour.split(":")[1]);
+        		
+        		$scope.model.classroom.schedule.beginHour = new Date();
+                $scope.model.classroom.schedule.endHour = new Date();
+                
+                $scope.model.classroom.schedule.beginHour.setHours(beginHour, beginMinute);
+                $scope.model.classroom.schedule.endHour.setHours(endHour, endMinute);
+        		
+            });
         }
         /**
          * 
@@ -317,16 +340,20 @@
          * 
          */
         $scope.validateForm = function (){
-        	if($scope.model.course.name == null){
+        	if($scope.model.classRoom.name == null){
         		$mdToast.showSimple("Informe o nome do curso.");
                 return false;
         	}
-        	if($scope.model.course.description == null){
-        		$mdToast.showSimple("Informe uma descrição do curso.");
+        	if($scope.model.classRoom.beginHour == null){
+        		$mdToast.showSimple("Informe a hora inicial.");
         		return false;
         	}
-        	if($scope.model.course.discipline == "" ){
-        		$mdToast.showSimple("O curso dever ter ao menos uma disciplina.");
+        	if($scope.model.classRoom.endHour == null ){
+        		$mdToast.showSimple("Informe a hora final.");
+        		return false;
+        	}
+        	if($scope.model.classRoom.course == null ){
+        		$mdToast.showSimple("Informe o curso desta turma.");
         		return false;
         	}
         	return true;
@@ -367,29 +394,29 @@
         /**
          * 
          */
-        $scope.openPopupDiscipline = function(event, discipline){
+        $scope.openPopupSchedule = function(event, schedule){
 
             $mdDialog.show({
-                templateUrl: 'modules/home/views/course/popup/discipline-popup.html',
+                templateUrl: 'modules/home/views/classroom/popup/schedule-popup.html',
                 targetEvent: event,
                 scope: $scope.$new(),
-                controller: "DisciplinePopupController",
+                controller: "SchedulePopupController",
                 resolve:{
-                	discipline: function(){
-                        return discipline;
+                	schedule: function(){
+                        return schedule;
                     }
                 }
             }).then(function(result){
-                $scope.model.listDisciplines.push( result );
+                $scope.model.listSchedules.push( result );
             });
         };
         /**
          * 
          */
-        $scope.removeDiscipline = function (discipline){
+        $scope.removeSchedule = function (schedule){
 
-            var index = $scope.model.listDisciplines.indexOf(discipline);
-            $scope.model.listDisciplines.splice(index, 1);
+            var index = $scope.model.listSchedules.indexOf(schedule);
+            $scope.model.listSchedules.splice(index, 1);
         };
 
         

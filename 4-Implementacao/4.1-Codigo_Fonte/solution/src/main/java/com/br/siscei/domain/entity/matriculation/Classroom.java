@@ -3,17 +3,18 @@
  */
 package com.br.siscei.domain.entity.matriculation;
 
-import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.directwebremoting.annotations.DataTransferObject;
@@ -30,7 +31,7 @@ import br.com.eits.common.domain.entity.AbstractEntity;
 @Audited
 @Table(name = "\"classroom\"")
 @DataTransferObject(javascript = "Classroom")
-public class ClassRoom extends AbstractEntity
+public class Classroom extends AbstractEntity
 {
 
 	/**
@@ -65,10 +66,8 @@ public class ClassRoom extends AbstractEntity
 	/**
 	 * 
 	 */
-	@NotNull
-	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar schedule;
+	@OneToMany(mappedBy = "classroom", cascade = {CascadeType.ALL}, fetch=FetchType.EAGER, orphanRemoval = true)
+	private Set<Schedule> schedule = new HashSet<Schedule>();
 	
 	/*-------------------------------------------------------------------
 	 * 		 					CONSTRUCTORS
@@ -76,22 +75,42 @@ public class ClassRoom extends AbstractEntity
 	/**
 	 * 
 	 */
-	public ClassRoom()
+	public Classroom()
 	{
 		
 	}
-	public ClassRoom(Long id, String name, Calendar schedule, StatusClassRoom status, Course course)
+	/**
+	 * 
+	 * @param id
+	 * @param name
+	 * @param status
+	 * @param course
+	 */
+	public Classroom(Long id, String name, StatusClassRoom status, Course course)
 	{
 		super(id);
 		this.name		= name;
-		this.schedule	= schedule;
 		this.status		= status;
 		this.course		= course;
 	}
-	
 	/*-------------------------------------------------------------------
 	 *							BEHAVIORS
 	 *-------------------------------------------------------------------*/
+	/**
+	 * 
+	 * @return
+	 */
+	public Classroom addList()
+	{
+		if(this.getSchedule()!= null)
+		{
+			for( Schedule schedule : this.getSchedule() )
+			{
+				schedule.setClassRoom( this );
+			}
+		}
+		return this;
+	}
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -102,7 +121,6 @@ public class ClassRoom extends AbstractEntity
 		int result = super.hashCode();
 		result = prime * result + ( ( course == null ) ? 0 : course.hashCode() );
 		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
-		result = prime * result + ( ( schedule == null ) ? 0 : schedule.hashCode() );
 		result = prime * result + ( ( status == null ) ? 0 : status.hashCode() );
 		return result;
 	}
@@ -115,7 +133,7 @@ public class ClassRoom extends AbstractEntity
 		if ( this == obj ) return true;
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
-		ClassRoom other = ( ClassRoom ) obj;
+		Classroom other = ( Classroom ) obj;
 		if ( course == null )
 		{
 			if ( other.course != null ) return false;
@@ -126,15 +144,9 @@ public class ClassRoom extends AbstractEntity
 			if ( other.name != null ) return false;
 		}
 		else if ( !name.equals( other.name ) ) return false;
-		if ( schedule == null )
-		{
-			if ( other.schedule != null ) return false;
-		}
-		else if ( !schedule.equals( other.schedule ) ) return false;
 		if ( status != other.status ) return false;
 		return true;
-	};
-	
+	}
 	/*-------------------------------------------------------------------
 	 *						GETTERS AND SETTERS
 	 *-------------------------------------------------------------------*/
@@ -183,14 +195,14 @@ public class ClassRoom extends AbstractEntity
 	/**
 	 * @return the schedule
 	 */
-	public Calendar getSchedule()
+	public Set<Schedule> getSchedule()
 	{
 		return schedule;
 	}
 	/**
 	 * @param schedule the schedule to set
 	 */
-	public void setSchedule( Calendar schedule )
+	public void setSchedule( Set<Schedule> schedule )
 	{
 		this.schedule = schedule;
 	}

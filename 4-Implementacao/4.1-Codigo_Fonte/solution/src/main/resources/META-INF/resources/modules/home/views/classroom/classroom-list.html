@@ -35,7 +35,7 @@
 				    <tbody md-body>
 				      <tr  md-row md-select="classroom" ng-repeat="classroom in model.classrooms">
 				        <td md-cell>{{classroom.name}}</td>
-				        <td md-cell>{{classroom.schedule | date: 'HH:mm' }}</td>
+				        <td md-cell>{{classroom.beginHour | date: 'HH:mm' }} - {{classroom.endHour | date: 'HH:mm' }}</td>
 				        <td md-cell>{{::classroom.status | translate}}</td>
 				        <td md-cell style="width: 5px; padding: 0 0 0 0;">
 				        	<md-menu md-offset="-30 25">

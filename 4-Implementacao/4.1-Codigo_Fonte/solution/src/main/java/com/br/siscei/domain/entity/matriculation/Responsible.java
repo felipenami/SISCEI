@@ -44,12 +44,12 @@ public class Responsible extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
-	@Column(nullable = false, length = 16)
+	@Column(nullable = true, length = 16)
 	private String CPF;
 	/**
 	 * 
 	 */
-	@Column(nullable = false, length = 25)
+	@Column(nullable = true, length = 25)
 	private String RG;
 	/**
 	 * 

@@ -1,0 +1,51 @@
+<meta charset="UTF-8">
+<md-dialog class="popup-participant"  aria-label="Popup User" style="width:700px;">
+    <div style="padding: 0 24px 0 24px;">
+        <h2>Horário </h2>
+        	<form name="model.form" novalidate>
+				<div layout="row" flex>
+                  	<md-input-container flex="50" style="margin-right:15px;">
+	            		<label>Dia da semamana </label>
+	                    <md-select  ng-model="model.schedule.weekDay" name="weekDay" required>
+							<md-option value = "MONDAY" >Segunda Feira</md-option>
+							<md-option value = "TUESDAY" >Terça Feira</md-option>
+							<md-option value = "WEDNESDAY" >Quarta Feira</md-option>
+							<md-option value = "THURSDAY" >Quinta Feira</md-option>
+							<md-option value = "FRIDAY" >Sexta Feira</md-option>
+							<md-option value = "SATURDAY" >Sábado</md-option>
+						</md-select>
+						<div ng-messages="model.form.weekDay.$error">
+	         				<div ng-message="required">Obrigatório.</div>
+	  					</div>
+                	</md-input-container>
+                	<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;" >
+	                    		<label>Inicio</label>
+	                 			<input type="text" ng-model="model.schedule.beginHour" mask='99:99' name="beginHour" required maxlength="5">
+	                 			<div ng-messages="model.form.beginHour.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	            		</div>
+	            		<div layout="row" flex>
+	            			<md-input-container flex="50" style="margin-right:15px;" >
+	                    		<label>Fim</label>
+	                 			<input type="text" ng-model="model.schedule.endHour" mask='99:99'  name="endHour" required maxlength="5">
+	                 			<div ng-messages="model.form.endHour.$error">
+          							<div ng-message="required">Obrigatório.</div>
+          						</div>
+	                		</md-input-container>
+	            		</div>
+            	</div>        	
+        	</form>
+    </div>
+    <div class="md-actions" layout="row">
+        <md-button class="md-primary" ng-click="add(model.schedule)" style="font-size:12px;">
+            Adicionar
+        </md-button>
+
+        <md-button ng-click="close()" class="md-primary" style="font-size:12px;">
+            Fechar
+        </md-button>
+    </div>
+</md-dialog>

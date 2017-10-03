@@ -17,24 +17,8 @@
 	            		<div layout="row" flex>
 	            			<md-input-container flex="50" style="margin-right:15px;" >
 	                    		<label>Nome da turma</label>
-	                 			<input type="text" ng-model="model.course.name" name="name" required maxlength="60">
+	                 			<input type="text" ng-model="model.classroom.name" name="name" required maxlength="60">
 	                 			<div ng-messages="model.form.name.$error">
-          							<div ng-message="required">Obrigatório.</div>
-          						</div>
-	                		</md-input-container>
-	            		</div>
-	            		<div layout="row" flex>
-	            			<md-input-container flex="50" style="margin-right:15px;" >
-	                    		<label>Hora Inicio</label>
-	                 			<input type="text" name="begintime" mask="99:99" ng-model="model.classroom.beginHour" aria-label="Hora Inicial" required/> 
-	                 			<div ng-messages="model.form.begintime.$error">
-          							<div ng-message="required">Obrigatório.</div>
-          						</div>
-	                		</md-input-container>
-	                		<md-input-container flex="50" style="margin-right:15px;">
-	                    		<label>Hora Fim</label>
-	                 			<input type="text" name="endtime" mask="99:99" ng-model="model.classroom.endHour" aria-label="Hora Final" required/>
-	                 			<div ng-messages="model.form.endtime.$error">
           							<div ng-message="required">Obrigatório.</div>
           						</div>
 	                		</md-input-container>
@@ -53,21 +37,54 @@
 	                		</md-input-container>
                 		</div>
                 		<md-radio-group ng-model="model.classroom.status" class="md-primary">
-					      <md-radio-button value="OPEN" >Aberta</md-radio-button>
-					      <md-radio-button value="CLOSED" > Fechada </md-radio-button>
+					    	<md-radio-button value="OPEN" >Aberta</md-radio-button>
+					      	<md-radio-button value="CLOSED" > Fechada </md-radio-button>
 					    </md-radio-group>
+                		<div layout="row" layout-align="start start" class="colorNested" flex style="padding-top:35px;">
+                        	<md-button ng-click="openPopupSchedule(event, model.classroom)" class="md-raised">ADICIONAR HORARIO</md-button>
+                        </div>
 	           		</div>
+	           		<div>
+                    	<md-table-container ng-if="model.listSchedules.length != 0">
+                        	<table md-table>
+							    <thead md-head >
+							      <tr md-row>
+							        <th md-column ><span>Dia da Semana</span></th>
+							        <th md-column ><span>Inicio</span></th>
+							        <th md-column ><span>Fim</span></th>
+							      </tr>
+							    </thead>
+							    <tbody md-body>
+							      <tr  md-row md-select="schedule" ng-repeat="schedule in model.listSchedules | orderBy:'name'">
+							        <td md-cell>{{schedule.weekDay | translate}}</td>
+							        <td md-cell>{{schedule.beginHour}}</td>
+							        <td md-cell>{{schedule.endHour}}</td>
+							        <td md-cell style="width: 5px;">
+										<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="removeSchedule(schedule)">
+											<md-icon class="zmdi zmdi-delete zmdi-hc-fw zmdi-hc-2x"></md-icon>
+										</md-button>
+										<md-tooltip>Exluir</md-tooltip>
+							        </td>
+							      </tr>
+							    </tbody>
+							</table>
+                    	</md-table-container>
+                    	<eits-vbox horizontal-align="center" vertical-align="center" gap="20" width="100%" ng-if="model.listSchedules.length == 0">
+                           <md-icon class="zmdi zmdi-search zmdi-hc-fw zmdi-hc-3x" style="color:#A2A2A2;margin-right:390px"></md-icon>
+                           <label class="grey">Nenhuma horário adicionada para essa turma</label>
+                       </eits-vbox>
+                    </div>
 	            </content-opened>
 	        </eits-paper-sheet>
         </form>
     </div>
      <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="!model.course.id">
-        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertCourseHandler(model.course)">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertClassRoomHandler(model.classroom)">
             <md-tooltip>Criar</md-tooltip>
         </md-button>
      </eits-hbox>
      <eits-hbox vertical-align="center" horizontal-align="center" gap="90" ng-if="model.course.id">
-        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertCourseHandler(model.course)">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-floppy md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="insertCourseHandler(model.classroom)">
             <md-tooltip>Alterar</md-tooltip>
         </md-button>
      </eits-hbox>

@@ -119,6 +119,21 @@ public class Course extends AbstractEntity
 		else if ( !name.equals( other.name ) ) return false;
 		return true;
 	}	
+	/**
+	 * 
+	 * @return
+	 */
+	public Course addList()
+	{
+		if(this.getDiscipline()!= null)
+		{
+			for( Discipline discipline : this.getDiscipline() )
+			{
+				discipline.setCourse( this );
+			}
+		}
+		return this;
+	}
 	
 	/*-------------------------------------------------------------------
 	 *						GETTERS AND SETTERS

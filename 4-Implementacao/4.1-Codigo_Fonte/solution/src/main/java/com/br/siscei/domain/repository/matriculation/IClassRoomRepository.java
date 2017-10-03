@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.br.siscei.domain.entity.matriculation.ClassRoom;
+import com.br.siscei.domain.entity.matriculation.Classroom;
 
 /**
  * @author felipenami@gmail.com 
@@ -17,11 +17,11 @@ import com.br.siscei.domain.entity.matriculation.ClassRoom;
  * @version 1.0
  * @category Repository
  */
-public interface IClassRoomRepository extends JpaRepository<ClassRoom, Long>
+public interface IClassRoomRepository extends JpaRepository<Classroom, Long>
 {
-	@Query(value = "SELECT new ClassRoom (classRoom.id, classRoom.name, classRoom.schedule, classRoom.status, classRoom.course ) " +
-		   	"From ClassRoom classRoom " +
-	 	   	"WHERE ((FILTER( classRoom.name, :filter ) = TRUE)) ")
-	public Page<ClassRoom>listByFilters(@Param("filter") String filter, 
+	@Query(value = "SELECT new Classroom (classroom.id, classroom.name, classroom.status, classroom.course ) " +
+		   	"From Classroom classroom " +
+	 	   	"WHERE ((FILTER( classroom.name, :filter ) = TRUE)) ")
+	public Page<Classroom>listByFilters(@Param("filter") String filter, 
 										Pageable pageable);
 }

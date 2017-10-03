@@ -21,15 +21,32 @@ CREATE TABLE auditing.course_audited
 --
 CREATE TABLE auditing.classroom_audited
 (
-   id bigint NOT NULL,
+  id bigint NOT NULL,
   revision bigint NOT NULL,
   revision_type smallint,
   name character varying(60),
-  schedule timestamp without time zone,
   status integer,
   course_id bigint,
   CONSTRAINT classroom_audited_pkey PRIMARY KEY (id, revision),
   CONSTRAINT fk_classroom_audited_revision FOREIGN KEY (revision)
+      REFERENCES auditing.revision (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+--
+-- TOC entry 177 (class 1259 OID 278689)
+-- Name: revision; Type: TABLE; Schema: auditing; Owner: -
+--
+CREATE TABLE auditing.schedule_audited
+(
+  id bigint NOT NULL,
+  revision bigint NOT NULL,
+  revision_type smallint,
+  begin_hour timestamp without time zone,
+  end_hour timestamp without time zone,
+  week_day integer,
+  classroom_id bigint,
+  CONSTRAINT schedule_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_schedule_audited_revision FOREIGN KEY (revision)
       REFERENCES auditing.revision (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
@@ -86,11 +103,11 @@ CREATE TABLE auditing.student_audited
 --
 CREATE TABLE "public"."course"
 (
-  id bigint NOT NULL DEFAULT nextval('course_id_seq'::regclass),
+  id bigserial NOT NULL,
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
-  description character varying(255) NOT NULL,
-  name character varying(255) NOT NULL,
+  description character varying(144) NOT NULL,
+  name character varying(60) NOT NULL,
   CONSTRAINT course_pkey PRIMARY KEY (id)
 );
 --
@@ -104,9 +121,8 @@ CREATE TABLE "public"."classroom"
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
   name character varying(60) NOT NULL,
-  schedule timestamp without time zone,
   status integer NOT NULL,
-  course_id bigint,
+  course_id bigint NOT NULL,
   CONSTRAINT classroom_pkey PRIMARY KEY (id),
   CONSTRAINT fk_classroom_course_id FOREIGN KEY (course_id)
       REFERENCES course (id) MATCH SIMPLE
@@ -117,18 +133,36 @@ CREATE TABLE "public"."classroom"
 -- TOC entry 177 (class 1259 OID 278689)
 -- Name: revision; Type: TABLE; Schema: auditing; Owner: -
 --
+CREATE TABLE "public"."schedule"
+(
+ id bigserial NOT NULL,
+  created timestamp without time zone NOT NULL,
+  updated timestamp without time zone,
+  begin_hour timestamp without time zone NOT NULL,
+  end_hour timestamp without time zone NOT NULL,
+  week_day integer NOT NULL,
+  classroom_id bigint NOT NULL,
+  CONSTRAINT schedule_pkey PRIMARY KEY (id),
+  CONSTRAINT fk_schedule_classroom_id FOREIGN KEY (classroom_id)
+      REFERENCES classroom (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+--
+-- TOC entry 177 (class 1259 OID 278689)
+-- Name: revision; Type: TABLE; Schema: auditing; Owner: -
+--
 
 CREATE TABLE "public"."discipline"
 (
-  id bigint NOT NULL DEFAULT nextval('discipline_id_seq'::regclass),
+  id bigserial NOT NULL,
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
   description character varying(144) NOT NULL,
-  name character varying(144) NOT NULL,
+  name character varying(60) NOT NULL,
   course_id bigint NOT NULL,
   CONSTRAINT discipline_pkey PRIMARY KEY (id),
   CONSTRAINT fk_discipline_course_id FOREIGN KEY (course_id)
-      REFERENCES public.course (id) MATCH SIMPLE
+      REFERENCES course (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 --
@@ -139,7 +173,7 @@ CREATE TABLE "public"."discipline"
 CREATE TABLE "public"."student"
 (
   dtype character varying(31) NOT NULL,
-  id bigint NOT NULL DEFAULT nextval('student_id_seq'::regclass),
+  id bigserial NOT NULL,
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
   cpf character varying(16) NOT NULL,
@@ -152,9 +186,9 @@ CREATE TABLE "public"."student"
   user_id bigint,
   CONSTRAINT student_pkey PRIMARY KEY (id),
   CONSTRAINT fk_student_address_id FOREIGN KEY (address_id)
-      REFERENCES public.address (id) MATCH SIMPLE
+      REFERENCES address (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT fk_student_user_id FOREIGN KEY (user_id)
-      REFERENCES public."user" (id) MATCH SIMPLE
+      REFERENCES "user" (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
