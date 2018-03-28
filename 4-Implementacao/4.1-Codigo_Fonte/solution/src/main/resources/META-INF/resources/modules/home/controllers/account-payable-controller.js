@@ -74,6 +74,13 @@
         $scope.model = {
                 form    : {},
                 accountPayable : new AccountPayable(),
+                query :{
+            	    order: 'name',
+            	    limit: 5,
+            	    page: 1
+            	  },
+            	limitOptions : [5, 10, 15],
+            	totalElements : 0,
                 filters: {
                     terms: [],
                 },
@@ -192,7 +199,7 @@
             console.debug("changeToList");
             
             $scope.model.page.pageable = {
-            	size: 9,
+            	size: 100,
             	page: 0,
             	sort: {
             		orders: [{ 
@@ -258,6 +265,7 @@
         	accountPayableService.listAccountsPayableByFilters( filters.terms.toString() , null,null, pageRequest, {
                 callback: function (result) {
                     $scope.model.accountsPayable = $scope.model.accountsPayable.concat(result.content);
+                    $scope.model.totalElements = result.totalElements;
                     $scope.getAccountsPayableTotal($scope.model.accountsPayable);
                     $scope.model.showLoading = false;
                     $scope.model.notFound = result.totalElements == 0 ? true : false;

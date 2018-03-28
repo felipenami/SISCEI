@@ -6,13 +6,13 @@
 	<parameter name="courseId" class="java.lang.Long"/>
 	<queryString>
 		<![CDATA[select
-	course.name,
-	course.description
+	course.name as Nome,
+	course.description as Descrição
 from course
 where course.id = $P{courseId} OR $P{courseId} IS NULL]]>
 	</queryString>
-	<field name="name" class="java.lang.String"/>
-	<field name="description" class="java.lang.String"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="descrição" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>

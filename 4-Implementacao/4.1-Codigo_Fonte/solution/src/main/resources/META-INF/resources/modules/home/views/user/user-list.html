@@ -7,10 +7,10 @@
 		<md-card>
 	        <md-toolbar class="md-table-toolbar md-default" ng-hide="options.rowSelection && selected.length">
 	        <div class="md-toolbar-tools">
-					<span ng-if="!filter.show"  flex >Fornecedores</span>
+					<span ng-if="!filter.show"  flex >Usuários</span>
 					<form flex ng-if="filter.show">
 						<md-icon class="zmdi zmdi-search zmdi-hc-lg" ></md-icon>
-               			<input ng-model="model.filters.terms" type="text" style="border:none; outline: none;" placeholder="Pesquisar" ng-keyup="listSuppliersByEvents($event)">
+               			<input ng-model="model.filters.terms" type="text" style="border:none; outline: none;" placeholder="Pesquisar" ng-keyup="listUsersByEvents($event)">
                		</form>
                		<md-button ng-if="filter.show" class="md-icon-button md-button md-ink-ripple" ng-click="clearFilters()">
               			<md-icon class="zmdi zmdi-close zmdi-hc-lg"></md-icon>
@@ -18,7 +18,7 @@
             		</md-button>
 					<md-button ng-if="!filter.show"  class="md-icon-button md-button md-ink-ripple" ng-click="filter.show = true">
 	              		<md-icon class="zmdi zmdi-filter-list zmdi-hc-lg"></md-icon>
-	              		<md-tooltip>Filtrar contas</md-tooltip>
+	              		<md-tooltip>Filtrar usuários</md-tooltip>
 	            	</md-button>
 				</div>
 	        </md-toolbar>
@@ -27,16 +27,25 @@
 			  <table md-table>
 				    <thead md-head >
 			      		<tr md-row>
-				        	<th md-column ><span>Razão social</span></th>
-				        	<th md-column ><span>Nome fantasia</span></th>
-				        	<th md-column ><span>Contato</span></th>
+				        	<th md-column ><span>Nome</span></th>
+				        	<th md-column ><span>Email</span></th>
+				        	<th md-column ><span>Perfil</span></th>
+				        	<th md-column ><span>Situação</span></th>
 				      	</tr>
 				    </thead>
 				    <tbody md-body>
-				      <tr md-row md-select="supplier" ng-repeat="supplier in model.suppliers | filter: filter.search | orderBy: model.query.order | limitTo: model.query.limit : (model.query.page -1) * model.query.limit">
-				        <td md-cell>{{supplier.companyName}}</td>
-				        <td md-cell>{{supplier.tradeName}}</td>
-				        <td md-cell>{{supplier.contact}}</td>
+				      <tr md-row md-select="user" ng-repeat="user in model.users | filter: filter.search | orderBy: model.query.order | limitTo: model.query.limit : (model.query.page -1) * model.query.limit">
+				        <td md-cell>{{user.name}}</td>
+				        <td md-cell>{{user.email}}</td>
+				        <td md-cell>{{user.role | translate}}</td>
+				        <td md-cell ng-if="user.enabled">
+				        	<md-icon class="zmdi zmdi-check zmdi-hc-2x" ng-click="inactivetedUser($event, user)" style=" color: #4CAF50;font-weight: bold;">
+				        	<md-tooltip>Ativo</md-tooltip>
+						</td>
+						<td md-cell ng-if="!user.enabled">
+				        	<md-icon  class="zmdi zmdi-check zmdi-hc-2x" ng-click="activetedUser($event, user)" style="font-weight: bold;">
+				        	<md-tooltip>Inativo</md-tooltip>
+						</td>
 				        <td md-cell style="width: 5px; padding: 0 0 0 0;">
 				        	<md-menu md-offset="-30 25">
 								<md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu()">
@@ -44,14 +53,14 @@
 								</md-button>
 								<md-menu-content width="2">
 									<md-menu-item>
-										<md-button ng-click="$state.go( EDIT_STATE, {id:supplier.id})"><span md-menu-align-target>Editar</span></md-button>
+										<md-button ng-click="$state.go( EDIT_STATE, {id:user.id})"><span md-menu-align-target>Editar</span></md-button>
 									</md-menu-item>
 									<md-menu-item>
-										<md-button ng-click="$state.go( DETAIL_STATE, {id:supplier.id})"><span md-menu-align-target>Visualizar</span></md-button>
+										<md-button ng-click="$state.go( DETAIL_STATE, {id:user.id})"><span md-menu-align-target>Visualizar</span></md-button>
 									</md-menu-item>
-									<md-menu-item>
-										<md-button ng-click="changeToRemove($event, supplier)"><span md-menu-align-target>Excluir</span></md-button>
-									</md-menu-item>
+<!-- 									<md-menu-item> -->
+<!-- 										<md-button ng-click="changeToRemove($event, user)"><span md-menu-align-target>Excluir</span></md-button> -->
+<!-- 									</md-menu-item> -->
 								</md-menu-content>
 							</md-menu>
 							<md-tooltip>Opções do registro</md-tooltip>
@@ -80,5 +89,5 @@
 			</eits-vbox>
 	</div>
 </div>
-<md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-plus  zmdi-hc-2x" ng-click="$state.go( ADD_STATE )" aria-label="Novo Fornecedor"></md-button>
+<md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-plus  zmdi-hc-2x" ng-click="$state.go( ADD_STATE )" aria-label="Novo Usuário"></md-button>
 </html>

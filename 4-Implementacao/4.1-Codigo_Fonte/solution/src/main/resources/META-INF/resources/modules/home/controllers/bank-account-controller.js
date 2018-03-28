@@ -61,8 +61,26 @@
         /**
          * 
          */
+        $scope.options = {
+        	    rowSelection: true,
+        	    multiSelect: true,
+        	    autoSelect: true,
+        	    decapitate: false,
+        	    largeEditDialog: false,
+        	    boundaryLinks: false,
+        	    limitSelect: true,
+        	    pageSelect: true
+        	  };
+        
         $scope.model = {
                 form    : {},
+                query :{
+                	    order: 'name',
+                	    limit: 5,
+                	    page: 1
+                	  },
+                limitOptions : [5, 10, 15],
+                totalElements : 0,
                 bankAccount : new BankAccount(),
                 filters: {
                     terms: [],
@@ -147,7 +165,7 @@
             console.debug("changeToList");
             
             $scope.model.page.pageable = {
-            	size: 9,
+            	size: 100,
             	page: 0,
             	sort: {
             		orders: [{ 
@@ -213,6 +231,7 @@
         	bankAccountService.listBankAccountsByFilters( filters.terms.toString(), pageRequest, {
                 callback: function (result) {
                     $scope.model.bankAccounts = $scope.model.bankAccounts.concat(result.content);
+                    $scope.model.totalElements = result.totalElements;
                     $scope.model.showLoading = false;
                     $scope.model.notFound = result.totalElements == 0 ? true : false;
                     $scope.$apply();

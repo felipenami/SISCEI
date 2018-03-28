@@ -16,6 +16,7 @@ import javax.persistence.TemporalType;
 
 import org.directwebremoting.annotations.DataTransferObject;
 import org.hibernate.envers.Audited;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import br.com.eits.common.domain.entity.AbstractEntity;
 
@@ -25,7 +26,7 @@ import br.com.eits.common.domain.entity.AbstractEntity;
  */
 @Entity
 @Audited
-@Table(name = "\"student\"")
+@Table(name = "\"responsible\"")
 @DataTransferObject(javascript = "Responsible")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Responsible extends AbstractEntity implements Serializable
@@ -44,13 +45,19 @@ public class Responsible extends AbstractEntity implements Serializable
 	/**
 	 * 
 	 */
+	@NotEmpty
+	@Column(nullable = false, length = 50)
+	private String name;
+	/**
+	 * 
+	 */
 	@Column(nullable = true, length = 16)
-	private String CPF;
+	private String cpf;
 	/**
 	 * 
 	 */
 	@Column(nullable = true, length = 25)
-	private String RG;
+	private String rg;
 	/**
 	 * 
 	 */
@@ -75,9 +82,6 @@ public class Responsible extends AbstractEntity implements Serializable
 	{
 		
 	}
-	/*-------------------------------------------------------------------
-	 *							BEHAVIORS
-	 *-------------------------------------------------------------------*/
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -86,10 +90,11 @@ public class Responsible extends AbstractEntity implements Serializable
 	{
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + ( ( CPF == null ) ? 0 : CPF.hashCode() );
-		result = prime * result + ( ( RG == null ) ? 0 : RG.hashCode() );
 		result = prime * result + ( ( birthDate == null ) ? 0 : birthDate.hashCode() );
+		result = prime * result + ( ( cpf == null ) ? 0 : cpf.hashCode() );
+		result = prime * result + ( ( name == null ) ? 0 : name.hashCode() );
 		result = prime * result + ( ( phone == null ) ? 0 : phone.hashCode() );
+		result = prime * result + ( ( rg == null ) ? 0 : rg.hashCode() );
 		return result;
 	}
 
@@ -103,60 +108,37 @@ public class Responsible extends AbstractEntity implements Serializable
 		if ( !super.equals( obj ) ) return false;
 		if ( getClass() != obj.getClass() ) return false;
 		Responsible other = ( Responsible ) obj;
-		if ( CPF == null )
-		{
-			if ( other.CPF != null ) return false;
-		}
-		else if ( !CPF.equals( other.CPF ) ) return false;
-		if ( RG == null )
-		{
-			if ( other.RG != null ) return false;
-		}
-		else if ( !RG.equals( other.RG ) ) return false;
 		if ( birthDate == null )
 		{
 			if ( other.birthDate != null ) return false;
 		}
 		else if ( !birthDate.equals( other.birthDate ) ) return false;
+		if ( cpf == null )
+		{
+			if ( other.cpf != null ) return false;
+		}
+		else if ( !cpf.equals( other.cpf ) ) return false;
+		if ( name == null )
+		{
+			if ( other.name != null ) return false;
+		}
+		else if ( !name.equals( other.name ) ) return false;
 		if ( phone == null )
 		{
 			if ( other.phone != null ) return false;
 		}
 		else if ( !phone.equals( other.phone ) ) return false;
+		if ( rg == null )
+		{
+			if ( other.rg != null ) return false;
+		}
+		else if ( !rg.equals( other.rg ) ) return false;
 		return true;
 	}
 	
 	/*-------------------------------------------------------------------
 	 *						GETTERS AND SETTERS
 	 *-------------------------------------------------------------------*/
-	/**
-	 * @return the cPF
-	 */
-	public String getCPF()
-	{
-		return CPF;
-	}
-	/**
-	 * @param cPF the cPF to set
-	 */
-	public void setCPF( String cPF )
-	{
-		CPF = cPF;
-	}
-	/**
-	 * @return the rG
-	 */
-	public String getRG()
-	{
-		return RG;
-	}
-	/**
-	 * @param rG the rG to set
-	 */
-	public void setRG( String rG )
-	{
-		RG = rG;
-	}
 	/**
 	 * @return the birthDate
 	 */
@@ -184,6 +166,48 @@ public class Responsible extends AbstractEntity implements Serializable
 	public void setPhone( String phone )
 	{
 		this.phone = phone;
+	}
+	/**
+	 * @return the cpf
+	 */
+	public String getCpf()
+	{
+		return cpf;
+	}
+	/**
+	 * @param cpf the cpf to set
+	 */
+	public void setCpf( String cpf )
+	{
+		this.cpf = cpf;
+	}
+	/**
+	 * @return the rg
+	 */
+	public String getRg()
+	{
+		return rg;
+	}
+	/**
+	 * @param rg the rg to set
+	 */
+	public void setRg( String rg )
+	{
+		this.rg = rg;
+	}
+	/**
+	 * @return the name
+	 */
+	public String getName()
+	{
+		return name;
+	}
+	/**
+	 * @param name the name to set
+	 */
+	public void setName( String name )
+	{
+		this.name = name;
 	}
 
 }

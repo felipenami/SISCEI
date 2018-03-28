@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="matriculation" language="groovy" pageWidth="595" pageHeight="842" columnWidth="425" leftMargin="85" rightMargin="85" topMargin="71" bottomMargin="70" uuid="bf7068a8-84d7-4170-b706-b142c29d3741">
+	<property name="ireport.zoom" value="1.6105100000000019"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="1056"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\felip\\Desktop\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT distinct
+	matriculation.number_of_installment,
+	classroom.id as classroom_id,
+	"user".name as Nome,
+	"user".birth_date as Nascimento,
+	"user".mother_name as mae,
+	"user".father_name as pai,
+	"user".phone as telefone,
+	"user".cpf as cpf_aluno,
+	"user".rg as rg_aluno,
+	address.street as rua,
+	address.number as numero,
+	address.neighborhood as bairro,
+	address.cep as cep,
+	city.name as cidade,
+	state.name as estado,
+	course.name as curso,
+	responsible.name,
+	responsible.cpf,
+	responsible.rg,
+	responsible.birth_date,
+	responsible.phone
+FROM
+	matriculation
+	LEFT JOIN classroom ON ( matriculation.classroom_id = classroom.id )
+	LEFT JOIN course ON (course.id = classroom.course_id)
+	LEFT JOIN schedule ON (schedule.classroom_id = classroom.id)
+	LEFT JOIN "user" ON (matriculation.student_id = "user".id)
+	LEFT JOIN responsible ON ("user".responsible_id = responsible.id)
+	LEFT JOIN address ON ("user".address_id = address.id)
+	LEFT JOIN city ON (address.city_id = city.id)
+	LEFT JOIN state ON (city.state_id = state.id)
+	LEFT JOIN country ON (state.country_id = country.id)
+where matriculation.id = 2]]>
+	</queryString>
+	<field name="number_of_installment" class="java.lang.Long"/>
+	<field name="classroom_id" class="java.lang.Long"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="nascimento" class="java.sql.Timestamp"/>
+	<field name="mae" class="java.lang.String"/>
+	<field name="pai" class="java.lang.String"/>
+	<field name="telefone" class="java.lang.String"/>
+	<field name="cpf_aluno" class="java.lang.String"/>
+	<field name="rg_aluno" class="java.lang.String"/>
+	<field name="rua" class="java.lang.String"/>
+	<field name="numero" class="java.lang.Integer"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="cep" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="curso" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="rg" class="java.lang.String"/>
+	<field name="birth_date" class="java.sql.Timestamp"/>
+	<field name="phone" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="95" y="12" width="242" height="20" uuid="43e8eb38-3444-4ac7-948b-6597aa9c9713"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Contrato de prestação de serviços]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="425" height="71" uuid="f42939d1-6b9c-44db-9a6a-49214f5a6d56"/>
+				<text><![CDATA[Pelo presente Contrato de Prestação de Serviços, que fazem entre si, de um lado a VISION INFORMÁTICA – TECNOLOGIA E TREINAMENTOS – SIMONE CARDOSO DE SOUZA – INFORMÁTICA, Pessoa jurídica de direito privado, inscrita no CNPJ sob n° 10.823.413/0001-84, com domicílio na rua Quintino Bocaiúva – 477 – Centro, na cidade de Foz do Iguaçu – Paraná – Brasil. Doravante denominada simplesmente a CONTRATADA.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="148" y="0" width="97" height="20" uuid="feed18c7-98a1-4fe4-87f2-8b5fa6e2d823"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DADOS DO ALUNO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="415" splitType="Stretch">
+			<textField>
+				<reportElement x="41" y="15" width="384" height="20" uuid="81aea873-b89c-4ab6-bfef-d84c13943fa8"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="15" width="36" height="20" uuid="641156b3-c495-4723-adbe-3795062083ea"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="105" y="35" width="320" height="20" uuid="fe8c5b64-e605-4858-bf79-87c2ac9d1f2a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nascimento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="35" width="100" height="20" uuid="1593f20b-9e12-4f5c-b35b-ca8fce3e591f"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de nascimento:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="72" y="99" width="353" height="20" uuid="7b5e6ecd-8dc2-4fec-9600-512701ea0961"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{mae}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="99" width="68" height="20" uuid="992daee9-e993-4244-9f1e-57758ea752c1"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome da Mãe:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="72" y="119" width="353" height="20" uuid="97e27616-b782-4ebf-b9fb-69a94f722866"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{pai}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="119" width="67" height="20" uuid="2c78f23f-2625-4063-8257-53b1cf9a656e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome do Pai:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="56" y="139" width="100" height="20" uuid="19aa68b8-8a99-407b-83cd-b247b6328d48"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="139" width="51" height="20" uuid="3e567f03-409e-438e-8dc5-6c86acec7a17"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="158" width="105" height="20" uuid="848bf428-874d-4caf-b4eb-c8d0f736ffa0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Endereço residencial:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="198" width="425" height="20" uuid="6c1287a1-151a-44c4-8392-6d257a5db258"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{rua}+" Nº " + $F{numero}+ ", "+$F{bairro}+" - " +$F{cidade}+", CEP: "+$F{cep}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="-1" y="218" width="425" height="51" uuid="82ea6c31-d5c7-4006-8a16-f8762a4ab9f2"/>
+				<subreportParameter name="classroom_id">
+					<subreportParameterExpression><![CDATA[$F{classroom_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "matriculation_schedules.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement x="41" y="178" width="100" height="20" uuid="c9fd2c88-3ee3-4313-a67b-e936a83520c1"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{curso}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="178" width="41" height="20" uuid="f57bd666-207e-42cd-8555-16445e2c1d61"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Curso:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="283" width="234" height="20" uuid="b586a6be-6f08-43e5-a38f-4035110d085d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Dados do responsável ( se menor de idade )]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="33" y="75" width="212" height="20" uuid="4130dd93-6c57-4928-b532-1b415c21d43e"/>
+				<textFieldExpression><![CDATA[$F{cpf_aluno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="55" width="212" height="20" uuid="2694e3db-8dce-49a5-856d-976e99a0c068"/>
+				<textFieldExpression><![CDATA[$F{rg_aluno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="55" width="27" height="20" uuid="fe8c9f47-acd5-4706-8eeb-6ba4f2a64212"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RG:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="75" width="28" height="20" uuid="72d621d9-eae2-4463-ad13-feb6a069fab4"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="41" y="314" width="100" height="20" uuid="d9247c77-7155-44cd-b581-ee58057c05d5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="314" width="36" height="20" uuid="96e3675f-b2a1-445b-9c31-87c15ed0615a"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="33" y="374" width="100" height="20" uuid="1e9a012d-a48a-4b62-a96d-0f335e68081f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="354" width="100" height="20" uuid="bc5c9a61-b6f3-445b-84ee-233418e0d741"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{rg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="394" width="100" height="20" uuid="11c829ff-77ab-459a-a319-f9326e680b26"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="105" y="334" width="100" height="20" uuid="a6108d32-2e96-4c57-93d5-c20937f67884"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{birth_date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="-1" y="374" width="28" height="20" uuid="e8594e6d-be22-4ab2-b438-3f9c290d458d"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="354" width="27" height="20" uuid="7007b5a8-94db-4531-8de4-58e2e286362e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RG:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="334" width="100" height="20" uuid="8bb9a0d2-214d-4757-b48e-215cf9827e1e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de nascimento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="394" width="51" height="20" uuid="59f1094d-3b70-4489-811d-865b6a1bed4c"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefone:]]></text>
+			</staticText>
+		</band>
+		<band height="305">
+			<staticText>
+				<reportElement x="-1" y="28" width="425" height="26" uuid="4f93d1bb-25ae-4ab7-8ee7-90f509733790"/>
+				<text><![CDATA[O aluno e/ou seu responsável legal, doravante denominado CONTRATANTE, tem as partes por justo e contratado o quanto segue:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-2" y="54" width="425" height="251" uuid="faed1867-84dd-47b3-aba2-0b4cb597f2ac"/>
+				<textFieldExpression><![CDATA["CLÁUSULA PRIMEIRA: O valor dos serviços educacionais prestados pela contratada é de: "+$F{number_of_installment}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

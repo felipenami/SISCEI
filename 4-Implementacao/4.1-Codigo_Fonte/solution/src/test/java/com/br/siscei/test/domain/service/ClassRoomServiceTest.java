@@ -94,8 +94,8 @@ public class ClassRoomServiceTest extends AbstractIntegrationTests
 		final Course course = this.courseService.findCourseById( 9999L );
 		
 
-		final Calendar beginHour = new GregorianCalendar(2050,9,5, 11,00,00);
-		final Calendar endHour = new GregorianCalendar(2050,9,5, 12,00,00);
+		final String beginHour = "11:00";
+		final String endHour = "12:00";
 		
 		Set<Schedule> schedules = new HashSet<Schedule>();
 		
@@ -136,18 +136,18 @@ public class ClassRoomServiceTest extends AbstractIntegrationTests
 		Set<Schedule> scedules = new HashSet<Schedule>();
 		
 		Schedule schedule1 = new Schedule();
-		schedule1.setBeginHour( new GregorianCalendar() );
-		schedule1.setEndHour( new GregorianCalendar() );
+		schedule1.setBeginHour( "11:00" );
+		schedule1.setEndHour( "12:00" );
 		schedule1.setWeekDay( ScheduleWeek.MONDAY );
 		
 		Schedule schedule2 = new Schedule();
-		schedule2.setBeginHour( new GregorianCalendar() );
-		schedule2.setEndHour( new GregorianCalendar() );
+		schedule2.setBeginHour( "11:00" );
+		schedule2.setEndHour( "12:00" );
 		schedule2.setWeekDay( ScheduleWeek.MONDAY );
 		
 		Schedule schedule3 = new Schedule();
-		schedule3.setBeginHour( new GregorianCalendar() );
-		schedule3.setEndHour( new GregorianCalendar() );
+		schedule3.setBeginHour( "11:00" );
+		schedule3.setEndHour( "12:00" );
 		schedule3.setWeekDay( ScheduleWeek.WEDNESDAY );
 		
 		scedules.add( schedule1 );
@@ -234,13 +234,13 @@ public class ClassRoomServiceTest extends AbstractIntegrationTests
 		Set<Schedule> schedules = new HashSet<Schedule>();
 		
 		Schedule schedule1 = new Schedule();
-		schedule1.setBeginHour( new GregorianCalendar() );
-		schedule1.setEndHour( new GregorianCalendar() );
+		schedule1.setBeginHour( "11:00" );
+		schedule1.setEndHour( "12:00" );
 		schedule1.setWeekDay( ScheduleWeek.TUESDAY );
 		
 		Schedule schedule2 = new Schedule();
-		schedule2.setBeginHour( new GregorianCalendar() );
-		schedule2.setEndHour( new GregorianCalendar() );
+		schedule2.setBeginHour( "11:00" );
+		schedule2.setEndHour( "12:00" );
 		schedule2.setWeekDay( ScheduleWeek.MONDAY );
 		
 		schedules.add( schedule1 );

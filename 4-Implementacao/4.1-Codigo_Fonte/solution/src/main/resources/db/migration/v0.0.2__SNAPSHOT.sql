@@ -7,7 +7,8 @@ INSERT INTO "public"."user"(
  
 INSERT INTO "public"."category"(created, updated, name) VALUES ('now', 'now', 'Conta de luz');    
 INSERT INTO "public"."category"(created, updated, name) VALUES ('now', 'now', 'Conta de agua');    
-INSERT INTO "public"."category"(created, updated, name) VALUES ('now', 'now', 'Conta de telefone');    
+INSERT INTO "public"."category"(created, updated, name) VALUES ('now', 'now', 'Conta de telefone');  
+INSERT INTO "public"."category"(created, updated, name) VALUES ('now', 'now', 'Mensalidade de alunos');
     
 INSERT INTO "public"."country"(created, updated, name) VALUES ('now', 'now', 'Brasil');
 

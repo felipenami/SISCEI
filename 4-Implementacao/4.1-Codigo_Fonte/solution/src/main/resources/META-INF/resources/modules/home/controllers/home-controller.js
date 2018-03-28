@@ -13,14 +13,13 @@ angular.module('siscei')
      * 		 				 	ATTRIBUTES
      *-------------------------------------------------------------------*/
     //----STATES
-		   
-
+    
 	//-----
 	/**
 	 * 
 	 */
 	$scope.menuSideNavId = "menuSideNav";
-
+	$scope.user = user;
 	/*-------------------------------------------------------------------
      * 		 				  	POST CONSTRUCT
      *-------------------------------------------------------------------*/
@@ -35,6 +34,26 @@ angular.module('siscei')
     	console.log("toggleMenuSideNavHandler");
     	$mdSidenav($scope.menuSideNavId).toggle();
     };
+    
+    /**
+     * 
+     */
+    $scope.hasPermission = function(role) {
+    	var roles = (typeof role == "string") ? [role] : role;
+    	var authorities = $scope.user.principal.authorities;
+    	
+    	for(var role in roles) {
+    		for(var i in authorities) {
+    			switch(authorities[i].$name) {
+    				case roles[role]:
+    					return true;
+    					break;
+    			}
+    		}
+    	}
+    	
+    	return false;
+    }
 });
 
 }(window.angular));

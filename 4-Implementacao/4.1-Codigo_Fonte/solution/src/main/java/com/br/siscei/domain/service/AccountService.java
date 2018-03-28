@@ -21,7 +21,7 @@ import com.br.siscei.domain.repository.account.IUserRepository;
 
 /**
  * 
- * @author rodrigo.p.fraga@gmail.com
+ * @author felipenami@gmail.com
  */
 @Service
 @RemoteProxy
@@ -77,7 +77,7 @@ public class AccountService
 	 * @param user
 	 * @return
 	 */
-	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.SECRETARY_VALUE+","+UserRole.TEACHER_VALUE+","+UserRole.STUDENT_VALUE+"')")
+	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"','"+UserRole.SECRETARY_VALUE+"')")
 	public User insertUser( User user )
 	{
 		Assert.notNull( user );
@@ -114,4 +114,39 @@ public class AccountService
 	{
 		return this.userRepository.listByFilters( filter, pageable );
 	}
+	/**
+	 * 
+	 * @param pageable
+	 * @param filters
+	 * @return
+	 */
+	@Transactional(readOnly=true)
+	public Page<User> listStudentsByFilters( String filter, PageRequest pageable )
+	{
+		return this.userRepository.listStudentByFilters( filter, pageable );
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 */
+	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"')")
+	public void inactivetedUser(Long id)
+	{
+		User user = this.userRepository.findOne( id );
+		user.setEnabled( false );
+		user = this.userRepository.save( user );
+	}
+	/**
+	 * 
+	 * @param id
+	 */
+	@PreAuthorize("hasAnyAuthority('"+UserRole.ADMINISTRATOR_VALUE+"')")
+	public void activetedUser(Long id)
+	{
+		User user = this.userRepository.findOne( id );
+		user.setEnabled( true );
+		user = this.userRepository.save( user );
+	}
+	
 }

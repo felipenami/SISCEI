@@ -59,6 +59,13 @@
                 form    : {},
                 course : new Course(),
                 listDisciplines : [],
+                query :{
+            	    order: 'name',
+            	    limit: 5,
+            	    page: 1
+            	  },
+            	limitOptions : [5, 10, 15],
+            	totalElements : 0,
                 filters: {
                     terms: [],
                 },
@@ -141,7 +148,7 @@
             console.debug("changeToList");
             
             $scope.model.page.pageable = {
-            	size: 9,
+            	size: 100,
             	page: 0,
             	sort: {
             		orders: [{ 
@@ -191,6 +198,7 @@
         	courseService.listCoursesByFilters( filters.terms.toString(), pageRequest, {
                 callback: function (result) {
                     $scope.model.courses = $scope.model.courses.concat(result.content);
+                    $scope.model.totalElements = result.totalElements;
                     $scope.model.showLoading = false;
                     $scope.model.notFound = result.totalElements == 0 ? true : false;
                     $scope.$apply();

@@ -530,3 +530,9 @@ input[type="time"]:focus{
 .md-datepicker-input{
 	width: 155px !important;
 }
+.invalid-input{
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    font-size: 12px;
+    color:rgb(244,67,54);
+}

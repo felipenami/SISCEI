@@ -41,8 +41,8 @@ CREATE TABLE auditing.schedule_audited
   id bigint NOT NULL,
   revision bigint NOT NULL,
   revision_type smallint,
-  begin_hour timestamp without time zone,
-  end_hour timestamp without time zone,
+  begin_hour character varying(255),
+  end_hour character varying(255),
   week_day integer,
   classroom_id bigint,
   CONSTRAINT schedule_audited_pkey PRIMARY KEY (id, revision),
@@ -71,25 +71,26 @@ CREATE TABLE auditing.discipline_audited
 -- TOC entry 177 (class 1259 OID 278689)
 -- Name: revision; Type: TABLE; Schema: auditing; Owner: -
 --
-CREATE TABLE auditing.student_audited
+CREATE TABLE auditing.matriculation_audited
 (
-	dtype character varying(31) NOT NULL,
   id bigint NOT NULL,
   revision bigint NOT NULL,
   revision_type smallint,
-  cpf character varying(16),
-  rg character varying(25),
-  birth_date timestamp without time zone,
-  phone character varying(19),
-  father_name character varying(255),
-  mother_name character varying(255),
-  address_id bigint,
-  user_id bigint,
-  CONSTRAINT student_audited_pkey PRIMARY KEY (id, revision),
-  CONSTRAINT fk_student_audited_revision FOREIGN KEY (revision)
+  matriculation_date timestamp without time zone,
+  matriculation_number bigint,
+  number_of_installment bigint,
+  payment_date timestamp without time zone,
+  status integer,
+  ticket numeric(19,2),
+  value numeric(19,2),
+  classroom_id bigint,
+  student_id bigint,
+  CONSTRAINT matriculation_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_matriculation_audited_revision FOREIGN KEY (revision)
       REFERENCES auditing.revision (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
+
 --
 -- TOC entry 177 (class 1259 OID 278689)
 -- Name: revision; Type: TABLE; Schema: auditing; Owner: -
@@ -135,11 +136,11 @@ CREATE TABLE "public"."classroom"
 --
 CREATE TABLE "public"."schedule"
 (
- id bigserial NOT NULL,
+  id bigserial NOT NULL,
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
-  begin_hour timestamp without time zone NOT NULL,
-  end_hour timestamp without time zone NOT NULL,
+  begin_hour character varying(255) NOT NULL,
+  end_hour character varying(255) NOT NULL,
   week_day integer NOT NULL,
   classroom_id bigint NOT NULL,
   CONSTRAINT schedule_pkey PRIMARY KEY (id),
@@ -165,30 +166,26 @@ CREATE TABLE "public"."discipline"
       REFERENCES course (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
---
--- TOC entry 177 (class 1259 OID 278689)
--- Name: revision; Type: TABLE; Schema: auditing; Owner: -
---
 
-CREATE TABLE "public"."student"
+CREATE TABLE "public"."matriculation"
 (
-  dtype character varying(31) NOT NULL,
   id bigserial NOT NULL,
   created timestamp without time zone NOT NULL,
   updated timestamp without time zone,
-  cpf character varying(16) NOT NULL,
-  rg character varying(25) NOT NULL,
-  birth_date timestamp without time zone NOT NULL,
-  phone character varying(19) NOT NULL,
-  father_name character varying(255) NOT NULL,
-  mother_name character varying(255) NOT NULL,
-  address_id bigint,
-  user_id bigint,
-  CONSTRAINT student_pkey PRIMARY KEY (id),
-  CONSTRAINT fk_student_address_id FOREIGN KEY (address_id)
-      REFERENCES address (id) MATCH SIMPLE
+  matriculation_date timestamp without time zone,
+  matriculation_number bigint NOT NULL,
+  number_of_installment bigint NOT NULL,
+  payment_date timestamp without time zone,
+  status integer NOT NULL,
+  ticket numeric(19,2) NOT NULL,
+  value numeric(19,2) NOT NULL,
+  classroom_id bigint,
+  student_id bigint,
+  CONSTRAINT matriculation_pkey PRIMARY KEY (id),
+  CONSTRAINT fk_matriculation_classroom_id FOREIGN KEY (classroom_id)
+      REFERENCES classroom (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION,
-  CONSTRAINT fk_student_user_id FOREIGN KEY (user_id)
+  CONSTRAINT fk_matriculation_student_id FOREIGN KEY (student_id)
       REFERENCES "user" (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );

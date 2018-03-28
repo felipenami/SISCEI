@@ -24,27 +24,6 @@ CREATE TABLE auditing.revision
   user_id bigint,
   CONSTRAINT revision_pkey PRIMARY KEY (id)
 );
-
---
--- TOC entry 178 (class 1259 OID 278695)
--- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
---
-CREATE TABLE auditing.user_audited
-(
-  id bigint NOT NULL,
-  revision bigint NOT NULL,
-  revision_type smallint,
-  email character varying(144),
-  enabled boolean,
-  last_login timestamp without time zone,
-  name character varying(50),
-  password character varying(100),
-  role integer,
-  CONSTRAINT user_audited_pkey PRIMARY KEY (id, revision),
-  CONSTRAINT fk_user_audited_revision FOREIGN KEY (revision)
-      REFERENCES auditing.revision (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION
-);
 --
 -- TOC entry 178 (class 1259 OID 278695)
 -- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
@@ -104,6 +83,54 @@ CREATE TABLE auditing.address_audited
   city_id bigint,
   CONSTRAINT address_audited_pkey PRIMARY KEY (id, revision),
   CONSTRAINT fk_address_audited_revision FOREIGN KEY (revision)
+      REFERENCES auditing.revision (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+--
+-- TOC entry 178 (class 1259 OID 278695)
+-- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
+--
+CREATE TABLE auditing.responsible_audited
+(
+  id bigint NOT NULL,
+  revision bigint NOT NULL,
+  revision_type smallint,
+  name character varying(50),
+  cpf character varying(16),
+  rg character varying(25),
+  birth_date timestamp without time zone,
+  phone character varying(19),
+  CONSTRAINT responsible_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_responsible_audited_revision FOREIGN KEY (revision)
+      REFERENCES auditing.revision (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+--
+-- TOC entry 178 (class 1259 OID 278695)
+-- Name: user_audited; Type: TABLE; Schema: auditing; Owner: -
+--
+CREATE TABLE auditing.user_audited
+(
+  id bigint NOT NULL,
+  revision bigint NOT NULL,
+  revision_type smallint,
+  email character varying(144),
+  enabled boolean,
+  father_name character varying(255),
+  last_login timestamp without time zone,
+  mother_name character varying(255),
+  name character varying(50),
+  password character varying(100),
+  role integer,
+  phone character varying(19),
+  birth_date timestamp without time zone,
+  cpf character varying(16),
+  rg character varying(25),
+  address_id bigint,
+  responsible_id bigint,
+  CONSTRAINT user_audited_pkey PRIMARY KEY (id, revision),
+  CONSTRAINT fk_user_audited_revision FOREIGN KEY (revision)
       REFERENCES auditing.revision (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
 );
@@ -204,25 +231,6 @@ CREATE TABLE auditing.account_receivable_audited
 ----------------------- 
 -- PUBLIC STRUCTURE
 -----------------------
-
---
--- TOC entry 175 (class 1259 OID 278679)
--- Name: user; Type: TABLE; Schema: public; Owner: -
---
-CREATE TABLE "public"."user"
-(
-  id bigserial NOT NULL,
-  created timestamp without time zone NOT NULL,
-  updated timestamp without time zone,
-  email character varying(144) NOT NULL,
-  enabled boolean NOT NULL,
-  name character varying(50) NOT NULL,
-  password character varying(100) NOT NULL,
-  role integer NOT NULL,
-  last_login timestamp without time zone,
-  CONSTRAINT user_pkey PRIMARY KEY (id),
-  CONSTRAINT uk_user_email UNIQUE (email)
-);
 --
 -- TOC entry 175 (class 1259 OID 278679)
 -- Name: user; Type: TABLE; Schema: public; Owner: -
@@ -281,6 +289,56 @@ CREATE TABLE "public"."address"
   CONSTRAINT fk_address_city_id FOREIGN KEY (city_id)
       REFERENCES city (id) MATCH SIMPLE
       ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+--
+-- TOC entry 175 (class 1259 OID 278679)
+-- Name: user; Type: TABLE; Schema: public; Owner: -
+
+CREATE TABLE "public"."responsible"
+(
+  id bigserial NOT NULL,
+  created timestamp without time zone NOT NULL,
+  updated timestamp without time zone,
+  name character varying(50) NOT NULL,
+  cpf character varying(16),
+  rg character varying(25),
+  birth_date timestamp without time zone NOT NULL,
+  phone character varying(19) NOT NULL,
+  CONSTRAINT responsible_pkey PRIMARY KEY (id)
+);
+
+
+--
+-- TOC entry 175 (class 1259 OID 278679)
+-- Name: user; Type: TABLE; Schema: public; Owner: -
+--
+CREATE TABLE "public"."user"
+(
+ id bigserial NOT NULL,
+  created timestamp without time zone NOT NULL,
+  updated timestamp without time zone,
+  email character varying(144) NOT NULL,
+  enabled boolean NOT NULL,
+  father_name character varying(255),
+  last_login timestamp without time zone,
+  mother_name character varying(255) ,
+  name character varying(50) NOT NULL,
+  password character varying(100) NOT NULL,
+  role integer NOT NULL,
+  phone character varying(19),
+  birth_date timestamp without time zone,
+  cpf character varying(16),
+  rg character varying(25),
+  address_id bigint,
+  responsible_id bigint,
+  CONSTRAINT user_pkey PRIMARY KEY (id),
+  CONSTRAINT fk_user_address_id FOREIGN KEY (address_id)
+      REFERENCES address (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT fk_user_responsible_id FOREIGN KEY (responsible_id)
+      REFERENCES responsible (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT uk_user_email UNIQUE (email)
 );
 --
 -- TOC entry 175 (class 1259 OID 278679)

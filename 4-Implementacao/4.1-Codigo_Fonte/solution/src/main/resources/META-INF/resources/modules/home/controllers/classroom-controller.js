@@ -62,10 +62,17 @@
         $scope.model = {
                 form    : {},
                 classroom : new Classroom(),
+                query :{
+            	    order: 'name',
+            	    limit: 5,
+            	    page: 1
+            	  },
+            	limitOptions : [5, 10, 15],
+            	totalElements : 0,
                 filters: {
                     terms: [],
                 },
-                listSchedules : [],
+                listSchedules : {},
                 courses :[],
                 classrooms : [],
                 page: {//PageImpl
@@ -125,10 +132,10 @@
         $scope.changeToEdit = function (id) {
         	console.debug("edit");
         	
-        	courseService.findCourseById(id,{
+        	classRoomService.findClassroomById(id,{
         		callback: function (result) {
-        			$scope.model.course = result;
-        			$scope.model.listDisciplines = $scope.model.course.discipline;
+        			$scope.model.classroom = result;
+        			$scope.model.listSchedules = $scope.model.classroom.schedule;
         			$scope.$apply();
         		},
                 errorHandler: function (message, exception) {
@@ -136,7 +143,20 @@
 		            $state.go($scope.LIST_STATE);
 		            $scope.$apply();
                 }
-        	})
+        	});
+        	
+        	$scope.model.page.pageable = {
+                	size: 9,
+                	page: 0,
+                	sort: {
+                		orders: [{ 
+                			direction: 'ASC',
+                			property: 'name',
+                			nullHandlingHint: null
+                		}]
+                    }
+                };
+        	$scope.listCoursesByFilters( $scope.model.filters,  $scope.model.page.pageable );
         	
         }
         /**
@@ -146,7 +166,7 @@
             console.debug("changeToList");
             
             $scope.model.page.pageable = {
-            	size: 9,
+            	size: 100,
             	page: 0,
             	sort: {
             		orders: [{ 
@@ -160,7 +180,7 @@
                 //Limpamos a lista para um nova consulta
                 $scope.model.classroom = new Classroom();
                 $scope.model.classrooms = [];
-                $scope.listClassRoomsByFilters( $scope.model.filters,  $scope.model.page.pageable );
+                $scope.listClassroomsByFilters( $scope.model.filters,  $scope.model.page.pageable );
         };
         /**
          * 
@@ -206,11 +226,12 @@
         /**
          * 
          */
-        $scope.listClassRoomsByFilters = function(filters, pageRequest){
+        $scope.listClassroomsByFilters = function(filters, pageRequest){
         	
-        	classRoomService.listClassRoomsByFilters( filters.terms.toString(), null, pageRequest, {
+        	classRoomService.listClassroomsByFilters( filters.terms.toString(), null, pageRequest, {
                 callback: function (result) {
                     $scope.model.classrooms = $scope.model.classrooms.concat(result.content);
+                    $scope.model.totalElements = result.totalElements;
                     $scope.model.showLoading = false;
                     $scope.model.notFound = result.totalElements == 0 ? true : false;
                     $scope.$apply();
@@ -247,11 +268,11 @@
          */
         $scope.insertClassRoomHandler = function(classroom){
         	classroom.schedule =  $scope.model.listSchedules;
-        	$scope.prepareHour($scope.model.listSchedules);
-        	if($scope.validateForm()){
+//        	$scope.prepareHour($scope.model.listSchedules);
+//        	if($scope.validateForm()){
         		classRoomService.insertClassroom( classroom, {
 	        		callback: function(result){
-	        			$mdToast.showSimple("Turma salvo com sucesso!");
+	        			$mdToast.showSimple("Turma salva com sucesso!");
 	                    $state.go($scope.LIST_STATE);
 	                    $scope.$apply();
 	        		},
@@ -260,7 +281,7 @@
 	                     $scope.$apply();
 	                 }
 	        	})
-        	}
+//        	}
         }
         /**
          * 
@@ -340,19 +361,19 @@
          * 
          */
         $scope.validateForm = function (){
-        	if($scope.model.classRoom.name == null){
+        	if($scope.model.classroom.name == null){
         		$mdToast.showSimple("Informe o nome do curso.");
                 return false;
         	}
-        	if($scope.model.classRoom.beginHour == null){
+        	if($scope.model.classroom.schedule.beginHour == null){
         		$mdToast.showSimple("Informe a hora inicial.");
         		return false;
         	}
-        	if($scope.model.classRoom.endHour == null ){
+        	if($scope.model.classroom.schedule.endHour == null ){
         		$mdToast.showSimple("Informe a hora final.");
         		return false;
         	}
-        	if($scope.model.classRoom.course == null ){
+        	if($scope.model.classroom.course == null ){
         		$mdToast.showSimple("Informe o curso desta turma.");
         		return false;
         	}
@@ -361,7 +382,7 @@
         /**
          * 
          */
-        $scope.listClassRoomsByEvents = function ( event ) {
+        $scope.listClassroomsByEvent = function ( event ) {
         	
 	    	if( event.keyCode == 13 || $scope.model.filters.terms == "" ){
 	          $scope.changeToList();

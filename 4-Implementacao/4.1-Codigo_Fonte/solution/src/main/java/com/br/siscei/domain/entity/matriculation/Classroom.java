@@ -106,7 +106,7 @@ public class Classroom extends AbstractEntity
 		{
 			for( Schedule schedule : this.getSchedule() )
 			{
-				schedule.setClassRoom( this );
+				schedule.setClassroom( this );
 			}
 		}
 		return this;

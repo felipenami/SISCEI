@@ -13,51 +13,55 @@
 		<md-content layout-padding layout="column" layout="left left" 
 			style="height: 80%; padding-top: 20px;">
 		
-			<label class="md-body-2">Usuários</label>
-			
-			<md-button style="text-align: left;"
-				ng-click="toggleMenuSideNavHandler();">
+			<label ng-if="hasPermission('ADMINISTRATOR')" class="md-body-2">Usuários</label>
+			<md-button ng-if="hasPermission('ADMINISTRATOR')" style="text-align: left;"
+				ng-click="$state.go('user.list');toggleMenuSideNavHandler();">
 				<md-icon class="zmdi zmdi-accounts zmdi-hc-fw zmdi-hc-lg"></md-icon>
 				Usuários
 			</md-button>
 			<md-divider></md-divider>
 			<label class="md-body-2">Financeiro</label>
-			<md-button style="text-align: left;"
+			<md-button ng-if="hasPermission('ADMINISTRATOR')" style="text-align: left;"
 				ng-click="$state.go('supplier.list'); toggleMenuSideNavHandler();">
 				<md-icon class="zmdi zmdi-truck zmdi-hc-fw zmdi-hc-lg"></md-icon>
 				Forncedores
 			</md-button>
-			<md-button style="text-align: left;"
+			<md-button ng-if="hasPermission('SECRETARY')" style="text-align: left;"
 				ng-click="$state.go('accountPayable.list'); toggleMenuSideNavHandler();">
 				<md-icon class="zmdi zmdi-money-off zmdi-hc-fw zmdi-hc-lg"></md-icon>
 				Contas a pagar
 			</md-button>
-			<md-button style="text-align: left;"
+			<md-button ng-if="hasPermission('SECRETARY')" style="text-align: left;"
 				ng-click="$state.go('accountReceivable.list'); toggleMenuSideNavHandler();">
 				<md-icon class="zmdi zmdi-money zmdi-hc-fw zmdi-hc-lg"></md-icon>
 				Contas a receber
 			</md-button>
-			<md-button style="text-align: left;"
+			<md-button ng-if="hasPermission('ADMINISTRATOR')" style="text-align: left;"
 				ng-click="$state.go('bankAccount.list'); toggleMenuSideNavHandler();">
 				<md-icon class="zmdi zmdi-balance-wallet zmdi-hc-fw zmdi-hc-lg"></md-icon>
 				Conta bancária
 			</md-button>
 			<md-divider></md-divider>
 			<label class="md-body-2">Matricula</label>
-			<md-button style="text-align: left;"
-				ng-click="$state.go('bankAccount.list'); toggleMenuSideNavHandler();">
+			<md-button ng-if="hasPermission('SECRETARY')" style="text-align: left;"
+				ng-click="$state.go('student.list'); toggleMenuSideNavHandler();">
 				<md-icon class="zmdi zmdi-balance zmdi-account zmdi-hc-lg"></md-icon>
 				Aluno
 			</md-button>
-			<md-button style="text-align: left;"
+			<md-button ng-if="hasPermission('ADMINISTRATOR')" style="text-align: left;"
 				ng-click="$state.go('course.list'); toggleMenuSideNavHandler();">
 				<md-icon class="zmdi zmdi-graduation-cap zmdi-hc-fw zmdi-hc-lg"></md-icon>
 				Curso
 			</md-button>
-			<md-button style="text-align: left;"
+			<md-button ng-if="hasPermission('ADMINISTRATOR')" style="text-align: left;"
 				ng-click="$state.go('classroom.list'); toggleMenuSideNavHandler();">
 				<md-icon class="zmdi zmdi-balance zmdi-hc-fw zmdi-hc-lg"></md-icon>
 				Turma
+			</md-button>
+			<md-button ng-if="hasPermission('SECRETARY')" style="text-align: left;"
+				ng-click="$state.go('matriculation.list'); toggleMenuSideNavHandler();">
+				<md-icon class="zmdi zmdi-balance zmdi-hc-fw zmdi-hc-lg"></md-icon>
+				Matricula
 			</md-button>
 			<span flex></span>
 			<md-divider></md-divider>

@@ -9,20 +9,6 @@
 	 */
 	module.config( function( $stateProvider, $urlRouterProvider, $importServiceProvider, $translateProvider, $mdThemingProvider, $mdDateLocaleProvider ) {
 		
-		
-    	/*-------------------------------------------------------------------
-    	 *				 		   CONFIGURAÇÕES FORMATO DE DATA
-    	 *-------------------------------------------------------------------*/
-		/**
-		 * 
-		 */
-		$mdDateLocaleProvider.formatDate = function(date) {
-		      var m = moment(date);
-		      return m.isValid() ? m.format('L') : '';
-		    };
-		 /**
-		  * 
-		  */   
     	/*-------------------------------------------------------------------
     	 *				 		   CONFIGURAÇÕES DE TEMA
     	 *-------------------------------------------------------------------*/
@@ -93,6 +79,61 @@
         /**
          * 
          */
+        
+        /*-------------------------------------------------------------------
+    	 *				 		     STUDENT
+    	 *-------------------------------------------------------------------*/
+        
+		$stateProvider.state('student',{
+			abstract: true,
+			url : "/student",
+			template: '<div ui-view/>',
+			controller : 'StudentController as studentController'
+		})
+		.state('student.list',{
+			url : "/list",
+			templateUrl : "./modules/home/views/student/student-list.html"
+		})
+		.state('student.add',{
+			url : "/add",
+			templateUrl : "./modules/home/views/student/student-form.html"
+		})
+		.state('student.edit',{
+			url : "/edit/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/student/student-form.html"
+		})
+		.state('student.detail',{
+			url : "/detail/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/student/student-detail.html"
+		});
+        
+        /*-------------------------------------------------------------------
+    	 *				 		     USER
+    	 *-------------------------------------------------------------------*/
+        
+		$stateProvider.state('user',{
+			abstract: true,
+			url : "/user",
+			template: '<div ui-view/>',
+			controller : 'UserController as userController'
+		})
+		.state('user.list',{
+			url : "/list",
+			templateUrl : "./modules/home/views/user/user-list.html"
+		})
+		.state('user.add',{
+			url : "/add",
+			templateUrl : "./modules/home/views/user/user-form.html"
+		})
+		.state('user.edit',{
+			url : "/edit/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/user/user-form.html"
+		})
+		.state('user.detail',{
+			url : "/detail/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/user/user-detail.html"
+		});
+        
     	/*-------------------------------------------------------------------
     	 *				 		     SUPPLIER
     	 *-------------------------------------------------------------------*/
@@ -253,17 +294,59 @@
 			url : "/detail/{id:[0-9]{1,10}}",
 			templateUrl : "./modules/home/views/classroom/classroom-detail.html"
 		});
+    	/*-------------------------------------------------------------------
+    	 *				 		     MATRICULATION
+    	 *-------------------------------------------------------------------*/		
+		$stateProvider.state('matriculation',{
+			abstract: true,
+			url : "/matriculation",
+			template: '<div ui-view/>',
+			controller : 'MatriculationController as matriculationController'
+		})
+		.state('matriculation.list',{
+			url : "/list",
+			templateUrl : "./modules/home/views/matriculation/matriculation-list.html"
+		})
+		.state('matriculation.add',{
+			url : "/add",
+			templateUrl : "./modules/home/views/matriculation/matriculation-form.html"
+		})
+		.state('matriculation.edit',{
+			url : "/edit/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/matriculation/matriculation-form.html"
+		})
+		.state('matriculation.detail',{
+			url : "/detail/{id:[0-9]{1,10}}",
+			templateUrl : "./modules/home/views/matriculation/matriculation-detail.html"
+		});
 		
-		
+		/*-------------------------------------------------------------------
+		 *				 		   CONFIGURAÇÕES FORMATO DE DATA
+		 *-------------------------------------------------------------------*/
+		/**
+		 * 
+		 */
+		$mdDateLocaleProvider.formatDate = function(date) {
+		      var m = moment(date);
+		      return m.isValid() ? m.format('L') : '';
+		    };
+		 /**
+		  * 
+		  */  
 		
 	});
+	
+	    
 	/**
 	 * 
 	 */
 	module.run( function( $rootScope, $window, $state, $stateParams ) {
-		$rootScope.$usuario 	= $window.usuario;
+//		$rootScope.$usuario 	= $window.usuario;
 		$rootScope.$state 		= $state;
 		$rootScope.$stateParams = $stateParams;
+		
+		
+		
 	});
 
 	/**

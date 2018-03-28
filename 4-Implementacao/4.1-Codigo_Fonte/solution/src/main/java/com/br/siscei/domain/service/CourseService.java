@@ -80,7 +80,12 @@ public class CourseService
 		
 		return course;
 	}
-	
+	/**
+	 * 
+	 * @param filter
+	 * @param pageable
+	 * @return
+	 */
 	public Page<Course> listCoursesByFilters(String filter, PageRequest pageable)
 	{
 		return this.courseRepository.listByFilters( filter, pageable );

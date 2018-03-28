@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="matriculation_schedules" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="807d183b-0e0c-484e-978b-3c93b2049b75">
+	<property name="ireport.zoom" value="1.4641000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="classroom_id" class="java.lang.Long">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select week_day, begin_hour, end_hour from schedule where schedule.classroom_id = $P{classroom_id}]]>
+	</queryString>
+	<field name="week_day" class="java.lang.Integer"/>
+	<field name="begin_hour" class="java.lang.String"/>
+	<field name="end_hour" class="java.lang.String"/>
+	<variable name="begin_hour_1" class="java.lang.Integer" calculation="DistinctCount">
+		<variableExpression><![CDATA[$F{begin_hour}]]></variableExpression>
+	</variable>
+	<group name="id">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<textField>
+				<reportElement x="106" y="18" width="105" height="20" uuid="246b73dc-d8c3-4070-b6bf-b498b2e27036"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{week_day} == 0 ? "Segunda Feira" :
+$F{week_day} == 1 ? "Terça Feira" :
+$F{week_day} == 2 ? "Quarta Feira" :
+$F{week_day} == 3 ? "Quinta Feira" :
+$F{week_day} == 4 ? "Sexta Feira" :
+$F{week_day} == 5 ? "Sábado" : "Domingo"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="262" y="18" width="283" height="20" uuid="97856d33-0823-4569-8f98-654796d63134"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{begin_hour}+" às "+$F{end_hour}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="21" y="18" width="80" height="20" uuid="772982da-6663-4ed6-b43d-e1d71eba5a39"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Dias da semana:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="18" width="41" height="20" uuid="00e90251-25d8-4d99-ad7b-191911444a53"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Horário:]]></text>
+			</staticText>
+		</band>
+	</title>
+</jasperReport>

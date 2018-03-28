@@ -10,7 +10,7 @@ import com.br.siscei.domain.entity.account.User;
 
 /**
  * 
- * @author rodrigo.p.fraga@gmail.com 
+ * @author Felipe Nami 
  * @since 22/04/2014
  * @version 1.0
  * @category Repository
@@ -32,6 +32,20 @@ public interface IUserRepository extends JpaRepository<User, Long>
 				   "FROM User user " +
 				  "WHERE ( FILTER(user.id, :filter) = TRUE "
 				  	 + "OR FILTER(user.name, :filter) = TRUE "
-				  	 + "OR FILTER(user.email, :filter) = TRUE )" )
+				  	 + "OR FILTER(user.email, :filter) = TRUE )"
+				  	 + "AND user.role <> 3" )
 	public Page<User> listByFilters( @Param("filter") String filter, Pageable pageable );
+	/**
+	 * 
+	 * @param filter
+	 * @param pageable
+	 * @return
+	 */
+	@Query(value="SELECT new User(user.id, user.name, user.email, user.enabled, user.role) " +
+			   "FROM User user " +
+			  "WHERE ( FILTER(user.id, :filter) = TRUE "
+			  	 + "OR FILTER(user.name, :filter) = TRUE "
+			  	 + "OR FILTER(user.email, :filter) = TRUE )"
+			  	 + "AND user.role = 3" )
+	public Page<User> listStudentByFilters( @Param("filter") String filter, Pageable pageable );
 }

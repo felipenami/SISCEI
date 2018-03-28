@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" 
+	xmlns:th="http://www.thymeleaf.org" lang="pt">
+<meta charset="UTF-8">
+<div ng-init="calculateWindowHeight(); findCep()" id="sectionsWindow" style="overflow:auto;" class="training-form" >
+
+    <div layout-align="center center" style="width:820px;margin:0 auto;position:relative;top:-1px;z-index:2;" class="training-form">
+        <form name="model.form" novalidate>
+	        <eits-paper-sheet id="information" ng-init="openPaper('information')">
+	            <content-closed>
+	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
+	                    <h3>Informações</h3>
+	                </eits-vbox>
+	            </content-closed>
+	            <content-opened>
+			  		<div layout="column" flex>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+		            		<label class="gray" flex> Nome: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.name}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+		            		<label class="gray" flex> Email: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.email}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+	            			<label class="gray" flex> RG: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.rg}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+	            			<label class="gray" flex> CPF: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.cpf}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+	            			<label class="gray" flex> Nome da mãe: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.motherName}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+	            			<label class="gray" flex> Nome do pai: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.fatherName}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+	            			<label class="gray" flex> Telefone: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.phone}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+	            			<label class="gray" flex> Data de nascimento: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.birthDate  | date: 'dd/MM/yyyy'}} </h4>
+	            		</div>
+	           		</div>
+	            </content-opened>
+	        </eits-paper-sheet>
+	        <eits-paper-sheet ng-if="model.user.responsible.id" id="responsible">
+	        	<content-closed>
+	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
+	                    <h3>Responsável</h3>
+	                </eits-vbox>
+	            </content-closed>
+	            <content-opened>
+	            	<div layout="column" flex>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+		            		<label class="gray" flex> Nome do responsável: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.responsible.name}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+	            			<label class="gray" flex> RG do responsável: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.responsible.rg}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+	            			<label class="gray" flex> CPF do responsável: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.responsible.cpf}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+	            			<label class="gray" flex> Telefone: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.responsible.phone}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+	            			<label class="gray" flex> Data de nascimento: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.responsible.birthDate  | date: 'dd/MM/yyyy'}} </h4>
+	            		</div>
+	            	</div>	
+	            </content-opened>
+	        </eits-paper-sheet>
+	        <eits-paper-sheet id="address">
+	            <content-closed>
+	                <eits-vbox padding-left="30" padding-right="30" padding-top="5">
+	                    <h3>Endereço</h3>
+	                </eits-vbox>
+	            </content-closed>
+	            <content-opened>
+			  		<div layout="column" flex>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+		            		<label class="gray" flex> Endereço: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.address.street }}, {{model.user.address.number}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+		            		<label class="gray" flex> Bairro: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.address.neighborhood}} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+	            			<label class="gray" flex> Cidade: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.address.city.name }} </h4>
+	            		</div>
+	            		<div layout="row" flex style="padding-bottom: 50px;">
+	            			<label class="gray" flex> Estado: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.address.city.state.name }} </h4>
+	            		</div>
+	            		<div layout="row" flex >
+	            			<label class="gray" flex> CEP: </label>
+							<h4 class="text-word-wrap not-margin" flex="80">{{model.user.address.cep }} </h4>
+	            		</div>
+	            		<div>
+	            		</div>
+	           		</div>
+	            </content-opened>
+	        </eits-paper-sheet>
+        </form>
+    </div>
+     <eits-hbox vertical-align="center" horizontal-align="center" gap="90">
+        <md-button class="md-fab md-fab-bottom-right md-primary zmdi zmdi-hc-2x zmdi-long-arrow-return md-accent md-hue-1" aria-label="blue" style="color:#ffffff;" ng-click="$state.go('student.list')">
+            <md-tooltip>Voltar</md-tooltip>
+        </md-button>
+     </eits-hbox>
+</div>
+</html>

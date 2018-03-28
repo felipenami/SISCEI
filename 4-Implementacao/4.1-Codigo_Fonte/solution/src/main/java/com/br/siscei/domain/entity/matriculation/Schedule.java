@@ -47,15 +47,13 @@ public class Schedule extends AbstractEntity
 	 */
 	@NotNull
 	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar endHour;
+	private String endHour;
 	/**
 	 * 
 	 */
 	@NotNull
 	@Column(nullable = false)
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar beginHour;
+	private String beginHour;
 	/**
 	 * 
 	 */
@@ -88,7 +86,7 @@ public class Schedule extends AbstractEntity
 	 * @param endHour
 	 * @param weekDay
 	 */
-	public Schedule(Long id, Calendar beginHour, Calendar endHour, ScheduleWeek weekDay)
+	public Schedule(Long id, String beginHour, String endHour, ScheduleWeek weekDay)
 	{
 		super(id);
 		this.beginHour	=	beginHour;
@@ -101,15 +99,12 @@ public class Schedule extends AbstractEntity
 	 * @param endHour
 	 * @param weekDay
 	 */
-	public Schedule( Calendar beginHour, Calendar endHour, ScheduleWeek weekDay)
+	public Schedule( String beginHour, String endHour, ScheduleWeek weekDay)
 	{
 		this.beginHour	=	beginHour;
 		this.endHour	=	endHour;
 		this.weekDay	=	weekDay;
 	}
-	/*-------------------------------------------------------------------
-	 *							BEHAVIORS
-	 *-------------------------------------------------------------------*/
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -159,28 +154,28 @@ public class Schedule extends AbstractEntity
 	/**
 	 * @return the endHour
 	 */
-	public Calendar getEndHour()
+	public String getEndHour()
 	{
 		return endHour;
 	}
 	/**
 	 * @param endHour the endHour to set
 	 */
-	public void setEndHour( Calendar endHour )
+	public void setEndHour( String endHour )
 	{
 		this.endHour = endHour;
 	}
 	/**
 	 * @return the beginHour
 	 */
-	public Calendar getBeginHour()
+	public String getBeginHour()
 	{
 		return beginHour;
 	}
 	/**
 	 * @param beginHour the beginHour to set
 	 */
-	public void setBeginHour( Calendar beginHour )
+	public void setBeginHour( String beginHour )
 	{
 		this.beginHour = beginHour;
 	}
@@ -199,16 +194,16 @@ public class Schedule extends AbstractEntity
 		this.weekDay = weekDay;
 	}
 	/**
-	 * @return the classRoom
+	 * @return the classroom
 	 */
-	public Classroom getClassRoom()
+	public Classroom getClassroom()
 	{
 		return classroom;
 	}
 	/**
-	 * @param classRoom the classRoom to set
+	 * @param classroom the classroom to set
 	 */
-	public void setClassRoom( Classroom classroom )
+	public void setClassroom( Classroom classroom )
 	{
 		this.classroom = classroom;
 	}

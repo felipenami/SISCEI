@@ -69,15 +69,15 @@
 	                		</md-input-container>
 	            		</div>
 	            		<div layout="row" flex>
-	            			<md-content flex>
+	            			<md-content flex style="background-color: white !important;">
 	            				<label>Data de Vencimento</label>
-								<md-datepicker ng-model="model.accountReceivable.dueDate" name="dueDate" md-placeholder="Data de vencimento"></md-datepicker>
+								<md-datepicker ng-model="model.accountReceivable.dueDate" name="dueDate" md-placeholder="Data de vencimento" md-open-on-focus/>
 							</md-content>
 							<div layout=row flex>
        		      			<md-checkbox style="margin-top: 12px;" aria-label="recebido"  md-no-ink class="md-primary" ng-true-value="'RECEIVED'" ng-false-value="'NOT_RECEIVED'" ng-model="model.accountReceivable.status">
 				           		Recebido 
 				          	</md-checkbox>
-							<md-datepicker ng-disabled="model.accountReceivable.status == 'NOT_RECEIVED' " ng-model="model.accountReceivable.receivementDate" md-placeholder="Data de recebimento"></md-datepicker>
+							<md-datepicker ng-disabled="model.accountReceivable.status == 'NOT_RECEIVED' " ng-model="model.accountReceivable.receivementDate" md-placeholder="Data de recebimento" md-open-on-focus />
        		      		</div>
 	            		</div>
 	           		</div>

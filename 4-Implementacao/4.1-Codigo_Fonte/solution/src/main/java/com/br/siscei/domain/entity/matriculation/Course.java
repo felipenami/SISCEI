@@ -183,5 +183,4 @@ public class Course extends AbstractEntity
 	{
 		this.discipline = discipline;
 	}
-
 }

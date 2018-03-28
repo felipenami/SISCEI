@@ -73,6 +73,13 @@
         $scope.model = {
                 form    : {},
                 accountReceivable : new AccountReceivable(),
+                query :{
+            	    order: 'name',
+            	    limit: 5,
+            	    page: 1
+            	  },
+            	limitOptions : [5, 10, 15],
+            	totalElements : 0,
                 filters: {
                     terms: [],
                 },
@@ -181,7 +188,7 @@
             console.debug("changeToList");
             
             $scope.model.page.pageable = {
-            	size: 9,
+            	size: 100,
             	page: 0,
             	sort: {
             		orders: [{ 
@@ -258,6 +265,7 @@
         	accountReceivableService.listAccountsReceivableByFilters( filters.terms.toString() , pageRequest, {
                 callback: function (result) {
                     $scope.model.accountsReceivable = $scope.model.accountsReceivable.concat(result.content);
+                    $scope.model.totalElements = result.totalElements;
                     $scope.getAccountsReceivableTotal($scope.model.accountsReceivable);
                     $scope.model.showLoading = false;
                     $scope.model.notFound = result.totalElements == 0 ? true : false;
@@ -442,7 +450,7 @@
          */
         $scope.listUsersByFilters = function(filters, pageRequest){
         	console.debug("test");
-        	accountService.listUsersByFilters( filters.terms.toString(), null, {
+        	accountService.listStudentsByFilters( filters.terms.toString(), null, {
                 callback: function (result) {
                     $scope.model.users = $scope.model.users.concat(result.content);
                     $scope.model.showLoading = false;

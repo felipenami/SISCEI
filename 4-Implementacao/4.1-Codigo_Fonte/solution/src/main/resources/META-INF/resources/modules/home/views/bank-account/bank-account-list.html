@@ -33,7 +33,7 @@
 				      </tr>
 				    </thead>
 				    <tbody md-body>
-				      <tr  md-row md-select="bankAccount" ng-repeat="bankAccount in model.bankAccounts">
+				      <tr  md-row md-select="bankAccount" ng-repeat="bankAccount in model.bankAccounts | filter: filter.search | orderBy: model.query.order | limitTo: model.query.limit : (model.query.page -1) * model.query.limit">
 				        <td md-cell>{{bankAccount.name}}</td>
 				        <td md-cell>{{bankAccount.description}}</td>
 				        <td md-cell>{{bankAccount.balance | currency}}</td>
@@ -60,6 +60,17 @@
 				    </tbody>
 				</table>
 			</md-table-container>
+			<md-table-pagination ng-if="!model.notFound"
+				md-limit="model.query.limit"
+				md-label="{ page: 'Página', rowsPerPage: 'registros', of: 'de' }"  
+				md-limit-options="model.limitOptions" 
+				md-page="model.query.page" 
+				md-total="{{model.totalElements}}" 
+				md-page-select="options.pageSelect" 
+				md-boundary-links="options.boundaryLinks" 
+				md-on-paginate="logPagination">
+			</md-table-pagination>
+			
 		</md-card>
 		<div layout="column" layout-align="space-between center" ng-if="model.notFound">
 			<md-icon style=" height:70px; margin-top: 20px;"class="zmdi zmdi-search zmdi-hc-fw zmdi-hc-4x"></md-icon>

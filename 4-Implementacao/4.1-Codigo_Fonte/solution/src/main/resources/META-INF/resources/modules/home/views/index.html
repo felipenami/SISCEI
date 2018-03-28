@@ -19,19 +19,29 @@
 		
 		<!-- Controllers -->
 		<script type="text/javascript" th:src="@{/modules/home/controllers/home-controller.js}"></script>
+		<script type="text/javascript" th:src="@{/modules/home/controllers/student-controller.js}"></script>
+		<script type="text/javascript" th:src="@{/modules/home/controllers/user-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/supplier-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/bank-account-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/account-payable-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/account-receivable-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/course-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/classroom-controller.js}"></script>
+		<script type="text/javascript" th:src="@{/modules/home/controllers/matriculation-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/discipline-popup-controller.js}"></script>
 		<script type="text/javascript" th:src="@{/modules/home/controllers/schedule-popup-controller.js}"></script>
+		
 		
 		<!-- moment.js -->
 		<script type="text/javascript" th:src="@{/webjars/momentjs/moment.min.js}"></script>
 		<script type="text/javascript" th:src="@{/webjars/momentjs/locales.min.js}"></script>
 		<script>moment.locale(navigator.language.toLowerCase());</script>
+		
+		<script th:inline="javascript">
+		/*<![CDATA[*/
+		   user = /*[[${session.SPRING_SECURITY_CONTEXT.authentication}]]*/;
+		/*]]>*/
+		</script>
 	</head>
 		
 	<body ng-controller="HomeController">
@@ -54,38 +64,41 @@
 				<span flex=""></span>
 				
 				<label class="md-body-1" th:text="${#authentication.name}"></label>
-				
-				<md-menu id="menu">
-					<div>
-	      				<md-button class="md-icon-button" aria-label="Options" ng-click="$mdOpenMenu()">
-	        				<md-icon md-menu-origin="" class="zmdi zmdi-more-vert zmdi-hc-2x"></md-icon>
-	      				</md-button>
-					</div>
+					<md-button onclick="window.location = './logout'">
+		            	<md-icon class="zmdi zmdi-sign-in zmdi-hc-lg"></md-icon>
+		            	Sair
+		          	</md-button>
+<!-- 				<md-menu id="menu"> -->
+<!-- 					<div> -->
+<!-- 	      				<md-button class="md-icon-button" aria-label="Options" ng-click="$mdOpenMenu()"> -->
+<!-- 	        				<md-icon md-menu-origin="" class="zmdi zmdi-more-vert zmdi-hc-2x"></md-icon> -->
+<!-- 	      				</md-button> -->
+<!-- 					</div> -->
 					
-					<md-menu-content>
- 						<md-menu-item>
-				          	<md-button>
-				            	<md-icon class="zmdi zmdi-account zmdi-hc-lg"></md-icon>
-				            	Perfil
-				          	</md-button>
-				        </md-menu-item>
- 						<md-menu-item>
-				          	<md-button>
-				            	<md-icon class="zmdi zmdi-settings zmdi-hc-lg"></md-icon>
-				            	Configurações
-				          	</md-button>
-				        </md-menu-item>
+<!-- 					<md-menu-content> -->
+<!--  						<md-menu-item> -->
+<!-- 				          	<md-button> -->
+<!-- 				            	<md-icon class="zmdi zmdi-account zmdi-hc-lg"></md-icon> -->
+<!-- 				            	Perfil -->
+<!-- 				          	</md-button> -->
+<!-- 				        </md-menu-item> -->
+<!--  						<md-menu-item> -->
+<!-- 				          	<md-button> -->
+<!-- 				            	<md-icon class="zmdi zmdi-settings zmdi-hc-lg"></md-icon> -->
+<!-- 				            	Configurações -->
+<!-- 				          	</md-button> -->
+<!-- 				        </md-menu-item> -->
 				        
-				        <md-menu-divider></md-menu-divider>
+<!-- 				        <md-menu-divider></md-menu-divider> -->
 				        
-				        <md-menu-item>
-				          	<md-button onclick="window.location = './logout'">
-				            	<md-icon class="zmdi zmdi-sign-in zmdi-hc-lg"></md-icon>
-				            	Sair
-				          	</md-button>
-				        </md-menu-item>
-					</md-menu-content>
-    			</md-menu>
+<!-- 				        <md-menu-item> -->
+<!-- 				          	<md-button onclick="window.location = './logout'"> -->
+<!-- 				            	<md-icon class="zmdi zmdi-sign-in zmdi-hc-lg"></md-icon> -->
+<!-- 				            	Sair -->
+<!-- 				          	</md-button> -->
+<!-- 				        </md-menu-item> -->
+<!-- 					</md-menu-content> -->
+<!--     			</md-menu> -->
     		</eits-hbox>
 
   		</md-toolbar>

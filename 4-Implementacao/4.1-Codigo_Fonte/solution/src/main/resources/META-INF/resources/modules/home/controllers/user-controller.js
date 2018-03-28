@@ -4,33 +4,31 @@
    * 
    */
   angular.module('siscei')
-	.controller('SupplierController', function ($scope, $rootScope,$state, $importService, $mdDialog, $mdSidenav, $mdToast, $timeout, $window, $location, $locale , $q, $http) {
+	.controller('UserController', function ($scope, $rootScope,$state, $importService, $mdDialog, $mdSidenav, $mdToast, $timeout, $window, $location, $locale , $q, $http) {
 		 /**
          * Serviços importados do DWR
          */
-		$importService("supplierService");
+		$importService("accountService");
 		/**
 		 * 
 		 */
-		$importService("addressService");
-		
 		 //----STATES
         /**
          * Representa o estado de listagem de registros.
          */
-        $scope.LIST_STATE = "supplier.list";
+        $scope.LIST_STATE = "user.list";
         /**
          * Representa o estado para a criação de registros.
          */
-        $scope.ADD_STATE = "supplier.add";
+        $scope.ADD_STATE = "user.add";
         /**
          * Representa o estado para a edição de registros.
          */
-        $scope.EDIT_STATE = "supplier.edit";
+        $scope.EDIT_STATE = "user.edit";
         /**
          * Representa o estado de detalhe de um registro.
          */
-        $scope.DETAIL_STATE = "supplier.detail";		
+        $scope.DETAIL_STATE = "user.detail";		
         /**
          * 
          */
@@ -61,7 +59,7 @@
          */
         $scope.model = {
                 form    : {},
-                supplier : new Supplier(),
+                user : new User(),
                 query :{
             	    order: 'name',
             	    limit: 5,
@@ -75,7 +73,6 @@
                 states : [],
                 cities : [],
                 state : {},
-                suppliers : [],
                 page: {//PageImpl
                     content: null,
                     pageable: {//PageRequest
@@ -96,7 +93,7 @@
          * 
          */
         $scope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-          $state.current.breadCrumbs = [{'state': $scope.LIST_STATE, 'name': 'Fornecedores'}];
+          $state.current.breadCrumbs = [{'state': $scope.LIST_STATE, 'name': 'Usuários'}];
 
             //Controle para mudar o botão do menu para o botão voltar da página
             $state.current.currentState = {
@@ -140,10 +137,9 @@
          */
         $scope.changeToEdit = function (id) {
         	
-        	supplierService.findSupplierById(id,{
+        	accountService.findUserById(id,{
         		callback: function (result) {
-        			$scope.model.supplier = result;
-        			$scope.listCitiesByState($scope.model.supplier.address.city.state.id);
+        			$scope.model.user = result;
         			$scope.$apply();
         		},
                 errorHandler: function (message, exception) {
@@ -165,16 +161,16 @@
             	sort: {
             		orders: [{ 
             			direction: 'ASC',
-            			property: 'tradeName',
+            			property: 'name',
             			nullHandlingHint: null
             		}]
                 }
             };
                 
                 //Limpamos a lista para um nova consulta
-                $scope.model.supplier = new Supplier();
-                $scope.model.suppliers = [];
-                $scope.listSuppliersByFilters( $scope.model.filters,  $scope.model.page.pageable );
+                $scope.model.user = new User();
+                $scope.model.users = [];
+                $scope.listUsersByFilters( $scope.model.filters,  $scope.model.page.pageable );
         };
         /**
          * 
@@ -182,10 +178,8 @@
         $scope.changeToAdd = function(){
         	console.debug("changeToAdd");
         	
-        	$scope.model.states = [];
-        	$scope.model.cities = [];
-        	$scope.model.state = {};
-        	$scope.model.supplier = new Supplier();
+        	$scope.model.user = new User();
+        	
         }
         /**
          * 
@@ -193,9 +187,9 @@
     	$scope.changeToDetail = function (id) {
         	console.debug("Detail");
         	
-        	supplierService.findSupplierById(id,{
+        	accountService.findUserById(id,{
         		callback: function (result) {
-        			$scope.model.supplier = result;
+        			$scope.model.user = result;
         			$scope.$apply();
         		},
                 errorHandler: function (message, exception) {
@@ -208,30 +202,63 @@
         /**
          * 
          */
-        $scope.changeToRemove = function (event, entity) {
-            console.debug("changeToRemove", entity);
+        $scope.inactivetedUser = function (event, entity) {
+            console.debug("Inativando", entity);
 
             var confirm = $mdDialog.confirm()
-                .title('Tem certeza que deseja excluir este registro?')
-                .content('Não será possível recuperar este registro se for excluído.')
+                .title('Tem certeza que deseja alterar a situação desse usuário?')
+//                .content('Não será possível recuperar este registro se for excluído.')
                 .ok('Sim')
                 .cancel('Cancelar')
                 .targetEvent(event);
 
             $mdDialog.show(confirm).then(function (result) {
             	
-            	supplierService.removeSupplier(entity.id, {
+            	accountService.inactivetedUser(entity.id, {
                     callback: function (result) {
                         if( $state.current.name == $scope.LIST_STATE){
                             $scope.changeToList();
                         } else {
                             $state.go( $scope.LIST_STATE );
                         }
-                        $mdToast.showSimple("O registro foi excluído com sucesso!");
+                        $mdToast.showSimple("Usuário inativado");
                         $scope.$apply();
                     },
                     errorHandler: function (message, exception) {
-                        $mdToast.showSimple("O registro não pode ser excluído.");
+                        $mdToast.showSimple("Você não tem permissão para realizar essa ação!");
+                        $state.go($scope.LIST_STATE);
+                        $scope.$apply();
+                    }
+                });
+            });
+        };
+        /**
+         * 
+         */
+        $scope.activetedUser = function (event, entity) {
+            console.debug("Inativando", entity);
+
+            var confirm = $mdDialog.confirm()
+                .title('Tem certeza que deseja alterar a situação desse usuário?')
+//                .content('Não será possível recuperar este registro se for excluído.')
+                .ok('Sim')
+                .cancel('Cancelar')
+                .targetEvent(event);
+
+            $mdDialog.show(confirm).then(function (result) {
+            	
+            	accountService.activetedUser(entity.id, {
+                    callback: function (result) {
+                        if( $state.current.name == $scope.LIST_STATE){
+                            $scope.changeToList();
+                        } else {
+                            $state.go( $scope.LIST_STATE );
+                        }
+                        $mdToast.showSimple("Usuário ativado");
+                        $scope.$apply();
+                    },
+                    errorHandler: function (message, exception) {
+                        $mdToast.showSimple("Você não tem permissão para realizar essa ação!");
                         $state.go($scope.LIST_STATE);
                         $scope.$apply();
                     }
@@ -241,11 +268,11 @@
     	/**
     	 * 
     	 */
-        $scope.listSuppliersByFilters = function(filters, pageRequest){
+        $scope.listUsersByFilters = function(filters, pageRequest){
         	console.debug("test");
-        	supplierService.listSuppliersByFilters( filters.terms.toString(), pageRequest, {
+        	accountService.listUsersByFilters( filters.terms.toString(), pageRequest, {
                 callback: function (result) {
-                    $scope.model.suppliers = $scope.model.suppliers.concat(result.content);
+                    $scope.model.users = $scope.model.users.concat(result.content);
                     $scope.model.totalElements = result.totalElements;
                     $scope.model.showLoading = false;
                     $scope.model.notFound = result.totalElements == 0 ? true : false;
@@ -260,11 +287,11 @@
         /**
          * 
          */
-        $scope.insertSupplierHandler = function (supplier){
+        $scope.insertUserHandler = function (user){
         	if($scope.validateForm()){
-        		supplierService.insertSupplier( supplier, {
+        		accountService.insertUser( user, {
 	        		callback: function(result){
-	        			$mdToast.showSimple("Fornecedor	 salvo com sucesso!");
+	        			$mdToast.showSimple("Usuário salvo com sucesso!");
 	                    $state.go($scope.LIST_STATE);
 	                    $scope.$apply();
 	        		},
@@ -327,13 +354,24 @@
 	        	});
         }
         
+        
+        
+        
         $scope.validateForm = function (){
-        	if($scope.model.supplier.tradeName == null){
-        		$mdToast.showSimple("O nome fantasia deve ser informado.");
+        	if($scope.model.user.name == null){
+        		$mdToast.showSimple("O nome do usuário deve ser informado.");
                 return false;
         	}
-        	if($scope.model.supplier.companyName == null){
-        		$mdToast.showSimple("A razão social deve ser informado.");
+        	if($scope.model.user.email == null){
+        		$mdToast.showSimple("O email do usuário deve ser informado.");
+        		return false;
+        	}
+        	if($scope.model.user.role == null){
+        		$mdToast.showSimple("O perfil do usuário deve ser informado.");
+        		return false;
+        	}
+        	if($scope.model.user.password != $scope.model.user.passwordConfirmation){
+        		$mdToast.showSimple("As senhas não conferem..");
         		return false;
         	}
         	return true;
@@ -341,7 +379,7 @@
         /**
          * 
          */
-        $scope.listSuppliersByEvents = function ( event ) {
+        $scope.listUsersByEvents = function ( event ) {
         	
 	    	if( event.keyCode == 13 || $scope.model.filters.terms == "" ){
 	          $scope.changeToList();

@@ -10,7 +10,7 @@
 					<span ng-if="!filter.show"  flex >Turmas</span>
 					<form flex ng-if="filter.show">
 						<md-icon class="zmdi zmdi-search zmdi-hc-lg" ></md-icon>
-               			<input ng-model="model.filters.terms" type="text" style="border:none; outline: none;" placeholder="Pesquisar" ng-keyup="listClassRoomsByEvents($event)">
+               			<input ng-model="model.filters.terms" type="text" style="border:none; outline: none;" placeholder="Pesquisar" ng-keyup="listClassroomsByEvent($event)">
                		</form>
                		<md-button ng-if="filter.show" class="md-icon-button md-button md-ink-ripple" ng-click="clearFilters()">
               			<md-icon class="zmdi zmdi-close zmdi-hc-lg"></md-icon>
@@ -18,7 +18,7 @@
             		</md-button>
 					<md-button ng-if="!filter.show"  class="md-icon-button md-button md-ink-ripple" ng-click="filter.show = true">
 	              		<md-icon class="zmdi zmdi-filter-list zmdi-hc-lg"></md-icon>
-	              		<md-tooltip>Filtrar contas</md-tooltip>
+	              		<md-tooltip>Filtrar turmas</md-tooltip>
 	            	</md-button>
 				</div>
 			</md-toolbar>
@@ -28,14 +28,14 @@
 				    <thead md-head >
 				      <tr md-row>
 				        <th md-column ><span>Turma</span></th>
-				        <th md-column ><span>Horário</span></th>
+				        <th md-column ><span>Curso</span></th>
 				        <th md-column ><span>Situação</span></th>
 				      </tr>
 				    </thead>
 				    <tbody md-body>
-				      <tr  md-row md-select="classroom" ng-repeat="classroom in model.classrooms">
+				      <tr  md-row md-select="classroom" ng-repeat="classroom in model.classrooms | filter: filter.search | orderBy: model.query.order | limitTo: model.query.limit : (model.query.page -1) * model.query.limit">
 				        <td md-cell>{{classroom.name}}</td>
-				        <td md-cell>{{classroom.beginHour | date: 'HH:mm' }} - {{classroom.endHour | date: 'HH:mm' }}</td>
+				        <td md-cell>{{classroom.course.name}}</td>
 				        <td md-cell>{{::classroom.status | translate}}</td>
 				        <td md-cell style="width: 5px; padding: 0 0 0 0;">
 				        	<md-menu md-offset="-30 25">
@@ -57,9 +57,20 @@
 							<md-tooltip>Opções do registro</md-tooltip>
 				        </td>
 				      </tr>
+				      
 				    </tbody>
 				</table>
 			</md-table-container>
+			<md-table-pagination ng-if="!model.notFound"
+				md-limit="model.query.limit"
+				md-label="{ page: 'Página', rowsPerPage: 'registros', of: 'de' }"  
+				md-limit-options="model.limitOptions" 
+				md-page="model.query.page" 
+				md-total="{{model.totalElements}}" 
+				md-page-select="options.pageSelect" 
+				md-boundary-links="options.boundaryLinks" 
+				md-on-paginate="logPagination">
+			</md-table-pagination>
 		</md-card>
 		<div layout="column" layout-align="space-between center" ng-if="model.notFound">
 			<md-icon style=" height:70px; margin-top: 20px;"class="zmdi zmdi-search zmdi-hc-fw zmdi-hc-4x"></md-icon>
